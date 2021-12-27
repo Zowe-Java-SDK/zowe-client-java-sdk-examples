@@ -28,7 +28,7 @@ public class MonitorJobs extends ZosConnection {
 
     private static final Logger LOG = LogManager.getLogger(MonitorJobs.class);
 
-    private static SubmitJobs submitJobs;
+    private static zosjobs.SubmitJobs submitJobs;
     private static ZOSConnection connection;
 
     /**
@@ -41,7 +41,7 @@ public class MonitorJobs extends ZosConnection {
      */
     public static void main(String[] args) throws Exception {
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-        submitJobs = new SubmitJobs(connection);
+        submitJobs = new zosjobs.SubmitJobs(connection);
 
         MonitorJobs.monitorJobsForOutputStatusByJobObject();
         MonitorJobs.monitorJobsForOutputStatusByJobNameAndId();
