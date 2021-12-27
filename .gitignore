@@ -1,0 +1,10 @@
+.idea/
+*.log
+dependency-reduced-pom.xml
+target/
+*.iml
+*.txt
+.classpath
+.factorypath
+.project
+.settings
