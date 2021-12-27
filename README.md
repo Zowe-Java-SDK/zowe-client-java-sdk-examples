@@ -1,6 +1,6 @@
 # Zowe Client SDK for Java Code Examples
 
-This project provides code examples to show the usage of Zowe Client SDK for Java library. The Zowe Java SDK is a sub-project of Zowe, focusing on modernizing mainframe experience. Zowe is a project hosted by the Open Mainframe Project, a Linux Foundation project.
+This project provides code examples to show the usage of Zowe Client SDK for Java library. The [Zowe Client Java SDK](https://github.com/zowe/zowe-client-java-sdk) is a sub-project of Zowe, focusing on modernizing mainframe experience. Zowe is a project hosted by the Open Mainframe Project, a Linux Foundation project.
 
 The SDK lets you leverage the underlying z/OSMF REST APIs on a z/OS system to build applications that interface with the mainframe.
 
@@ -46,7 +46,12 @@ See the following example programs:
   
     src/main/java/zowe/client/sdk/examples/ZosConnection.java
 
-You need to replace all instances of "XXX" accordingly to meet your target's credentials and host information.
+You need to replace all instances of "XXX" accordingly within the code to meet your command processing, target's z/OSMF credentials and host information.
+  
+## Requirements  
+  
+    Java 11  
+    z/OSMF installed on your backend z/OS instance.  
 
 ## Demo App
 
