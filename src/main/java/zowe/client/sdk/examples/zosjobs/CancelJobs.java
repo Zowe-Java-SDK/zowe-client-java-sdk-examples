@@ -9,13 +9,13 @@
  */
 package zowe.client.sdk.examples.zosjobs;
 
-import core.ZOSConnection;
-import examples.ZosConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import rest.Response;
-import zosjobs.input.ModifyJobParams;
-import zosjobs.response.Job;
+import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.rest.Response;
+import zowe.client.sdk.zosjobs.input.ModifyJobParams;
+import zowe.client.sdk.zosjobs.response.Job;
 
 /**
  * Class example to showcase CancelJobs functionality.
@@ -62,7 +62,7 @@ public class CancelJobs extends ZosConnection {
         jobId = "XXX";
         jobName = "XXX";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).version(version).build();
-        return new zosjobs.CancelJobs(connection).cancelJobsCommon(params);
+        return new zowe.client.sdk.zosjobs.CancelJobs(connection).cancelJobsCommon(params);
     }
 
     /**
@@ -77,7 +77,7 @@ public class CancelJobs extends ZosConnection {
         jobId = "XXX";
         jobName = "XXX";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).build();
-        return new zosjobs.CancelJobs(connection).cancelJobsCommon(params);
+        return new zowe.client.sdk.zosjobs.CancelJobs(connection).cancelJobsCommon(params);
     }
 
     /**
@@ -91,7 +91,7 @@ public class CancelJobs extends ZosConnection {
     public static Response cancelJobForJob() throws Exception {
         jobId = "XXX";
         jobName = "XXX";
-        return new zosjobs.CancelJobs(connection).cancelJobForJob(
+        return new zowe.client.sdk.zosjobs.CancelJobs(connection).cancelJobForJob(
                 new Job.Builder().jobName(jobName).jobId(jobId).build(), null);
     }
 
@@ -106,7 +106,7 @@ public class CancelJobs extends ZosConnection {
     public static Response cancelJob() throws Exception {
         jobId = "XXX";
         jobName = "XXX";
-        return new zosjobs.CancelJobs(connection).cancelJob(jobName, jobId, null);
+        return new zowe.client.sdk.zosjobs.CancelJobs(connection).cancelJob(jobName, jobId, null);
     }
 
 }

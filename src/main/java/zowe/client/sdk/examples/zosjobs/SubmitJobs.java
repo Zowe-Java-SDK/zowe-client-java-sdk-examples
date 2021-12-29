@@ -9,11 +9,11 @@
  */
 package zowe.client.sdk.examples.zosjobs;
 
-import core.ZOSConnection;
-import examples.ZosConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import zosjobs.response.Job;
+import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.zosjobs.response.Job;
 
 /**
  * Class example to showcase SubmitJobs functionality.
@@ -40,8 +40,8 @@ public class SubmitJobs extends ZosConnection {
         String jclString = "//TESTJOBX JOB (),MSGCLASS=H\n// EXEC PGM=IEFBR14";
         Job submitJobsTest = SubmitJobs.submitJclJob(connection, jclString);
         // Wait for the job to complete
-        zosjobs.MonitorJobs monitorJobs = new zosjobs.MonitorJobs(connection);
-        submitJobsTest = monitorJobs.waitForJobStatus(submitJobsTest, zosjobs.types.JobStatus.Type.OUTPUT);
+        zowe.client.sdk.zosjobs.MonitorJobs monitorJobs = new zowe.client.sdk.zosjobs.MonitorJobs(connection);
+        submitJobsTest = monitorJobs.waitForJobStatus(submitJobsTest, zowe.client.sdk.zosjobs.types.JobStatus.Type.OUTPUT);
         System.out.println(submitJobsTest);
         // Get the return code
         String retCode = submitJobsTest.getRetCode().orElse("n/a");
@@ -59,7 +59,7 @@ public class SubmitJobs extends ZosConnection {
      * @author Frank Giordano
      */
     public static Job submitJclJob(ZOSConnection connection, String jclString) throws Exception {
-        zosjobs.SubmitJobs submitJobs = new zosjobs.SubmitJobs(connection);
+        zowe.client.sdk.zosjobs.SubmitJobs submitJobs = new zowe.client.sdk.zosjobs.SubmitJobs(connection);
         return submitJobs.submitJcl(jclString, null, null);
     }
 
@@ -74,7 +74,7 @@ public class SubmitJobs extends ZosConnection {
      * @author Frank Giordano
      */
     public static Job submitJob(ZOSConnection connection, String dsMember) throws Exception {
-        zosjobs.SubmitJobs submitJobs = new zosjobs.SubmitJobs(connection);
+        zowe.client.sdk.zosjobs.SubmitJobs submitJobs = new zowe.client.sdk.zosjobs.SubmitJobs(connection);
         return submitJobs.submitJob(dsMember);
     }
 

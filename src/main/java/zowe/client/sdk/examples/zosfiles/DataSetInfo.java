@@ -9,12 +9,12 @@
  */
 package zowe.client.sdk.examples.zosfiles;
 
-import core.ZOSConnection;
-import examples.ZosConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import zosfiles.ZosDsn;
-import zosfiles.response.Dataset;
+import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.zosfiles.ZosDsn;
+import zowe.client.sdk.zosfiles.response.Dataset;
 
 /**
  * Class example to showcase ZosDsn getDataSetInfo functionality.

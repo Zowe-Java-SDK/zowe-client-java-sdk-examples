@@ -9,14 +9,14 @@
  */
 package zowe.client.sdk.examples.zosfiles;
 
-import core.ZOSConnection;
-import examples.ZosConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import utility.UtilDataset;
-import zosfiles.ZosDsnList;
-import zosfiles.input.ListParams;
-import zosfiles.response.Dataset;
+import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.utility.UtilDataset;
+import zowe.client.sdk.zosfiles.ZosDsnList;
+import zowe.client.sdk.zosfiles.input.ListParams;
+import zowe.client.sdk.zosfiles.response.Dataset;
 
 import java.util.List;
 

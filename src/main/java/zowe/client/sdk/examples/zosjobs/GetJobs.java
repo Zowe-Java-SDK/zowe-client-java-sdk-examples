@@ -9,14 +9,14 @@
  */
 package zowe.client.sdk.examples.zosjobs;
 
-import core.ZOSConnection;
-import examples.ZosConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import zosjobs.input.CommonJobParams;
-import zosjobs.input.GetJobParams;
-import zosjobs.input.JobFile;
-import zosjobs.response.Job;
+import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.zosjobs.input.CommonJobParams;
+import zowe.client.sdk.zosjobs.input.GetJobParams;
+import zowe.client.sdk.zosjobs.input.JobFile;
+import zowe.client.sdk.zosjobs.response.Job;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class GetJobs extends ZosConnection {
 
     private static final Logger LOG = LogManager.getLogger(GetJobs.class);
 
-    private static zosjobs.GetJobs getJobs;
+    private static zowe.client.sdk.zosjobs.GetJobs getJobs;
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
@@ -46,7 +46,7 @@ public class GetJobs extends ZosConnection {
         String jobId = "XXX";
 
         ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-        getJobs = new zosjobs.GetJobs(connection);
+        getJobs = new zowe.client.sdk.zosjobs.GetJobs(connection);
 
         GetJobs.getJobsCommon(prefix);
         GetJobs.getSpoolFiles(prefix);

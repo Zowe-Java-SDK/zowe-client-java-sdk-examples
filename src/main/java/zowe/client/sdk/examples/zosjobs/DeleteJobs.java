@@ -9,13 +9,13 @@
  */
 package zowe.client.sdk.examples.zosjobs;
 
-import core.ZOSConnection;
-import examples.ZosConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import rest.Response;
-import zosjobs.input.ModifyJobParams;
-import zosjobs.response.Job;
+import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.rest.Response;
+import zowe.client.sdk.zosjobs.input.ModifyJobParams;
+import zowe.client.sdk.zosjobs.response.Job;
 
 /**
  * Class example to showcase DeleteJobs functionality.
@@ -62,7 +62,7 @@ public class DeleteJobs extends ZosConnection {
         jobId = "XXX";
         jobName = "XXX";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).version(version).build();
-        return new zosjobs.DeleteJobs(connection).deleteJobCommon(params);
+        return new zowe.client.sdk.zosjobs.DeleteJobs(connection).deleteJobCommon(params);
     }
 
     /**
@@ -77,7 +77,7 @@ public class DeleteJobs extends ZosConnection {
         jobId = "XXX";
         jobName = "XXX";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).build();
-        return new zosjobs.DeleteJobs(connection).deleteJobCommon(params);
+        return new zowe.client.sdk.zosjobs.DeleteJobs(connection).deleteJobCommon(params);
     }
 
     /**
@@ -91,7 +91,7 @@ public class DeleteJobs extends ZosConnection {
     public static Response deleteJobForJob() throws Exception {
         jobId = "XXX";
         jobName = "XXX";
-        return new zosjobs.DeleteJobs(connection).deleteJobForJob(
+        return new zowe.client.sdk.zosjobs.DeleteJobs(connection).deleteJobForJob(
                 new Job.Builder().jobName(jobName).jobId(jobId).build(), null);
     }
 
@@ -106,7 +106,7 @@ public class DeleteJobs extends ZosConnection {
     public static Response deleteJob() throws Exception {
         jobId = "XXX";
         jobName = "XXX";
-        return new zosjobs.DeleteJobs(connection).deleteJob(jobName, jobId, null);
+        return new zowe.client.sdk.zosjobs.DeleteJobs(connection).deleteJob(jobName, jobId, null);
     }
 
 }

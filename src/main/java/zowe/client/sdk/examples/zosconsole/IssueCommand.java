@@ -9,14 +9,14 @@
  */
 package zowe.client.sdk.examples.zosconsole;
 
-import core.ZOSConnection;
-import examples.ZosConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import zosconsole.ConsoleResponse;
-import zosconsole.input.IssueParams;
-import zosconsole.zosmf.ZosmfIssueParams;
-import zosconsole.zosmf.ZosmfIssueResponse;
+import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.zosconsole.ConsoleResponse;
+import zowe.client.sdk.zosconsole.input.IssueParams;
+import zowe.client.sdk.zosconsole.zosmf.ZosmfIssueParams;
+import zowe.client.sdk.zosconsole.zosmf.ZosmfIssueResponse;
 
 /**
  * Class example to showcase mvs console command functionality.
@@ -55,7 +55,7 @@ public class IssueCommand extends ZosConnection {
         IssueParams params = new IssueParams();
         params.setCommand(cmd);
         ConsoleResponse response;
-        zosconsole.IssueCommand issueCommand = new zosconsole.IssueCommand(connection);
+        zowe.client.sdk.zosconsole.IssueCommand issueCommand = new zowe.client.sdk.zosconsole.IssueCommand(connection);
         try {
             response = issueCommand.issue(params);
             LOG.info(response.getCommandResponse().orElse(""));
@@ -73,7 +73,7 @@ public class IssueCommand extends ZosConnection {
      */
     public static void consoleCmdByIssueSimple(ZOSConnection connection, String cmd) {
         ConsoleResponse response;
-        zosconsole.IssueCommand issueCommand = new zosconsole.IssueCommand(connection);
+        zowe.client.sdk.zosconsole.IssueCommand issueCommand = new zowe.client.sdk.zosconsole.IssueCommand(connection);
         try {
             response = issueCommand.issueSimple(cmd);
             LOG.info(response.getCommandResponse().orElse(""));
@@ -93,7 +93,7 @@ public class IssueCommand extends ZosConnection {
         ZosmfIssueParams params = new ZosmfIssueParams();
         params.setCmd(cmd);
         ZosmfIssueResponse zResponse;
-        zosconsole.IssueCommand issueCommand = new zosconsole.IssueCommand(connection);
+        zowe.client.sdk.zosconsole.IssueCommand issueCommand = new zowe.client.sdk.zosconsole.IssueCommand(connection);
         try {
             zResponse = issueCommand.issueDefConsoleCommon(params);
             LOG.info(zResponse.getCmdResponse().orElse(""));
