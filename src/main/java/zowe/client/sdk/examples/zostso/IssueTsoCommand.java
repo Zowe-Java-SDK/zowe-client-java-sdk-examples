@@ -9,12 +9,12 @@
  */
 package zowe.client.sdk.examples.zostso;
 
-import core.ZOSConnection;
-import examples.ZosConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import zostso.IssueResponse;
-import zostso.IssueTso;
+import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.zostso.IssueResponse;
+import zowe.client.sdk.zostso.IssueTso;
 
 import java.util.Arrays;
 
