@@ -43,7 +43,6 @@ public class ListDatasets extends ZosConnection {
         String dataSetName = "XXX";
 
         ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-
         ListDatasets.listDsn(connection, dataSetMask);
         ListDatasets.listDsnVol(connection, dataSetMask);
         ListDatasets.listMembers(connection, dataSetName);
@@ -57,7 +56,7 @@ public class ListDatasets extends ZosConnection {
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void listMembers(ZOSConnection connection, String dataSetName) throws Exception {
+    public static void listMembers(zowe.client.sdk.core.ZOSConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().build();
         ZosDsnList zosDsnList = new ZosDsnList(connection);
         List<String> datasets = zosDsnList.listDsnMembers(dataSetName, params);
@@ -72,7 +71,7 @@ public class ListDatasets extends ZosConnection {
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void listDsn(ZOSConnection connection, String dataSetName) throws Exception {
+    public static void listDsn(zowe.client.sdk.core.ZOSConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(UtilDataset.Attribute.BASE).build();
         ZosDsnList zosDsnList = new ZosDsnList(connection);
         List<Dataset> datasets = zosDsnList.listDsn(dataSetName, params);
@@ -87,7 +86,7 @@ public class ListDatasets extends ZosConnection {
      * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void listDsnVol(ZOSConnection connection, String dataSetName) throws Exception {
+    public static void listDsnVol(zowe.client.sdk.core.ZOSConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(UtilDataset.Attribute.VOL).build();
         ZosDsnList zosDsnList = new ZosDsnList(connection);
         List<Dataset> datasets = zosDsnList.listDsn(dataSetName, params);

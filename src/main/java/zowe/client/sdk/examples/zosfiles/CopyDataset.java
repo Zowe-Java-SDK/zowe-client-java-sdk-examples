@@ -39,7 +39,7 @@ public class CopyDataset extends ZosConnection {
         String fromDataSetName = "XXX";
         String toDataSetName = "XXX";
 
-        ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        ZOSConnection connection = new zowe.client.sdk.core.ZOSConnection(hostName, zosmfPort, userName, password);
         copyDataset(connection, fromDataSetName, toDataSetName);
         copyDatasetByCopyParams(connection, fromDataSetName, toDataSetName);
         fromDataSetName = "XXX";  // specify a partition dataset only no member
@@ -68,7 +68,7 @@ public class CopyDataset extends ZosConnection {
      * @throws Exception error processing copy request
      * @author Frank Giordano
      */
-    public static void copyDataset(ZOSConnection connection, String fromDataSetName, String toDataSetName)
+    public static void copyDataset(zowe.client.sdk.core.ZOSConnection connection, String fromDataSetName, String toDataSetName)
             throws Exception {
         ZosDsnCopy zosDsnCopy = new ZosDsnCopy(connection);
         Response response = zosDsnCopy.copy(fromDataSetName, toDataSetName, true, false);
@@ -93,7 +93,7 @@ public class CopyDataset extends ZosConnection {
      * @throws Exception error processing copy request
      * @author Frank Giordano
      */
-    public static void copyDatasetByCopyParams(ZOSConnection connection, String fromDataSetName, String toDataSetName)
+    public static void copyDatasetByCopyParams(zowe.client.sdk.core.ZOSConnection connection, String fromDataSetName, String toDataSetName)
             throws Exception {
         ZosDsnCopy zosDsnCopy = new ZosDsnCopy(connection);
         // 'replace' builder variable here will be true by default if not specified in builder.
@@ -117,7 +117,7 @@ public class CopyDataset extends ZosConnection {
      * @throws Exception error processing copy request
      * @author Frank Giordano
      */
-    public static void copyFullPartitionDatasetByCopyParams(ZOSConnection connection, String fromDataSetName,
+    public static void copyFullPartitionDatasetByCopyParams(zowe.client.sdk.core.ZOSConnection connection, String fromDataSetName,
                                                             String toDataSetName) throws Exception {
         ZosDsnCopy zosDsnCopy = new ZosDsnCopy(connection);
         // 'replace' here will be true by default if not specified in builder.

@@ -58,7 +58,7 @@ public class SubmitJobs extends ZosConnection {
      * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static Job submitJclJob(ZOSConnection connection, String jclString) throws Exception {
+    public static Job submitJclJob(zowe.client.sdk.core.ZOSConnection connection, String jclString) throws Exception {
         zowe.client.sdk.zosjobs.SubmitJobs submitJobs = new zowe.client.sdk.zosjobs.SubmitJobs(connection);
         return submitJobs.submitJcl(jclString, null, null);
     }
@@ -73,7 +73,7 @@ public class SubmitJobs extends ZosConnection {
      * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static Job submitJob(ZOSConnection connection, String dsMember) throws Exception {
+    public static Job submitJob(zowe.client.sdk.core.ZOSConnection connection, String dsMember) throws Exception {
         zowe.client.sdk.zosjobs.SubmitJobs submitJobs = new zowe.client.sdk.zosjobs.SubmitJobs(connection);
         return submitJobs.submitJob(dsMember);
     }

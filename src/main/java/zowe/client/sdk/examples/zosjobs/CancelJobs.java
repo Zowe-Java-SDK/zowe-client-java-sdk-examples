@@ -27,7 +27,7 @@ public class CancelJobs extends ZosConnection {
 
     private static final Logger LOG = LogManager.getLogger(CancelJobs.class);
 
-    private static ZOSConnection connection;
+    private static zowe.client.sdk.core.ZOSConnection connection;
     private static String jobName;
     private static String jobId;
 

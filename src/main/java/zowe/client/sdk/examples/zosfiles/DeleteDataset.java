@@ -41,7 +41,6 @@ public class DeleteDataset extends ZosConnection {
         String member = "XXX";
 
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-
         deleteDataSet(dataSetName);
         deleteMember(dataSetName, member);
     }

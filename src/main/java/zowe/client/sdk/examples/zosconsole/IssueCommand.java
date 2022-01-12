@@ -36,9 +36,7 @@ public class IssueCommand extends ZosConnection {
      */
     public static void main(String[] args) {
         String command = "D IPLINFO";
-
-        ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-
+        ZOSConnection connection = new zowe.client.sdk.core.ZOSConnection(hostName, zosmfPort, userName, password);
         IssueCommand.consoleCmdByIssue(connection, command);
         IssueCommand.consoleCmdByIssueSimple(connection, command);
         IssueCommand.consoleCmdByIssueDefConsoleCommon(connection, command);
@@ -51,7 +49,7 @@ public class IssueCommand extends ZosConnection {
      * @param cmd        mvs command to execute
      * @author Frank Giordano
      */
-    public static void consoleCmdByIssue(ZOSConnection connection, String cmd) {
+    public static void consoleCmdByIssue(zowe.client.sdk.core.ZOSConnection connection, String cmd) {
         IssueParams params = new IssueParams();
         params.setCommand(cmd);
         ConsoleResponse response;
@@ -71,7 +69,7 @@ public class IssueCommand extends ZosConnection {
      * @param cmd        mvs command to execute
      * @author Frank Giordano
      */
-    public static void consoleCmdByIssueSimple(ZOSConnection connection, String cmd) {
+    public static void consoleCmdByIssueSimple(zowe.client.sdk.core.ZOSConnection connection, String cmd) {
         ConsoleResponse response;
         zowe.client.sdk.zosconsole.IssueCommand issueCommand = new zowe.client.sdk.zosconsole.IssueCommand(connection);
         try {
@@ -89,7 +87,7 @@ public class IssueCommand extends ZosConnection {
      * @param cmd        mvs command to execute
      * @author Frank Giordano
      */
-    public static void consoleCmdByIssueDefConsoleCommon(ZOSConnection connection, String cmd) {
+    public static void consoleCmdByIssueDefConsoleCommon(zowe.client.sdk.core.ZOSConnection connection, String cmd) {
         ZosmfIssueParams params = new ZosmfIssueParams();
         params.setCmd(cmd);
         ZosmfIssueResponse zResponse;

@@ -41,7 +41,6 @@ public class WriteDataset extends ZosConnection {
         String member = "XXX";
 
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-
         var content = "NEW CONTENT\nTHE SECOND LINE UPDATED";
         WriteDataset.writeToDsnMember(dataSetName, member, content);
     }

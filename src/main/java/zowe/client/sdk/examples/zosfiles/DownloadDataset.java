@@ -44,7 +44,6 @@ public class DownloadDataset extends ZosConnection {
 
         DownloadParams params = new DownloadParams.Builder().build();
         ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-
         DownloadDataset.downloadDsnMember(connection, datasetMember, params);
     }
 
@@ -57,7 +56,7 @@ public class DownloadDataset extends ZosConnection {
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void downloadDsnMember(ZOSConnection connection, String name, DownloadParams params) throws Exception {
+    public static void downloadDsnMember(zowe.client.sdk.core.ZOSConnection connection, String name, DownloadParams params) throws Exception {
         try (InputStream inputStream = new ZosDsnDownload(connection).downloadDsn(name, params)) {
             if (inputStream != null) {
                 StringWriter writer = new StringWriter();

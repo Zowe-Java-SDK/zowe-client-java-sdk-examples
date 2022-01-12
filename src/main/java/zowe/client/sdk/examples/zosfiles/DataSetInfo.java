@@ -36,12 +36,11 @@ public class DataSetInfo extends ZosConnection {
      */
     public static void main(String[] args) throws Exception {
         String dataSetName = "XXX";
-
-        ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        ZOSConnection connection = new zowe.client.sdk.core.ZOSConnection(hostName, zosmfPort, userName, password);
         LOG.info(DataSetInfo.getDataSetInfo(connection, dataSetName));
     }
 
-    private static Dataset getDataSetInfo(ZOSConnection connection, String dataSetName) throws Exception {
+    private static Dataset getDataSetInfo(zowe.client.sdk.core.ZOSConnection connection, String dataSetName) throws Exception {
         ZosDsn zosDsn = new ZosDsn(connection);
         return zosDsn.getDataSetInfo(dataSetName);
     }
