@@ -38,7 +38,7 @@ public class CreateDataset extends ZosConnection {
      * @author Leonid Baranov
      */
     public static void main(String[] args) throws Exception {
-        String dataSetName = "FG892105.JCL.CNTL.TEMP";
+        String dataSetName = "XXX";
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
         createDataSet(dataSetName);
     }
