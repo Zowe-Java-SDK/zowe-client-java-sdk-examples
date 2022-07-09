@@ -9,8 +9,8 @@
  */
 package zowe.client.sdk.examples.zosfiles;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.ZosConnection;
 import zowe.client.sdk.utility.UtilDataset;
@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class ListDatasets extends ZosConnection {
 
-    private static final Logger LOG = LogManager.getLogger(ListDatasets.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ListDatasets.class);
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
@@ -75,7 +75,7 @@ public class ListDatasets extends ZosConnection {
         ListParams params = new ListParams.Builder().attribute(UtilDataset.Attribute.BASE).build();
         ZosDsnList zosDsnList = new ZosDsnList(connection);
         List<Dataset> datasets = zosDsnList.listDsn(dataSetName, params);
-        datasets.forEach(LOG::info);
+        datasets.forEach(i -> LOG.info(String.valueOf(i)));
     }
 
     /**
@@ -90,7 +90,7 @@ public class ListDatasets extends ZosConnection {
         ListParams params = new ListParams.Builder().attribute(UtilDataset.Attribute.VOL).build();
         ZosDsnList zosDsnList = new ZosDsnList(connection);
         List<Dataset> datasets = zosDsnList.listDsn(dataSetName, params);
-        datasets.forEach(LOG::info);
+        datasets.forEach(i -> LOG.info(String.valueOf(i)));
     }
 
 }

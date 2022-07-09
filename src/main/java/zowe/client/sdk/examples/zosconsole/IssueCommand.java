@@ -9,8 +9,8 @@
  */
 package zowe.client.sdk.examples.zosconsole;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.ZosConnection;
 import zowe.client.sdk.zosconsole.ConsoleResponse;
@@ -26,7 +26,7 @@ import zowe.client.sdk.zosconsole.zosmf.ZosmfIssueResponse;
  */
 public class IssueCommand extends ZosConnection {
 
-    private static final Logger LOG = LogManager.getLogger(IssueCommand.class);
+    private static final Logger LOG = LoggerFactory.getLogger(IssueCommand.class);
 
     /**
      * Main method defines z/OSMF host and user connection, and mvs command used for the example test.

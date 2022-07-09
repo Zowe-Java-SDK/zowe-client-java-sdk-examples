@@ -9,8 +9,8 @@
  */
 package zowe.client.sdk.examples.zosjobs;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.ZosConnection;
 import zowe.client.sdk.zosjobs.input.CommonJobParams;
@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class GetJobs extends ZosConnection {
 
-    private static final Logger LOG = LogManager.getLogger(GetJobs.class);
+    private static final Logger LOG = LoggerFactory.getLogger(GetJobs.class);
 
     private static zowe.client.sdk.zosjobs.GetJobs getJobs;
 
@@ -120,7 +120,7 @@ public class GetJobs extends ZosConnection {
         List<Job> jobs = getJobs.getJobsByPrefix(prefix);
         try {
             Job job = getJobs.getStatusForJob(jobs.get(0));
-            LOG.info(job);
+            LOG.info(String.valueOf(job));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -140,7 +140,7 @@ public class GetJobs extends ZosConnection {
             Job job = getJobs.getStatus(
                     jobs.get(0).getJobName().orElseThrow(() -> new Exception("job name not specified")),
                     jobs.get(0).getJobId().orElseThrow(() -> new Exception("job id not specified")));
-            LOG.info(job);
+            LOG.info(job.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -174,7 +174,7 @@ public class GetJobs extends ZosConnection {
         String jobId = jobs.get(0).getJobId().orElseThrow(() -> new Exception("job id not specified"));
         try {
             Job job = getJobs.getJob(jobId);
-            LOG.info(job);
+            LOG.info(job.toString());
         } catch (Exception e) {
             LOG.info(e.getMessage());
         }
@@ -192,7 +192,7 @@ public class GetJobs extends ZosConnection {
      */
     public static void getJobsByOwnerAndPrefix(String owner, String prefix) throws Exception {
         List<Job> jobs = getJobs.getJobsByOwnerAndPrefix(owner, prefix);
-        jobs.forEach(LOG::info);
+        jobs.forEach(i -> LOG.info(i.toString()));
     }
 
     /**
@@ -206,7 +206,7 @@ public class GetJobs extends ZosConnection {
      */
     public static void getJobsByPrefix(String prefix) throws Exception {
         List<Job> jobs = getJobs.getJobsByPrefix(prefix);
-        jobs.forEach(LOG::info);
+        jobs.forEach(i -> LOG.info(i.toString()));
     }
 
     /**
@@ -219,7 +219,7 @@ public class GetJobs extends ZosConnection {
     public static void getJobs() throws Exception {
         // get any jobs out there for the logged-in user
         List<Job> jobs = getJobs.getJobs();
-        jobs.forEach(LOG::info);
+        jobs.forEach(i -> LOG.info(i.toString()));
     }
 
     /**
@@ -250,7 +250,7 @@ public class GetJobs extends ZosConnection {
      */
     public static void getJobsByOwner(String owner) throws Exception {
         List<Job> jobs = getJobs.getJobsByOwner(owner);
-        jobs.forEach(LOG::info);
+        jobs.forEach(i -> LOG.info(i.toString()));
     }
 
     /**
@@ -265,7 +265,7 @@ public class GetJobs extends ZosConnection {
         GetJobParams params = new GetJobParams.Builder("*").prefix(prefix).build();
         List<Job> jobs = getJobs.getJobsCommon(params);
         List<JobFile> files = getJobs.getSpoolFilesForJob(jobs.get(0));
-        files.forEach(LOG::info);
+        files.forEach(i -> LOG.info(i.toString()));
     }
 
     /**
@@ -283,7 +283,7 @@ public class GetJobs extends ZosConnection {
                 getJobs.getSpoolFiles(
                         jobs.get(0).getJobName().orElseThrow(() -> new Exception("job name not specified")),
                         jobs.get(0).getJobId().orElseThrow(() -> new Exception("job id not specified")));
-        files.forEach(LOG::info);
+        files.forEach(i -> LOG.info(i.toString()));
     }
 
     /**
@@ -297,7 +297,7 @@ public class GetJobs extends ZosConnection {
     public static void getJobsCommon(String prefix) throws Exception {
         GetJobParams params = new GetJobParams.Builder("*").prefix(prefix).build();
         List<Job> jobs = getJobs.getJobsCommon(params);
-        jobs.forEach(LOG::info);
+        jobs.forEach(i -> LOG.info(i.toString()));
     }
 
 }

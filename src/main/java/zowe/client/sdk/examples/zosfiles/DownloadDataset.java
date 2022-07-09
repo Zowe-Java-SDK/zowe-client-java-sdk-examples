@@ -10,8 +10,8 @@
 package zowe.client.sdk.examples.zosfiles;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.ZosConnection;
 import zowe.client.sdk.utility.UtilIO;
@@ -29,7 +29,7 @@ import java.io.StringWriter;
  */
 public class DownloadDataset extends ZosConnection {
 
-    private static final Logger LOG = LogManager.getLogger(DownloadDataset.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DownloadDataset.class);
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase

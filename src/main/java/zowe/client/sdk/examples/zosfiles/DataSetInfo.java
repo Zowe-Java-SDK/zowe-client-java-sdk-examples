@@ -9,8 +9,8 @@
  */
 package zowe.client.sdk.examples.zosfiles;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.ZosConnection;
 import zowe.client.sdk.zosfiles.ZosDsn;
@@ -24,7 +24,7 @@ import zowe.client.sdk.zosfiles.response.Dataset;
  */
 public class DataSetInfo extends ZosConnection {
 
-    private static final Logger LOG = LogManager.getLogger(DataSetInfo.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DataSetInfo.class);
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
@@ -37,7 +37,7 @@ public class DataSetInfo extends ZosConnection {
     public static void main(String[] args) throws Exception {
         String dataSetName = "XXX";
         ZOSConnection connection = new zowe.client.sdk.core.ZOSConnection(hostName, zosmfPort, userName, password);
-        LOG.info(DataSetInfo.getDataSetInfo(connection, dataSetName));
+        LOG.info(String.valueOf(DataSetInfo.getDataSetInfo(connection, dataSetName)));
     }
 
     private static Dataset getDataSetInfo(zowe.client.sdk.core.ZOSConnection connection, String dataSetName) throws Exception {
