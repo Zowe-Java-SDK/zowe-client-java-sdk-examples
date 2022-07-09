@@ -59,11 +59,10 @@ You need to replace all instances of "XXX" accordingly within the code to meet y
 
 ## Logger
 
-Logger packaged used for the project is log4j2.
+Logger packaged used for the project is logback.
 
-Under 'resources' directory you will find the logger configuration file log4j2.xml.
-
-Change <Root level="debug"> assignment accordingly for your needs.
+Under 'resources' directory you will find the logger configuration file logback.xml.
+  
 
 ## Documentation
 
