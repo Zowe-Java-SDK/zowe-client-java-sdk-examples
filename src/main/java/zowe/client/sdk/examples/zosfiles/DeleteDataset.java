@@ -9,8 +9,8 @@
  */
 package zowe.client.sdk.examples.zosfiles;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.ZosConnection;
 import zowe.client.sdk.rest.Response;
@@ -24,7 +24,7 @@ import zowe.client.sdk.zosfiles.ZosDsn;
  */
 public class DeleteDataset extends ZosConnection {
 
-    private static final Logger LOG = LogManager.getLogger(DeleteDataset.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DeleteDataset.class);
 
     private static ZOSConnection connection;
 

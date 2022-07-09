@@ -9,8 +9,8 @@
  */
 package zowe.client.sdk.examples.zosjobs;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.ZosConnection;
 import zowe.client.sdk.rest.Response;
@@ -25,7 +25,7 @@ import zowe.client.sdk.zosjobs.response.Job;
  */
 public class CancelJobs extends ZosConnection {
 
-    private static final Logger LOG = LogManager.getLogger(CancelJobs.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CancelJobs.class);
 
     private static zowe.client.sdk.core.ZOSConnection connection;
     private static String jobName;
@@ -42,10 +42,10 @@ public class CancelJobs extends ZosConnection {
     public static void main(String[] args) throws Exception {
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
 
-        LOG.info(cancelJobsCommonWithVersion("2.0"));
-        LOG.info(cancelJobsCommon());
-        LOG.info(cancelJobForJob());
-        LOG.info(cancelJob());
+        LOG.info(String.valueOf(cancelJobsCommonWithVersion("2.0")));
+        LOG.info(String.valueOf(cancelJobsCommon()));
+        LOG.info(String.valueOf(cancelJobForJob()));
+        LOG.info(String.valueOf(cancelJob()));
     }
 
     /**

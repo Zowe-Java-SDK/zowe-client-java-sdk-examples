@@ -9,8 +9,8 @@
  */
 package zowe.client.sdk.examples.zosfiles;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.ZosConnection;
 import zowe.client.sdk.rest.Response;
@@ -25,7 +25,7 @@ import zowe.client.sdk.zosfiles.input.CopyParams;
  */
 public class CopyDataset extends ZosConnection {
 
-    private static final Logger LOG = LogManager.getLogger(CopyDataset.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CopyDataset.class);
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase

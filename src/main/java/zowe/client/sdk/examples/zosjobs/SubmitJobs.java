@@ -9,8 +9,8 @@
  */
 package zowe.client.sdk.examples.zosjobs;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.ZosConnection;
 import zowe.client.sdk.zosjobs.response.Job;
@@ -23,7 +23,7 @@ import zowe.client.sdk.zosjobs.response.Job;
  */
 public class SubmitJobs extends ZosConnection {
 
-    private static final Logger LOG = LogManager.getLogger(SubmitJobs.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SubmitJobs.class);
 
     /**
      * Main method defines z/OSMF host and user connection needed to showcase
@@ -35,7 +35,7 @@ public class SubmitJobs extends ZosConnection {
      */
     public static void main(String[] args) throws Exception {
         ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-        LOG.info(SubmitJobs.submitJob(connection, "xxx.xxx.xxx.xxx(xxx)"));
+        LOG.info(String.valueOf(SubmitJobs.submitJob(connection, "xxx.xxx.xxx.xxx(xxx)")));
 
         String jclString = "//TESTJOBX JOB (),MSGCLASS=H\n// EXEC PGM=IEFBR14";
         Job submitJobsTest = SubmitJobs.submitJclJob(connection, jclString);

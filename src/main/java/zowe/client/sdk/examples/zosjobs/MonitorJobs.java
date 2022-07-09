@@ -10,8 +10,8 @@
  */
 package zowe.client.sdk.examples.zosjobs;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.ZosConnection;
 import zowe.client.sdk.zosjobs.input.MonitorJobWaitForParams;
@@ -26,7 +26,7 @@ import zowe.client.sdk.zosjobs.types.JobStatus;
  */
 public class MonitorJobs extends ZosConnection {
 
-    private static final Logger LOG = LogManager.getLogger(MonitorJobs.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MonitorJobs.class);
 
     private static zowe.client.sdk.zosjobs.SubmitJobs submitJobs;
     private static ZOSConnection connection;
@@ -61,7 +61,7 @@ public class MonitorJobs extends ZosConnection {
     public static void monitorIsJobRunning() throws Exception {
         zowe.client.sdk.zosjobs.MonitorJobs monitorJobs = new zowe.client.sdk.zosjobs.MonitorJobs(connection);
         MonitorJobWaitForParams monitorParams = new MonitorJobWaitForParams.Builder("XXX", "XXX").build();
-        LOG.info(monitorJobs.isJobRunning(monitorParams));
+        LOG.info(String.valueOf(monitorJobs.isJobRunning(monitorParams)));
     }
 
     /**

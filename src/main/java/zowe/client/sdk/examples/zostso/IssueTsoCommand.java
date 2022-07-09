@@ -9,8 +9,8 @@
  */
 package zowe.client.sdk.examples.zostso;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.ZosConnection;
 import zowe.client.sdk.zostso.IssueResponse;
@@ -26,7 +26,7 @@ import java.util.Arrays;
  */
 public class IssueTsoCommand extends ZosConnection {
 
-    private static final Logger LOG = LogManager.getLogger(IssueTsoCommand.class);
+    private static final Logger LOG = LoggerFactory.getLogger(IssueTsoCommand.class);
 
     private static ZOSConnection connection;
 
