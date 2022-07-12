@@ -18,6 +18,7 @@ import zowe.client.sdk.zosjobs.input.GetJobParams;
 import zowe.client.sdk.zosjobs.input.JobFile;
 import zowe.client.sdk.zosjobs.response.Job;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -58,6 +59,7 @@ public class GetJobs extends ZosConnection {
         GetJobs.getJobsByOwnerAndPrefix("*", prefix);
         GetJobs.getJob(prefix);
         GetJobs.nonExistentGetJob(jobId);
+        GetJobs.getStatusCommon(prefix);
         GetJobs.getStatus(prefix);
         GetJobs.getStatusForJob(prefix);
         GetJobs.getJcl(prefix);
@@ -78,7 +80,7 @@ public class GetJobs extends ZosConnection {
         List<Job> jobs = getJobs.getJobsByPrefix(prefix);
         LOG.info(getJobs.getJclCommon(
                 new CommonJobParams(jobs.get(0).getJobId().orElseThrow(() -> new Exception("job id not specified")),
-                        jobs.get(0).getJobName().orElseThrow(() -> new Exception("job name not specified")))));
+                        jobs.get(0).getJobName().orElseThrow(() -> new Exception("job name not specified")), false)));
     }
 
     /**
@@ -121,6 +123,27 @@ public class GetJobs extends ZosConnection {
         try {
             Job job = getJobs.getStatusForJob(jobs.get(0));
             LOG.info(String.valueOf(job));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Example on how to call GetJobs getStatus method with StepData flag.
+     * getStatus is given a jobName and jobId value to use for retrieval of its status with StepData flag set to true
+     *
+     * @param prefix partial or full job name to use for searching
+     * @throws Exception error in processing request
+     * @author Frank Giordano
+     */
+    public static void getStatusCommon(String prefix) throws Exception {
+        List<Job> jobs = getJobs.getJobsByPrefix(prefix);
+        try {
+            Job job = getJobs.getStatusCommon(
+                    new CommonJobParams(jobs.get(0).getJobId().orElseThrow(() -> new Exception("job id not specified")),
+                            jobs.get(0).getJobName().orElseThrow(() -> new Exception("job name not specified")), true));
+            LOG.info(job.toString());
+            Arrays.stream(job.getStepData().orElseThrow(() -> new Exception("no step data found"))).forEach(i -> LOG.info(i.toString()));
         } catch (Exception e) {
             e.printStackTrace();
         }
