@@ -80,7 +80,7 @@ public class GetJobs extends ZosConnection {
         List<Job> jobs = getJobs.getJobsByPrefix(prefix);
         LOG.info(getJobs.getJclCommon(
                 new CommonJobParams(jobs.get(0).getJobId().orElseThrow(() -> new Exception("job id not specified")),
-                        jobs.get(0).getJobName().orElseThrow(() -> new Exception("job name not specified")), false)));
+                        jobs.get(0).getJobName().orElseThrow(() -> new Exception("job name not specified")))));
     }
 
     /**
