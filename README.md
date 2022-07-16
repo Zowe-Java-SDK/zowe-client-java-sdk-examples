@@ -19,7 +19,9 @@ Functionality provided:
     CopyDataset
     CancelJobs
     DeleteJobs
-
+    CheckStatus  (zosmf status)  
+    ZosmfDefinedSystems  
+  
 See the following example programs:
 
     src/main/java/zowe/client/sdk/examples/zosconsole   
@@ -39,8 +41,12 @@ See the following example programs:
         DeleteJobs.java
         GetJobs.java
         MonitorJobs.java
-        SubmitJobs
-
+        SubmitJobs  
+  
+    src/main/java/zowe/client/sdk/examples/zosmfinfo 
+        CheckStatus.java
+        ZosmfDefinedSystems.java
+  
     src/main/java/zowe/client/sdk/examples/zostos  
         IssueTsoCommand.java
   
@@ -63,7 +69,6 @@ Logger packaged used for the project is logback.
 
 Under 'resources' directory you will find the logger configuration file logback.xml.
   
-
 ## Documentation
 
 https://javadoc.io/doc/org.zowe.client.java.sdk/zowe-client-java-sdk/latest/index.html
@@ -72,4 +77,3 @@ https://javadoc.io/doc/org.zowe.client.java.sdk/zowe-client-java-sdk/latest/inde
 
 https://mvnrepository.com/artifact/org.zowe.client.java.sdk/zowe-client-java-sdk  
   
-
