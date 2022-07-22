@@ -21,6 +21,7 @@ Functionality provided:
     DeleteJobs
     CheckStatus  (zosmf status)  
     ZosmfDefinedSystems  
+    Shell (uss commands)
   
 See the following example programs:
 
@@ -49,6 +50,9 @@ See the following example programs:
   
     src/main/java/zowe/client/sdk/examples/zostos  
         IssueTsoCommand.java
+
+    src/main/java/zowe/client/sdk/examples/zosuss  
+        USSCommand.java
   
     src/main/java/zowe/client/sdk/examples/ZosConnection.java
 
