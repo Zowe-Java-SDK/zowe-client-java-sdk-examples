@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.ZosConnection;
-import zowe.client.sdk.utility.UtilIO;
 import zowe.client.sdk.zosfiles.ZosDsnDownload;
 import zowe.client.sdk.zosfiles.input.DownloadParams;
 
@@ -60,7 +59,7 @@ public class DownloadDataset extends ZosConnection {
         try (InputStream inputStream = new ZosDsnDownload(connection).downloadDsn(name, params)) {
             if (inputStream != null) {
                 StringWriter writer = new StringWriter();
-                IOUtils.copy(inputStream, writer, UtilIO.UTF8);
+                IOUtils.copy(inputStream, writer, "UTF8");
                 String content = writer.toString();
                 LOG.info(content);
             }

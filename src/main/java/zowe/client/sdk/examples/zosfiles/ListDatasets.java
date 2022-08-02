@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.ZosConnection;
-import zowe.client.sdk.utility.UtilDataset;
+import zowe.client.sdk.utility.DataSetUtils;
 import zowe.client.sdk.zosfiles.ZosDsnList;
 import zowe.client.sdk.zosfiles.input.ListParams;
 import zowe.client.sdk.zosfiles.response.Dataset;
@@ -72,7 +72,7 @@ public class ListDatasets extends ZosConnection {
      * @author Leonid Baranov
      */
     public static void listDsn(zowe.client.sdk.core.ZOSConnection connection, String dataSetName) throws Exception {
-        ListParams params = new ListParams.Builder().attribute(UtilDataset.Attribute.BASE).build();
+        ListParams params = new ListParams.Builder().attribute(DataSetUtils.Attribute.BASE).build();
         ZosDsnList zosDsnList = new ZosDsnList(connection);
         List<Dataset> datasets = zosDsnList.listDsn(dataSetName, params);
         datasets.forEach(i -> LOG.info(String.valueOf(i)));
@@ -87,7 +87,7 @@ public class ListDatasets extends ZosConnection {
      * @author Frank Giordano
      */
     public static void listDsnVol(zowe.client.sdk.core.ZOSConnection connection, String dataSetName) throws Exception {
-        ListParams params = new ListParams.Builder().attribute(UtilDataset.Attribute.VOL).build();
+        ListParams params = new ListParams.Builder().attribute(DataSetUtils.Attribute.VOL).build();
         ZosDsnList zosDsnList = new ZosDsnList(connection);
         List<Dataset> datasets = zosDsnList.listDsn(dataSetName, params);
         datasets.forEach(i -> LOG.info(String.valueOf(i)));
