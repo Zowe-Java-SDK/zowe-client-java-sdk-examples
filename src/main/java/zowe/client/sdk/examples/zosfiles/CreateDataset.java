@@ -40,7 +40,23 @@ public class CreateDataset extends ZosConnection {
     public static void main(String[] args) throws Exception {
         String dataSetName = "XXX";
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-        createDataSet(dataSetName);
+        createPartitionDataSet(dataSetName);
+        dataSetName = "XXX";
+        createSequentialDataSet(dataSetName);
+
+    }
+
+    /**
+     * Create a new sequential data set
+     *
+     * @param dataSetName name of a dataset to create (e.g. 'DATASET.LIB')
+     * @throws Exception error processing request
+     * @author Frank Giordano
+     */
+    public static void createSequentialDataSet(String dataSetName) throws Exception {
+        ZosDsn zosDsn = new ZosDsn(connection);
+        Response response = zosDsn.createDsn(dataSetName, sequential());
+        LOG.info("http response code " + response.getStatusCode());
     }
 
     /**
@@ -50,7 +66,7 @@ public class CreateDataset extends ZosConnection {
      * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void createDataSet(String dataSetName) throws Exception {
+    public static void createPartitionDataSet(String dataSetName) throws Exception {
         ZosDsn zosDsn = new ZosDsn(connection);
         Response response = zosDsn.createDsn(dataSetName, partitioned());
         LOG.info("http response code " + response.getStatusCode());
