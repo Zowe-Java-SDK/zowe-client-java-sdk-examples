@@ -17,6 +17,7 @@ import zowe.client.sdk.utility.DataSetUtils;
 import zowe.client.sdk.zosfiles.ZosDsnList;
 import zowe.client.sdk.zosfiles.input.ListParams;
 import zowe.client.sdk.zosfiles.response.Dataset;
+import zowe.client.sdk.zosfiles.types.AttributeType;
 
 import java.util.List;
 
@@ -72,7 +73,7 @@ public class ListDatasets extends ZosConnection {
      * @author Leonid Baranov
      */
     public static void listDsn(zowe.client.sdk.core.ZOSConnection connection, String dataSetName) throws Exception {
-        ListParams params = new ListParams.Builder().attribute(DataSetUtils.Attribute.BASE).build();
+        ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
         ZosDsnList zosDsnList = new ZosDsnList(connection);
         List<Dataset> datasets = zosDsnList.listDsn(dataSetName, params);
         datasets.forEach(i -> LOG.info(String.valueOf(i)));
@@ -87,7 +88,7 @@ public class ListDatasets extends ZosConnection {
      * @author Frank Giordano
      */
     public static void listDsnVol(zowe.client.sdk.core.ZOSConnection connection, String dataSetName) throws Exception {
-        ListParams params = new ListParams.Builder().attribute(DataSetUtils.Attribute.VOL).build();
+        ListParams params = new ListParams.Builder().attribute(AttributeType.VOL).build();
         ZosDsnList zosDsnList = new ZosDsnList(connection);
         List<Dataset> datasets = zosDsnList.listDsn(dataSetName, params);
         datasets.forEach(i -> LOG.info(String.valueOf(i)));
