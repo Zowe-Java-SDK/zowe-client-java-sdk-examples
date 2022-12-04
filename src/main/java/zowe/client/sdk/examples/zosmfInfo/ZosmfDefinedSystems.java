@@ -9,6 +9,12 @@ import zowe.client.sdk.zosmfinfo.response.ZosmfListDefinedSystemsResponse;
 
 import java.util.Arrays;
 
+/**
+ * Class example to showcase ListDefinedSystems functionality.
+ *
+ * @author Frank Giordano
+ * @version 1.0
+ */
 public class ZosmfDefinedSystems extends ZosConnection {
 
     private static final Logger LOG = LoggerFactory.getLogger(CheckStatus.class);

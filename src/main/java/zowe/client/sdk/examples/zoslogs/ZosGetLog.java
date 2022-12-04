@@ -8,6 +8,12 @@ import zowe.client.sdk.zoslogs.input.HardCopyType;
 import zowe.client.sdk.zoslogs.input.ZosLogParams;
 import zowe.client.sdk.zoslogs.response.ZosLogReply;
 
+/**
+ * Class example to showcase GetZosLog functionality.
+ *
+ * @author Frank Giordano
+ * @version 1.0
+ */
 public class ZosGetLog extends ZosConnection {
 
     /**
@@ -16,6 +22,7 @@ public class ZosGetLog extends ZosConnection {
      *
      * @param args for main not used
      * @throws Exception error in processing request
+     * @author Frank Giordano
      */
     public static void main(String[] args) throws Exception {
         ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);

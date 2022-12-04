@@ -8,6 +8,12 @@ import zowe.client.sdk.zosmfinfo.response.ZosmfInfoResponse;
 
 import java.util.Arrays;
 
+/**
+ * Class example to showcase CheckStatus functionality.
+ *
+ * @author Frank Giordano
+ * @version 1.0
+ */
 public class CheckStatus extends ZosConnection {
 
     private static final Logger LOG = LoggerFactory.getLogger(CheckStatus.class);
