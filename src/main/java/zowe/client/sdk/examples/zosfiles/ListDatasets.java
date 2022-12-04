@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.ZosConnection;
-import zowe.client.sdk.utility.DataSetUtils;
 import zowe.client.sdk.zosfiles.ZosDsnList;
 import zowe.client.sdk.zosfiles.input.ListParams;
 import zowe.client.sdk.zosfiles.response.Dataset;
