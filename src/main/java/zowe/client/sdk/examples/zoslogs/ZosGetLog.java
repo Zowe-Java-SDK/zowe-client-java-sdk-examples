@@ -35,5 +35,5 @@ public class ZosGetLog extends ZosConnection {
         zosLogReply = getZosLog.getZosLog(zosLogParams);
         zosLogReply.getItemLst().forEach(i -> System.out.println(i.getMessage().get()));
     }
-    
+
 }

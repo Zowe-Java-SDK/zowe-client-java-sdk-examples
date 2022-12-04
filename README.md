@@ -1,28 +1,30 @@
 # Zowe Client SDK for Java Code Examples
 
-This project provides code examples to show the usage of Zowe Client Java SDK library. The [Zowe Client Java SDK](https://github.com/zowe/zowe-client-java-sdk) is a sub-project of Zowe, focusing on modernizing mainframe experience. Zowe is a project hosted by the Open Mainframe Project, a Linux Foundation project.
+This project provides code examples to show the usage of Zowe Client Java SDK library. The [Zowe Client Java SDK](https://github.com/zowe/zowe-client-java-sdk) is a subproject of Zowe, focusing on modernizing mainframe experience. Zowe is a project hosted by the Open Mainframe Project, a Linux Foundation project.
 
 This SDK lets you leverage the underlying z/OSMF REST APIs on a z/OS system to build applications that interface with your z/OS instance.
 
-Functionality provided:
+Class names providing prebuilt API services:
 
-    GetJobs   
+    CancelJobs
+    CheckStatus (zosmf info)
+    CreateDataset  
+    CopyDataset
+    DeleteDataset 
+    DeleteJobs
+    DownloadDataset  
+    GetJobs
+    GetZosLog (operlog or syslog)
     IssueCommand (mvs commands)  
     IssuesTsoCommand  
-    SubmitJobs  
-    DownloadDataset  
-    CreateDataset  
-    DeleteDataset  
-    WriteDataset  
     ListDataset  
+    ListDefinedSystems (zosmf info)
     MonitorJobs  
-    CopyDataset
-    CancelJobs
-    DeleteJobs
-    CheckStatus  (zosmf status)  
-    ZosmfDefinedSystems  
     Shell (uss commands)
-  
+    SubmitJobs  
+    TeamConfig (OS Credential store and Zowe Global Team Configuration info)  
+    WriteDataset
+
 See the following example programs:
 
     src/main/java/zowe/client/sdk/examples/zosconsole   
@@ -43,6 +45,9 @@ See the following example programs:
         GetJobs.java
         MonitorJobs.java
         SubmitJobs  
+
+    src/main/java/zowe/client/sdk/examples/zoslogs     
+        ZosGetLog.java
   
     src/main/java/zowe/client/sdk/examples/zosmfinfo 
         CheckStatus.java
@@ -60,7 +65,7 @@ You need to replace all instances of "XXX" accordingly within the code to meet y
   
 ## Requirements  
   
-    Java 11  
+    Compatible with all Java versions 11 and above.  
     z/OSMF installed on your backend z/OS instance.  
 
 ## Demo App
