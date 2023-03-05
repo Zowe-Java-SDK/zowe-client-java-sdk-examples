@@ -16,6 +16,7 @@ import zowe.client.sdk.examples.ZosConnection;
 import zowe.client.sdk.zosfiles.ZosDsnList;
 import zowe.client.sdk.zosfiles.input.ListParams;
 import zowe.client.sdk.zosfiles.response.Dataset;
+import zowe.client.sdk.zosfiles.response.Member;
 import zowe.client.sdk.zosfiles.types.AttributeType;
 
 import java.util.List;
@@ -57,10 +58,10 @@ public class ListDatasets extends ZosConnection {
      * @author Leonid Baranov
      */
     public static void listMembers(zowe.client.sdk.core.ZOSConnection connection, String dataSetName) throws Exception {
-        ListParams params = new ListParams.Builder().build();
+        ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
         ZosDsnList zosDsnList = new ZosDsnList(connection);
-        List<String> datasets = zosDsnList.listDsnMembers(dataSetName, params);
-        datasets.forEach(LOG::info);
+        List<Member> datasets = zosDsnList.listDsnMembers(dataSetName, params);
+        datasets.forEach(m -> m.toString());
     }
 
     /**
