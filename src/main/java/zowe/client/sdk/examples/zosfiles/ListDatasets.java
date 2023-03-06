@@ -61,7 +61,7 @@ public class ListDatasets extends ZosConnection {
         ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
         ZosDsnList zosDsnList = new ZosDsnList(connection);
         List<Member> datasets = zosDsnList.listDsnMembers(dataSetName, params);
-        datasets.forEach(m -> m.toString());
+        datasets.forEach(m -> LOG.info(m.toString()));
     }
 
     /**
