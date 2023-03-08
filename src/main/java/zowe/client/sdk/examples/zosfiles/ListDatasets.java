@@ -46,7 +46,23 @@ public class ListDatasets extends ZosConnection {
         ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
         ListDatasets.listDsn(connection, dataSetMask);
         ListDatasets.listDsnVol(connection, dataSetMask);
+        ListDatasets.listMembersWithAllAttributes(connection, dataSetName);
         ListDatasets.listMembers(connection, dataSetName);
+    }
+
+    /**
+     * List out all members and its attribute values of the given data set
+     *
+     * @param connection  ZOSConnection object
+     * @param dataSetName data set name
+     * @throws Exception error processing request
+     * @author Leonid Baranov
+     */
+    public static void listMembersWithAllAttributes(zowe.client.sdk.core.ZOSConnection connection, String dataSetName) throws Exception {
+        ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
+        ZosDsnList zosDsnList = new ZosDsnList(connection);
+        List<Member> datasets = zosDsnList.listDsnMembers(dataSetName, params);
+        datasets.forEach(m -> LOG.info(m.toString()));
     }
 
     /**
@@ -58,7 +74,7 @@ public class ListDatasets extends ZosConnection {
      * @author Leonid Baranov
      */
     public static void listMembers(zowe.client.sdk.core.ZOSConnection connection, String dataSetName) throws Exception {
-        ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
+        ListParams params = new ListParams.Builder().attribute(AttributeType.MEMBER).build();
         ZosDsnList zosDsnList = new ZosDsnList(connection);
         List<Member> datasets = zosDsnList.listDsnMembers(dataSetName, params);
         datasets.forEach(m -> LOG.info(m.toString()));
