@@ -33,7 +33,7 @@ public class TstZosConnection {
 
     // or use the following method to retrieve Zowe OS credential store for your
     // secure Zowe V2 credentials you entered when you initially set up Zowe Global Team Configuration.
-    public static zowe.client.sdk.core.ZOSConnection getSecureZosConnection() throws Exception {
+    public static ZOSConnection getSecureZosConnection() throws Exception {
         TeamConfig teamConfig = new TeamConfig(new KeyTarService(new KeyTarImpl()), new TeamConfigService());
         ProfileDao profile = teamConfig.getDefaultProfileByName("zosmf");
         return (new ZOSConnection(profile.getHost(), profile.getPort(), profile.getUser(), profile.getPassword()));
