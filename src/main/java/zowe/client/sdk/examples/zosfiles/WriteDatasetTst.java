@@ -9,6 +9,7 @@ import zowe.client.sdk.zosfiles.ZosDsn;
  * Class example to showcase WriteDataset functionality.
  *
  * @author Leonid Baranov
+ * @author Frank Giordano
  * @version 2.0
  */
 public class WriteDatasetTst extends TstZosConnection {

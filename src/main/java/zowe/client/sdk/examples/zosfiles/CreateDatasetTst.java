@@ -10,6 +10,7 @@ import zowe.client.sdk.zosfiles.input.CreateParams;
  * Class example to showcase CreateDataset functionality.
  *
  * @author Leonid Baranov
+ * @author Frank Giordano
  * @version 2.0
  */
 public class CreateDatasetTst extends TstZosConnection {

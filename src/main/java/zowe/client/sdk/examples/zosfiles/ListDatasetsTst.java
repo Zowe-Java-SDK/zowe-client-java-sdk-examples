@@ -14,6 +14,7 @@ import java.util.List;
  * Class example to showcase ListDatasets functionality.
  *
  * @author Leonid Baranov
+ * @author Frank Giordano
  * @version 2.0
  */
 public class ListDatasetsTst extends TstZosConnection {

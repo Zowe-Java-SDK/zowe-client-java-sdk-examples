@@ -10,6 +10,7 @@ import zowe.client.sdk.zosfiles.input.CopyParams;
  * Class example to showcase CopyDataset functionality.
  *
  * @author Leonid Baranov
+ * @author Frank Giordano
  * @version 2.0
  */
 public class CopyDatasetTst extends TstZosConnection {
@@ -25,7 +26,6 @@ public class CopyDatasetTst extends TstZosConnection {
     public static void main(String[] args) throws Exception {
         String fromDataSetName = "xxx";
         String toDataSetName = "xxx";
-
         ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
         copyDataset(connection, fromDataSetName, toDataSetName);
         copyDatasetByCopyParams(connection, fromDataSetName, toDataSetName);
