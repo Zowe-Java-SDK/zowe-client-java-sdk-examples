@@ -1,29 +1,19 @@
-/*
- * This program and the accompanying materials are made available under the terms of the
- * Eclipse Public License v2.0 which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-v20.html
- *
- * SPDX-License-Identifier: EPL-2.0
- *
- * Copyright Contributors to the Zowe Project.
- */
 package zowe.client.sdk.examples.zosjobs;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
-import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.zosjobs.MonitorJobs;
+import zowe.client.sdk.zosjobs.SubmitJobs;
 import zowe.client.sdk.zosjobs.response.Job;
+import zowe.client.sdk.zosjobs.types.JobStatus;
 
 /**
  * Class example to showcase SubmitJobs functionality.
  *
  * @author Frank Giordano
- * @version 1.0
+ * @version 2.0
  */
-public class SubmitJobs extends ZosConnection {
-
-    private static final Logger LOG = LoggerFactory.getLogger(SubmitJobs.class);
+public class SubmitJobsTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection needed to showcase
@@ -35,13 +25,13 @@ public class SubmitJobs extends ZosConnection {
      */
     public static void main(String[] args) throws Exception {
         ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-        LOG.info(String.valueOf(SubmitJobs.submitJob(connection, "xxx.xxx.xxx.xxx(xxx)")));
+        System.out.println(SubmitJobsTst.submitJob(connection, "xxx.xxx.xxx.xxx(xxx)"));
 
         String jclString = "//TESTJOBX JOB (),MSGCLASS=H\n// EXEC PGM=IEFBR14";
-        Job submitJobsTest = SubmitJobs.submitJclJob(connection, jclString);
+        Job submitJobsTest = SubmitJobsTst.submitJclJob(connection, jclString);
         // Wait for the job to complete
-        zowe.client.sdk.zosjobs.MonitorJobs monitorJobs = new zowe.client.sdk.zosjobs.MonitorJobs(connection);
-        submitJobsTest = monitorJobs.waitForJobStatus(submitJobsTest, zowe.client.sdk.zosjobs.types.JobStatus.Type.OUTPUT);
+        MonitorJobs monitorJobs = new MonitorJobs(connection);
+        submitJobsTest = monitorJobs.waitForJobStatus(submitJobsTest, JobStatus.Type.OUTPUT);
         System.out.println(submitJobsTest);
         // Get the return code
         String retCode = submitJobsTest.getRetCode().orElse("n/a");
@@ -59,7 +49,7 @@ public class SubmitJobs extends ZosConnection {
      * @author Frank Giordano
      */
     public static Job submitJclJob(zowe.client.sdk.core.ZOSConnection connection, String jclString) throws Exception {
-        zowe.client.sdk.zosjobs.SubmitJobs submitJobs = new zowe.client.sdk.zosjobs.SubmitJobs(connection);
+        SubmitJobs submitJobs = new SubmitJobs(connection);
         return submitJobs.submitJcl(jclString, null, null);
     }
 
@@ -74,7 +64,7 @@ public class SubmitJobs extends ZosConnection {
      * @author Frank Giordano
      */
     public static Job submitJob(zowe.client.sdk.core.ZOSConnection connection, String dsMember) throws Exception {
-        zowe.client.sdk.zosjobs.SubmitJobs submitJobs = new zowe.client.sdk.zosjobs.SubmitJobs(connection);
+        SubmitJobs submitJobs = new SubmitJobs(connection);
         return submitJobs.submitJob(dsMember);
     }
 

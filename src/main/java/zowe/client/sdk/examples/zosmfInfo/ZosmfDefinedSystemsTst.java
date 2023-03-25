@@ -1,9 +1,7 @@
 package zowe.client.sdk.examples.zosmfInfo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
-import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.zosmfinfo.ListDefinedSystems;
 import zowe.client.sdk.zosmfinfo.response.ZosmfListDefinedSystemsResponse;
 
@@ -13,11 +11,9 @@ import java.util.Arrays;
  * Class example to showcase ListDefinedSystems functionality.
  *
  * @author Frank Giordano
- * @version 1.0
+ * @version 2.0
  */
-public class ZosmfDefinedSystems extends ZosConnection {
-
-    private static final Logger LOG = LoggerFactory.getLogger(CheckStatus.class);
+public class ZosmfDefinedSystemsTst extends TstZosConnection {
 
     private static ListDefinedSystems listDefinedSystems;
 
@@ -34,8 +30,8 @@ public class ZosmfDefinedSystems extends ZosConnection {
 
         listDefinedSystems = new ListDefinedSystems(connection);
         ZosmfListDefinedSystemsResponse zosmfInfoResponse = listDefinedSystems.listDefinedSystems();
-        LOG.info(zosmfInfoResponse.toString());
-        Arrays.stream(zosmfInfoResponse.getDefinedSystems().get()).forEach(i -> LOG.info(i.toString()));
+        System.out.println(zosmfInfoResponse.toString());
+        Arrays.stream(zosmfInfoResponse.getDefinedSystems().get()).forEach(i -> System.out.println(i.toString()));
     }
 
 }

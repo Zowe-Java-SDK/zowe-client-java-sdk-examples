@@ -1,18 +1,7 @@
-/*
- * This program and the accompanying materials are made available under the terms of the
- * Eclipse Public License v2.0 which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-v20.html
- *
- * SPDX-License-Identifier: EPL-2.0
- *
- * Copyright Contributors to the Zowe Project.
- */
 package zowe.client.sdk.examples.zosfiles;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
-import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
 import zowe.client.sdk.zosfiles.ZosDsn;
 
@@ -20,11 +9,9 @@ import zowe.client.sdk.zosfiles.ZosDsn;
  * Class example to showcase DeleteDataset functionality.
  *
  * @author Leonid Baranov
- * @version 1.0
+ * @version 2.0
  */
-public class DeleteDataset extends ZosConnection {
-
-    private static final Logger LOG = LoggerFactory.getLogger(DeleteDataset.class);
+public class DeleteDatasetTst extends TstZosConnection {
 
     private static ZOSConnection connection;
 
@@ -37,9 +24,8 @@ public class DeleteDataset extends ZosConnection {
      * @author Leonid Baranov
      */
     public static void main(String[] args) throws Exception {
-        String dataSetName = "XXX";
-        String member = "XXX";
-
+        String dataSetName = "xxx";
+        String member = "xxx";
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
         deleteDataSet(dataSetName);
         deleteMember(dataSetName, member);
@@ -53,7 +39,7 @@ public class DeleteDataset extends ZosConnection {
     public static void deleteDataSet(String dataSetName) throws Exception {
         ZosDsn zosDsn = new ZosDsn(connection);
         Response response = zosDsn.deleteDsn(dataSetName);
-        LOG.info("http response code " + response.getStatusCode());
+        System.out.println("http response code " + response.getStatusCode());
     }
 
     /**
@@ -65,7 +51,7 @@ public class DeleteDataset extends ZosConnection {
     public static void deleteMember(String dataSetName, String member) throws Exception {
         ZosDsn zosDsn = new ZosDsn(connection);
         Response response = zosDsn.deleteDsn(dataSetName, member);
-        LOG.info("http response code " + response.getStatusCode());
+        System.out.println("http response code " + response.getStatusCode());
     }
 
 }

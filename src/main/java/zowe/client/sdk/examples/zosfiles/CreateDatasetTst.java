@@ -1,18 +1,7 @@
-/*
- * This program and the accompanying materials are made available under the terms of the
- * Eclipse Public License v2.0 which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-v20.html
- *
- * SPDX-License-Identifier: EPL-2.0
- *
- * Copyright Contributors to the Zowe Project.
- */
 package zowe.client.sdk.examples.zosfiles;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
-import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
 import zowe.client.sdk.zosfiles.ZosDsn;
 import zowe.client.sdk.zosfiles.input.CreateParams;
@@ -21,11 +10,9 @@ import zowe.client.sdk.zosfiles.input.CreateParams;
  * Class example to showcase CreateDataset functionality.
  *
  * @author Leonid Baranov
- * @version 1.0
+ * @version 2.0
  */
-public class CreateDataset extends ZosConnection {
-
-    private static final Logger LOG = LoggerFactory.getLogger(CreateDataset.class);
+public class CreateDatasetTst extends TstZosConnection {
 
     private static ZOSConnection connection;
 
@@ -38,10 +25,10 @@ public class CreateDataset extends ZosConnection {
      * @author Leonid Baranov
      */
     public static void main(String[] args) throws Exception {
-        String dataSetName = "XXX";
+        String dataSetName = "xxx";
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
         createPartitionDataSet(dataSetName);
-        dataSetName = "XXX";
+        dataSetName = "xxx";
         createSequentialDataSet(dataSetName);
 
     }
@@ -56,7 +43,7 @@ public class CreateDataset extends ZosConnection {
     public static void createSequentialDataSet(String dataSetName) throws Exception {
         ZosDsn zosDsn = new ZosDsn(connection);
         Response response = zosDsn.createDsn(dataSetName, sequential());
-        LOG.info("http response code " + response.getStatusCode());
+        System.out.println("http response code " + response.getStatusCode());
     }
 
     /**
@@ -69,7 +56,7 @@ public class CreateDataset extends ZosConnection {
     public static void createPartitionDataSet(String dataSetName) throws Exception {
         ZosDsn zosDsn = new ZosDsn(connection);
         Response response = zosDsn.createDsn(dataSetName, partitioned());
-        LOG.info("http response code " + response.getStatusCode());
+        System.out.println("http response code " + response.getStatusCode());
     }
 
     /**

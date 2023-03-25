@@ -1,18 +1,7 @@
-/*
- * This program and the accompanying materials are made available under the terms of the
- * Eclipse Public License v2.0 which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-v20.html
- *
- * SPDX-License-Identifier: EPL-2.0
- *
- * Copyright Contributors to the Zowe Project.
- */
 package zowe.client.sdk.examples.zosfiles;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
-import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
 import zowe.client.sdk.zosfiles.ZosDsnCopy;
 import zowe.client.sdk.zosfiles.input.CopyParams;
@@ -21,11 +10,9 @@ import zowe.client.sdk.zosfiles.input.CopyParams;
  * Class example to showcase CopyDataset functionality.
  *
  * @author Leonid Baranov
- * @version 1.0
+ * @version 2.0
  */
-public class CopyDataset extends ZosConnection {
-
-    private static final Logger LOG = LoggerFactory.getLogger(CopyDataset.class);
+public class CopyDatasetTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
@@ -36,14 +23,14 @@ public class CopyDataset extends ZosConnection {
      * @author Leonid Baranov
      */
     public static void main(String[] args) throws Exception {
-        String fromDataSetName = "XXX";
-        String toDataSetName = "XXX";
+        String fromDataSetName = "xxx";
+        String toDataSetName = "xxx";
 
-        ZOSConnection connection = new zowe.client.sdk.core.ZOSConnection(hostName, zosmfPort, userName, password);
+        ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
         copyDataset(connection, fromDataSetName, toDataSetName);
         copyDatasetByCopyParams(connection, fromDataSetName, toDataSetName);
-        fromDataSetName = "XXX";  // specify a partition dataset only no member
-        toDataSetName = "XXX"; // specify a partition dataset only no member
+        fromDataSetName = "xxx";  // specify a partition dataset only no member
+        toDataSetName = "xxx"; // specify a partition dataset only no member
         copyFullPartitionDatasetByCopyParams(connection, fromDataSetName, toDataSetName);
     }
 
@@ -68,11 +55,11 @@ public class CopyDataset extends ZosConnection {
      * @throws Exception error processing copy request
      * @author Frank Giordano
      */
-    public static void copyDataset(zowe.client.sdk.core.ZOSConnection connection, String fromDataSetName, String toDataSetName)
+    public static void copyDataset(ZOSConnection connection, String fromDataSetName, String toDataSetName)
             throws Exception {
         ZosDsnCopy zosDsnCopy = new ZosDsnCopy(connection);
         Response response = zosDsnCopy.copy(fromDataSetName, toDataSetName, true, false);
-        LOG.info("http response code " + response.getStatusCode());
+        System.out.println("http response code " + response.getStatusCode());
     }
 
     /**
@@ -93,14 +80,14 @@ public class CopyDataset extends ZosConnection {
      * @throws Exception error processing copy request
      * @author Frank Giordano
      */
-    public static void copyDatasetByCopyParams(zowe.client.sdk.core.ZOSConnection connection, String fromDataSetName, String toDataSetName)
-            throws Exception {
+    public static void copyDatasetByCopyParams(zowe.client.sdk.core.ZOSConnection connection, String fromDataSetName,
+                                               String toDataSetName) throws Exception {
         ZosDsnCopy zosDsnCopy = new ZosDsnCopy(connection);
         // 'replace' builder variable here will be true by default if not specified in builder.
         // 'copyAllMembers' builder variable here will be false by default
         CopyParams copyParams = new CopyParams.Builder().fromDataSet(fromDataSetName).toDataSet(toDataSetName).build();
         Response response = zosDsnCopy.copy(copyParams);
-        LOG.info("http response code " + response.getStatusCode());
+        System.out.println("http response code " + response.getStatusCode());
     }
 
     /**
@@ -117,14 +104,14 @@ public class CopyDataset extends ZosConnection {
      * @throws Exception error processing copy request
      * @author Frank Giordano
      */
-    public static void copyFullPartitionDatasetByCopyParams(zowe.client.sdk.core.ZOSConnection connection, String fromDataSetName,
+    public static void copyFullPartitionDatasetByCopyParams(ZOSConnection connection, String fromDataSetName,
                                                             String toDataSetName) throws Exception {
         ZosDsnCopy zosDsnCopy = new ZosDsnCopy(connection);
         // 'replace' here will be true by default if not specified in builder.
         CopyParams copyParams = new CopyParams.Builder()
                 .fromDataSet(fromDataSetName).toDataSet(toDataSetName).copyAllMembers(true).build();
         Response response = zosDsnCopy.copy(copyParams);
-        LOG.info("http response code " + response.getStatusCode());
+        System.out.println("http response code " + response.getStatusCode());
     }
 
 }

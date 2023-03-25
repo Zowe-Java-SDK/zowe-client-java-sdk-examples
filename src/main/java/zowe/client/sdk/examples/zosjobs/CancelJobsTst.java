@@ -9,11 +9,10 @@
  */
 package zowe.client.sdk.examples.zosjobs;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
-import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
+import zowe.client.sdk.zosjobs.CancelJobs;
 import zowe.client.sdk.zosjobs.input.ModifyJobParams;
 import zowe.client.sdk.zosjobs.response.Job;
 
@@ -21,13 +20,12 @@ import zowe.client.sdk.zosjobs.response.Job;
  * Class example to showcase CancelJobs functionality.
  *
  * @author Leonid Baranov
- * @version 1.0
+ * @author Frank Giordano
+ * @version 2.0
  */
-public class CancelJobs extends ZosConnection {
+public class CancelJobsTst extends TstZosConnection {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CancelJobs.class);
-
-    private static zowe.client.sdk.core.ZOSConnection connection;
+    private static ZOSConnection connection;
     private static String jobName;
     private static String jobId;
 
@@ -41,11 +39,10 @@ public class CancelJobs extends ZosConnection {
      */
     public static void main(String[] args) throws Exception {
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-
-        LOG.info(String.valueOf(cancelJobsCommonWithVersion("2.0")));
-        LOG.info(String.valueOf(cancelJobsCommon()));
-        LOG.info(String.valueOf(cancelJobForJob()));
-        LOG.info(String.valueOf(cancelJob()));
+        System.out.println(cancelJobsCommonWithVersion("2.0"));
+        System.out.println(cancelJobsCommon());
+        System.out.println(cancelJobForJob());
+        System.out.println(cancelJob());
     }
 
     /**
@@ -59,10 +56,10 @@ public class CancelJobs extends ZosConnection {
      * @author Frank Giordano
      */
     public static Response cancelJobsCommonWithVersion(String version) throws Exception {
-        jobId = "XXX";
-        jobName = "XXX";
+        jobId = "xxx";
+        jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).version(version).build();
-        return new zowe.client.sdk.zosjobs.CancelJobs(connection).cancelJobsCommon(params);
+        return new CancelJobs(connection).cancelJobsCommon(params);
     }
 
     /**
@@ -74,10 +71,10 @@ public class CancelJobs extends ZosConnection {
      * @author Frank Giordano
      */
     public static Response cancelJobsCommon() throws Exception {
-        jobId = "XXX";
-        jobName = "XXX";
+        jobId = "xxx";
+        jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).build();
-        return new zowe.client.sdk.zosjobs.CancelJobs(connection).cancelJobsCommon(params);
+        return new CancelJobs(connection).cancelJobsCommon(params);
     }
 
     /**
@@ -89,9 +86,9 @@ public class CancelJobs extends ZosConnection {
      * @author Frank Giordano
      */
     public static Response cancelJobForJob() throws Exception {
-        jobId = "XXX";
-        jobName = "XXX";
-        return new zowe.client.sdk.zosjobs.CancelJobs(connection).cancelJobForJob(
+        jobId = "xxx";
+        jobName = "xxx";
+        return new CancelJobs(connection).cancelJobForJob(
                 new Job.Builder().jobName(jobName).jobId(jobId).build(), null);
     }
 
@@ -104,9 +101,9 @@ public class CancelJobs extends ZosConnection {
      * @author Frank Giordano
      */
     public static Response cancelJob() throws Exception {
-        jobId = "XXX";
-        jobName = "XXX";
-        return new zowe.client.sdk.zosjobs.CancelJobs(connection).cancelJob(jobName, jobId, null);
+        jobId = "xxx";
+        jobName = "xxx";
+        return new CancelJobs(connection).cancelJob(jobName, jobId, null);
     }
 
 }

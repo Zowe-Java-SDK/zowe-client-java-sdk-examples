@@ -1,19 +1,9 @@
-/*
- * This program and the accompanying materials are made available under the terms of the
- * Eclipse Public License v2.0 which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-v20.html
- *
- * SPDX-License-Identifier: EPL-2.0
- *
- * Copyright Contributors to the Zowe Project.
- */
 package zowe.client.sdk.examples.zosconsole;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
-import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.zosconsole.ConsoleResponse;
+import zowe.client.sdk.zosconsole.IssueCommand;
 import zowe.client.sdk.zosconsole.input.IssueParams;
 import zowe.client.sdk.zosconsole.zosmf.ZosmfIssueParams;
 import zowe.client.sdk.zosconsole.zosmf.ZosmfIssueResponse;
@@ -22,11 +12,9 @@ import zowe.client.sdk.zosconsole.zosmf.ZosmfIssueResponse;
  * Class example to showcase mvs console command functionality.
  *
  * @author Frank Giordano
- * @version 1.0
+ * @version 2.0
  */
-public class IssueCommand extends ZosConnection {
-
-    private static final Logger LOG = LoggerFactory.getLogger(IssueCommand.class);
+public class IssueCommandTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection, and mvs command used for the example test.
@@ -36,10 +24,10 @@ public class IssueCommand extends ZosConnection {
      */
     public static void main(String[] args) {
         String command = "D IPLINFO";
-        ZOSConnection connection = new zowe.client.sdk.core.ZOSConnection(hostName, zosmfPort, userName, password);
-        IssueCommand.consoleCmdByIssue(connection, command);
-        IssueCommand.consoleCmdByIssueSimple(connection, command);
-        IssueCommand.consoleCmdByIssueDefConsoleCommon(connection, command);
+        ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        IssueCommandTst.consoleCmdByIssue(connection, command);
+        IssueCommandTst.consoleCmdByIssueSimple(connection, command);
+        IssueCommandTst.consoleCmdByIssueDefConsoleCommon(connection, command);
     }
 
     /**
@@ -49,16 +37,16 @@ public class IssueCommand extends ZosConnection {
      * @param cmd        mvs command to execute
      * @author Frank Giordano
      */
-    public static void consoleCmdByIssue(zowe.client.sdk.core.ZOSConnection connection, String cmd) {
+    public static void consoleCmdByIssue(ZOSConnection connection, String cmd) {
         IssueParams params = new IssueParams();
         params.setCommand(cmd);
         ConsoleResponse response;
-        zowe.client.sdk.zosconsole.IssueCommand issueCommand = new zowe.client.sdk.zosconsole.IssueCommand(connection);
+        IssueCommand issueCommand = new IssueCommand(connection);
         try {
             response = issueCommand.issue(params);
-            LOG.info(response.getCommandResponse().orElse(""));
+            System.out.println(response.getCommandResponse().orElse(""));
         } catch (Exception e) {
-            LOG.info(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -69,14 +57,14 @@ public class IssueCommand extends ZosConnection {
      * @param cmd        mvs command to execute
      * @author Frank Giordano
      */
-    public static void consoleCmdByIssueSimple(zowe.client.sdk.core.ZOSConnection connection, String cmd) {
+    public static void consoleCmdByIssueSimple(ZOSConnection connection, String cmd) {
         ConsoleResponse response;
-        zowe.client.sdk.zosconsole.IssueCommand issueCommand = new zowe.client.sdk.zosconsole.IssueCommand(connection);
+        IssueCommand issueCommand = new IssueCommand(connection);
         try {
             response = issueCommand.issueSimple(cmd);
-            LOG.info(response.getCommandResponse().orElse(""));
+            System.out.println(response.getCommandResponse().orElse(""));
         } catch (Exception e) {
-            LOG.info(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -87,16 +75,16 @@ public class IssueCommand extends ZosConnection {
      * @param cmd        mvs command to execute
      * @author Frank Giordano
      */
-    public static void consoleCmdByIssueDefConsoleCommon(zowe.client.sdk.core.ZOSConnection connection, String cmd) {
+    public static void consoleCmdByIssueDefConsoleCommon(ZOSConnection connection, String cmd) {
         ZosmfIssueParams params = new ZosmfIssueParams();
         params.setCmd(cmd);
-        ZosmfIssueResponse zResponse;
-        zowe.client.sdk.zosconsole.IssueCommand issueCommand = new zowe.client.sdk.zosconsole.IssueCommand(connection);
+        ZosmfIssueResponse response;
+        IssueCommand issueCommand = new IssueCommand(connection);
         try {
-            zResponse = issueCommand.issueDefConsoleCommon(params);
-            LOG.info(zResponse.getCmdResponse().orElse(""));
+            response = issueCommand.issueDefConsoleCommon(params);
+            System.out.println(response.getCmdResponse().orElse(""));
         } catch (Exception e) {
-            LOG.info(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 

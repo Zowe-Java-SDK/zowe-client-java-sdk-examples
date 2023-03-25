@@ -9,10 +9,9 @@
  */
 package zowe.client.sdk.examples.zosjobs;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
-import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.zosjobs.GetJobs;
 import zowe.client.sdk.zosjobs.input.CommonJobParams;
 import zowe.client.sdk.zosjobs.input.GetJobParams;
 import zowe.client.sdk.zosjobs.input.JobFile;
@@ -25,13 +24,11 @@ import java.util.List;
  * Class example to showcase GetJobs functionality.
  *
  * @author Frank Giordano
- * @version 1.0
+ * @version 2.0
  */
-public class GetJobs extends ZosConnection {
+public class GetJobsTst extends TstZosConnection {
 
-    private static final Logger LOG = LoggerFactory.getLogger(GetJobs.class);
-
-    private static zowe.client.sdk.zosjobs.GetJobs getJobs;
+    private static GetJobs getJobs;
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
@@ -42,29 +39,29 @@ public class GetJobs extends ZosConnection {
      * @author Frank Giordano
      */
     public static void main(String[] args) throws Exception {
-        String prefix = "XXX";
-        String owner = "XXX";
-        String jobId = "XXX";
+        String prefix = "xxx";
+        String owner = "xxx";
+        String jobId = "xxx";
 
         ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-        getJobs = new zowe.client.sdk.zosjobs.GetJobs(connection);
+        getJobs = new GetJobs(connection);
 
-        GetJobs.getJobsCommon(prefix);
-        GetJobs.getSpoolFiles(prefix);
-        GetJobs.getSpoolFilesForJob(prefix);
-        GetJobs.getJobsByOwner(owner);
-        GetJobs.getSpoolContent(prefix);
-        GetJobs.getJobs();
-        GetJobs.getJobsByPrefix(prefix);
-        GetJobs.getJobsByOwnerAndPrefix("*", prefix);
-        GetJobs.getJob(prefix);
-        GetJobs.nonExistentGetJob(jobId);
-        GetJobs.getStatusCommon(prefix);
-        GetJobs.getStatus(prefix);
-        GetJobs.getStatusForJob(prefix);
-        GetJobs.getJcl(prefix);
-        GetJobs.getJclForJob(prefix);
-        GetJobs.getJclCommon(prefix);
+        GetJobsTst.getJobsCommon(prefix);
+        GetJobsTst.getSpoolFiles(prefix);
+        GetJobsTst.getSpoolFilesForJob(prefix);
+        GetJobsTst.getJobsByOwner(owner);
+        GetJobsTst.getSpoolContent(prefix);
+        GetJobsTst.getJobs();
+        GetJobsTst.getJobsByPrefix(prefix);
+        GetJobsTst.getJobsByOwnerAndPrefix("*", prefix);
+        GetJobsTst.getJob(prefix);
+        GetJobsTst.nonExistentGetJob(jobId);
+        GetJobsTst.getStatusCommon(prefix);
+        GetJobsTst.getStatus(prefix);
+        GetJobsTst.getStatusForJob(prefix);
+        GetJobsTst.getJcl(prefix);
+        GetJobsTst.getJclForJob(prefix);
+        GetJobsTst.getJclCommon(prefix);
     }
 
     /**
@@ -78,7 +75,7 @@ public class GetJobs extends ZosConnection {
      */
     public static void getJclCommon(String prefix) throws Exception {
         List<Job> jobs = getJobs.getJobsByPrefix(prefix);
-        LOG.info(getJobs.getJclCommon(
+        System.out.println(getJobs.getJclCommon(
                 new CommonJobParams(jobs.get(0).getJobId().orElseThrow(() -> new Exception("job id not specified")),
                         jobs.get(0).getJobName().orElseThrow(() -> new Exception("job name not specified")))));
     }
@@ -93,7 +90,7 @@ public class GetJobs extends ZosConnection {
      */
     public static void getJclForJob(String prefix) throws Exception {
         List<Job> jobs = getJobs.getJobsByPrefix(prefix);
-        LOG.info(getJobs.getJclForJob(jobs.get(0)));
+        System.out.println(getJobs.getJclForJob(jobs.get(0)));
     }
 
     /**
@@ -106,8 +103,9 @@ public class GetJobs extends ZosConnection {
      */
     public static void getJcl(String prefix) throws Exception {
         List<Job> jobs = getJobs.getJobsByPrefix(prefix);
-        LOG.info(getJobs.getJcl(jobs.get(0).getJobName().orElseThrow(() -> new Exception("job name not specified")),
-                jobs.get(0).getJobId().orElseThrow(() -> new Exception("job id not specified"))));
+        System.out.println(
+                getJobs.getJcl(jobs.get(0).getJobName().orElseThrow(() -> new Exception("job name not specified")),
+                        jobs.get(0).getJobId().orElseThrow(() -> new Exception("job id not specified"))));
     }
 
     /**
@@ -122,7 +120,7 @@ public class GetJobs extends ZosConnection {
         List<Job> jobs = getJobs.getJobsByPrefix(prefix);
         try {
             Job job = getJobs.getStatusForJob(jobs.get(0));
-            LOG.info(String.valueOf(job));
+            System.out.println(job);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -142,8 +140,8 @@ public class GetJobs extends ZosConnection {
             Job job = getJobs.getStatusCommon(
                     new CommonJobParams(jobs.get(0).getJobId().orElseThrow(() -> new Exception("job id not specified")),
                             jobs.get(0).getJobName().orElseThrow(() -> new Exception("job name not specified")), true));
-            LOG.info(job.toString());
-            Arrays.stream(job.getStepData().orElseThrow(() -> new Exception("no step data found"))).forEach(i -> LOG.info(i.toString()));
+            System.out.println(job.toString());
+            Arrays.stream(job.getStepData().orElseThrow(() -> new Exception("no step data found"))).forEach(i -> System.out.println(i.toString()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -163,7 +161,7 @@ public class GetJobs extends ZosConnection {
             Job job = getJobs.getStatus(
                     jobs.get(0).getJobName().orElseThrow(() -> new Exception("job name not specified")),
                     jobs.get(0).getJobId().orElseThrow(() -> new Exception("job id not specified")));
-            LOG.info(job.toString());
+            System.out.println(job.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -180,7 +178,7 @@ public class GetJobs extends ZosConnection {
         try {
             getJobs.getJob(jobId);
         } catch (Exception e) {
-            LOG.info(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -197,9 +195,9 @@ public class GetJobs extends ZosConnection {
         String jobId = jobs.get(0).getJobId().orElseThrow(() -> new Exception("job id not specified"));
         try {
             Job job = getJobs.getJob(jobId);
-            LOG.info(job.toString());
+            System.out.println(job.toString());
         } catch (Exception e) {
-            LOG.info(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -215,7 +213,7 @@ public class GetJobs extends ZosConnection {
      */
     public static void getJobsByOwnerAndPrefix(String owner, String prefix) throws Exception {
         List<Job> jobs = getJobs.getJobsByOwnerAndPrefix(owner, prefix);
-        jobs.forEach(i -> LOG.info(i.toString()));
+        jobs.forEach(i -> System.out.println(i.toString()));
     }
 
     /**
@@ -229,7 +227,7 @@ public class GetJobs extends ZosConnection {
      */
     public static void getJobsByPrefix(String prefix) throws Exception {
         List<Job> jobs = getJobs.getJobsByPrefix(prefix);
-        jobs.forEach(i -> LOG.info(i.toString()));
+        jobs.forEach(i -> System.out.println(i.toString()));
     }
 
     /**
@@ -242,7 +240,7 @@ public class GetJobs extends ZosConnection {
     public static void getJobs() throws Exception {
         // get any jobs out there for the logged-in user
         List<Job> jobs = getJobs.getJobs();
-        jobs.forEach(i -> LOG.info(i.toString()));
+        jobs.forEach(i -> System.out.println(i.toString()));
     }
 
     /**
@@ -260,7 +258,7 @@ public class GetJobs extends ZosConnection {
         String[] output = getJobs.getSpoolContent(files.get(0)).split("\n");
         // get last 10 lines of output
         for (int i = output.length - 10; i < output.length; i++)
-            LOG.info(output[i]);
+            System.out.println(output[i]);
     }
 
     /**
@@ -273,7 +271,7 @@ public class GetJobs extends ZosConnection {
      */
     public static void getJobsByOwner(String owner) throws Exception {
         List<Job> jobs = getJobs.getJobsByOwner(owner);
-        jobs.forEach(i -> LOG.info(i.toString()));
+        jobs.forEach(i -> System.out.println(i.toString()));
     }
 
     /**
@@ -288,7 +286,7 @@ public class GetJobs extends ZosConnection {
         GetJobParams params = new GetJobParams.Builder("*").prefix(prefix).build();
         List<Job> jobs = getJobs.getJobsCommon(params);
         List<JobFile> files = getJobs.getSpoolFilesForJob(jobs.get(0));
-        files.forEach(i -> LOG.info(i.toString()));
+        files.forEach(i -> System.out.println(i.toString()));
     }
 
     /**
@@ -306,7 +304,7 @@ public class GetJobs extends ZosConnection {
                 getJobs.getSpoolFiles(
                         jobs.get(0).getJobName().orElseThrow(() -> new Exception("job name not specified")),
                         jobs.get(0).getJobId().orElseThrow(() -> new Exception("job id not specified")));
-        files.forEach(i -> LOG.info(i.toString()));
+        files.forEach(i -> System.out.println(i.toString()));
     }
 
     /**
@@ -320,7 +318,7 @@ public class GetJobs extends ZosConnection {
     public static void getJobsCommon(String prefix) throws Exception {
         GetJobParams params = new GetJobParams.Builder("*").prefix(prefix).build();
         List<Job> jobs = getJobs.getJobsCommon(params);
-        jobs.forEach(i -> LOG.info(i.toString()));
+        jobs.forEach(i -> System.out.println(i.toString()));
     }
 
 }

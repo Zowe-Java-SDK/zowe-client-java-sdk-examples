@@ -21,19 +21,18 @@ import zowe.client.sdk.teamconfig.service.TeamConfigService;
  * duplicating connection details in each example.
  *
  * @author Frank Giordano
- * @version 1.0
+ * @version 2.0
  */
-public class ZosConnection {
+public class TstZosConnection {
 
-    // replace "XXX" with hard coded values to execute the examples in this project
-    public static final String hostName = "XXX";
-    public static final String zosmfPort = "XXX";
-    public static final String userName = "XXX";
-    public static final String password = "XXX";
+    // replace "xxx" with hard coded values to execute the examples in this project
+    public static final String hostName = "xxx";
+    public static final String zosmfPort = "xxx";
+    public static final String userName = "xxx";
+    public static final String password = "xxx";
 
     // or use the following method to retrieve Zowe OS credential store for your
-    // secure Zowe V2 credentials you entered when you initially setup Zowe Global
-    // Team Configuration.
+    // secure Zowe V2 credentials you entered when you initially set up Zowe Global Team Configuration.
     public static zowe.client.sdk.core.ZOSConnection getSecureZosConnection() throws Exception {
         TeamConfig teamConfig = new TeamConfig(new KeyTarService(new KeyTarImpl()), new TeamConfigService());
         ProfileDao profile = teamConfig.getDefaultProfileByName("zosmf");

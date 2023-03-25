@@ -1,9 +1,8 @@
 package zowe.client.sdk.examples.zosmfInfo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
-import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.zosmfinfo.CheckStatus;
 import zowe.client.sdk.zosmfinfo.response.ZosmfInfoResponse;
 
 import java.util.Arrays;
@@ -12,13 +11,11 @@ import java.util.Arrays;
  * Class example to showcase CheckStatus functionality.
  *
  * @author Frank Giordano
- * @version 1.0
+ * @version 2.0
  */
-public class CheckStatus extends ZosConnection {
+public class CheckStatusTst extends TstZosConnection {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CheckStatus.class);
-
-    private static zowe.client.sdk.zosmfinfo.CheckStatus checkStatus;
+    private static CheckStatus checkStatus;
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
@@ -31,10 +28,10 @@ public class CheckStatus extends ZosConnection {
     public static void main(String[] args) throws Exception {
         ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
 
-        checkStatus = new zowe.client.sdk.zosmfinfo.CheckStatus(connection);
+        checkStatus = new CheckStatus(connection);
         ZosmfInfoResponse zosmfInfoResponse = checkStatus.getZosmfInfo();
-        LOG.info(zosmfInfoResponse.toString());
-        Arrays.stream(zosmfInfoResponse.getZosmfPluginsInfo().get()).forEach(i -> LOG.info(i.toString()));
+        System.out.println(zosmfInfoResponse.toString());
+        Arrays.stream(zosmfInfoResponse.getZosmfPluginsInfo().get()).forEach(i -> System.out.println(i.toString()));
     }
 
 }

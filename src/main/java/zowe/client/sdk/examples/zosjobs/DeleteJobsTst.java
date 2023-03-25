@@ -9,11 +9,10 @@
  */
 package zowe.client.sdk.examples.zosjobs;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
-import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
+import zowe.client.sdk.zosjobs.DeleteJobs;
 import zowe.client.sdk.zosjobs.input.ModifyJobParams;
 import zowe.client.sdk.zosjobs.response.Job;
 
@@ -21,11 +20,10 @@ import zowe.client.sdk.zosjobs.response.Job;
  * Class example to showcase DeleteJobs functionality.
  *
  * @author Leonid Baranov
- * @version 1.0
+ * @author Frank Giordano
+ * @version 2.0
  */
-public class DeleteJobs extends ZosConnection {
-
-    private static final Logger LOG = LoggerFactory.getLogger(DeleteJobs.class);
+public class DeleteJobsTst extends TstZosConnection {
 
     private static ZOSConnection connection;
     private static String jobName;
@@ -41,11 +39,10 @@ public class DeleteJobs extends ZosConnection {
      */
     public static void main(String[] args) throws Exception {
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-
-        LOG.info(String.valueOf(deleteJobsCommonWithVersion("2.0")));
-        LOG.info(String.valueOf(deleteJobsCommon()));
-        LOG.info(String.valueOf(deleteJobForJob()));
-        LOG.info(String.valueOf(deleteJob()));
+        System.out.println(deleteJobsCommonWithVersion("2.0"));
+        System.out.println(deleteJobsCommon());
+        System.out.println(deleteJobForJob());
+        System.out.println(deleteJob());
     }
 
     /**
@@ -59,10 +56,10 @@ public class DeleteJobs extends ZosConnection {
      * @author Frank Giordano
      */
     public static Response deleteJobsCommonWithVersion(String version) throws Exception {
-        jobId = "XXX";
-        jobName = "XXX";
+        jobId = "xxx";
+        jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).version(version).build();
-        return new zowe.client.sdk.zosjobs.DeleteJobs(connection).deleteJobCommon(params);
+        return new DeleteJobs(connection).deleteJobCommon(params);
     }
 
     /**
@@ -74,10 +71,10 @@ public class DeleteJobs extends ZosConnection {
      * @author Frank Giordano
      */
     public static Response deleteJobsCommon() throws Exception {
-        jobId = "XXX";
-        jobName = "XXX";
+        jobId = "xxx";
+        jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).build();
-        return new zowe.client.sdk.zosjobs.DeleteJobs(connection).deleteJobCommon(params);
+        return new DeleteJobs(connection).deleteJobCommon(params);
     }
 
     /**
@@ -89,9 +86,9 @@ public class DeleteJobs extends ZosConnection {
      * @author Frank Giordano
      */
     public static Response deleteJobForJob() throws Exception {
-        jobId = "XXX";
-        jobName = "XXX";
-        return new zowe.client.sdk.zosjobs.DeleteJobs(connection).deleteJobForJob(
+        jobId = "xxx";
+        jobName = "xxx";
+        return new DeleteJobs(connection).deleteJobForJob(
                 new Job.Builder().jobName(jobName).jobId(jobId).build(), null);
     }
 
@@ -104,9 +101,9 @@ public class DeleteJobs extends ZosConnection {
      * @author Frank Giordano
      */
     public static Response deleteJob() throws Exception {
-        jobId = "XXX";
-        jobName = "XXX";
-        return new zowe.client.sdk.zosjobs.DeleteJobs(connection).deleteJob(jobName, jobId, null);
+        jobId = "xxx";
+        jobName = "xxx";
+        return new DeleteJobs(connection).deleteJob(jobName, jobId, null);
     }
 
 }

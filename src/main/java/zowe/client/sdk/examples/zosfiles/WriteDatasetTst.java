@@ -1,18 +1,7 @@
-/*
- * This program and the accompanying materials are made available under the terms of the
- * Eclipse Public License v2.0 which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-v20.html
- *
- * SPDX-License-Identifier: EPL-2.0
- *
- * Copyright Contributors to the Zowe Project.
- */
 package zowe.client.sdk.examples.zosfiles;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
-import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
 import zowe.client.sdk.zosfiles.ZosDsn;
 
@@ -20,11 +9,9 @@ import zowe.client.sdk.zosfiles.ZosDsn;
  * Class example to showcase WriteDataset functionality.
  *
  * @author Leonid Baranov
- * @version 1.0
+ * @version 2.0
  */
-public class WriteDataset extends ZosConnection {
-
-    private static final Logger LOG = LoggerFactory.getLogger(WriteDataset.class);
+public class WriteDatasetTst extends TstZosConnection {
 
     private static ZOSConnection connection;
 
@@ -37,12 +24,11 @@ public class WriteDataset extends ZosConnection {
      * @author Leonid Baranov
      */
     public static void main(String[] args) throws Exception {
-        String dataSetName = "XXX";
-        String member = "XXX";
-
+        String dataSetName = "xxx";
+        String member = "xxx";
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
         var content = "NEW CONTENT\nTHE SECOND LINE UPDATED";
-        WriteDataset.writeToDsnMember(dataSetName, member, content);
+        WriteDatasetTst.writeToDsnMember(dataSetName, member, content);
     }
 
     /**
@@ -57,7 +43,7 @@ public class WriteDataset extends ZosConnection {
     public static void writeToDsnMember(String dataSetName, String member, String content) throws Exception {
         ZosDsn zosDsn = new ZosDsn(connection);
         Response response = zosDsn.writeDsn(dataSetName, member, content);
-        LOG.info("http response code " + response.getStatusCode());
+        System.out.println("http response code " + response.getStatusCode());
     }
 
 }

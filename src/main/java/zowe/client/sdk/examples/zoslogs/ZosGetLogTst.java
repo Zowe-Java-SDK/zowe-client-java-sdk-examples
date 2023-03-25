@@ -1,7 +1,7 @@
 package zowe.client.sdk.examples.zoslogs;
 
 import zowe.client.sdk.core.ZOSConnection;
-import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.zoslogs.GetZosLog;
 import zowe.client.sdk.zoslogs.input.DirectionType;
 import zowe.client.sdk.zoslogs.input.HardCopyType;
@@ -12,9 +12,9 @@ import zowe.client.sdk.zoslogs.response.ZosLogReply;
  * Class example to showcase GetZosLog functionality.
  *
  * @author Frank Giordano
- * @version 1.0
+ * @version 2.0
  */
-public class ZosGetLog extends ZosConnection {
+public class ZosGetLogTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase

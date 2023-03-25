@@ -1,18 +1,7 @@
-/*
- * This program and the accompanying materials are made available under the terms of the
- * Eclipse Public License v2.0 which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-v20.html
- *
- * SPDX-License-Identifier: EPL-2.0
- *
- * Copyright Contributors to the Zowe Project.
- */
 package zowe.client.sdk.examples.zostso;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zowe.client.sdk.core.ZOSConnection;
-import zowe.client.sdk.examples.ZosConnection;
+import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.zostso.IssueResponse;
 import zowe.client.sdk.zostso.IssueTso;
 
@@ -24,9 +13,7 @@ import java.util.Arrays;
  * @author Frank Giordano
  * @version 1.0
  */
-public class IssueTsoCommand extends ZosConnection {
-
-    private static final Logger LOG = LoggerFactory.getLogger(IssueTsoCommand.class);
+public class IssueTsoCommandTst extends TstZosConnection {
 
     private static ZOSConnection connection;
 
@@ -38,13 +25,13 @@ public class IssueTsoCommand extends ZosConnection {
      * @author Frank Giordano
      */
     public static void main(String[] args) throws Exception {
-        String command = "XXX";
-        String accountNumber = "XXX";
+        String command = "xxx";
+        String accountNumber = "xxx";
 
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-        IssueResponse response = IssueTsoCommand.tsoConsoleCmdByIssue(accountNumber, command);
+        IssueResponse response = IssueTsoCommandTst.tsoConsoleCmdByIssue(accountNumber, command);
         String[] results = response.getCommandResponses().orElse("").split("\n");
-        Arrays.stream(results).sequential().forEach(LOG::info);
+        Arrays.stream(results).sequential().forEach(System.out::println);
     }
 
     /**

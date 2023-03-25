@@ -7,7 +7,7 @@ import zowe.client.sdk.zosuss.Shell;
  * Class example to showcase USS command(s) execution.
  *
  * @author Frank Giordano
- * @version 1.0
+ * @version 2.0
  */
 public class USSCommand {
 
