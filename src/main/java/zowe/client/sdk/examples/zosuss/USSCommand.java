@@ -20,7 +20,7 @@ public class USSCommand {
      */
     public static void main(String[] args) throws Exception {
         int portNum = 0; // replace with valid value
-        SSHConnection conn = new SSHConnection("XXX", portNum, "XXX", "XXX");
+        SSHConnection conn = new SSHConnection("xxx", portNum, "xxx", "xxx");
         Shell shell = new Shell(conn);
         // 10000 is the timeout value in milliseconds
         System.out.println(shell.executeSshCmd("mkdir test;cd test;touch frank;ls", 10000));
