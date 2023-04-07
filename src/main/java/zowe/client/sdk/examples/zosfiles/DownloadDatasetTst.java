@@ -26,23 +26,27 @@ public class DownloadDatasetTst extends TstZosConnection {
      * @author Leonid Baranov
      */
     public static void main(String[] args) throws Exception {
-        String datasetMember = "xxx";
+        String datasetName = "xxx.xxx.xxx";
+        String memberName = "xxx";
         DownloadParams params = new DownloadParams.Builder().build();
         ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-        DownloadDatasetTst.downloadDsnMember(connection, datasetMember, params);
+        DownloadDatasetTst.downloadDsnMember(connection, datasetName, memberName, params);
     }
 
     /**
-     * Download dataset members
+     * Download a dataset member
      *
      * @param connection ZOSConnection object
-     * @param name       data set name
+     * @param dsName     data set name
+     * @param memName    member name that exists within the specified data set name
      * @param params     download parameters object
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void downloadDsnMember(zowe.client.sdk.core.ZOSConnection connection, String name, DownloadParams params) throws Exception {
-        try (InputStream inputStream = new ZosDsnDownload(connection).downloadDsn(name, params)) {
+    public static void downloadDsnMember(zowe.client.sdk.core.ZOSConnection connection, String dsName, String memName,
+                                         DownloadParams params) throws Exception {
+        try (InputStream inputStream = new ZosDsnDownload(connection)
+                .downloadDsn(String.format("%s(%s)", dsName, memName), params)) {
             if (inputStream != null) {
                 StringWriter writer = new StringWriter();
                 IOUtils.copy(inputStream, writer, "UTF8");
