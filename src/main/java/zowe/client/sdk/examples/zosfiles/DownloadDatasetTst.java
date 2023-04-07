@@ -13,6 +13,7 @@ import java.io.StringWriter;
  * Class example to showcase DownloadDataset functionality.
  *
  * @author Leonid Baranov
+ * @author Frank Giordano
  * @version 2.0
  */
 public class DownloadDatasetTst extends TstZosConnection {
