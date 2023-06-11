@@ -3,7 +3,7 @@ package zowe.client.sdk.examples.zosfiles;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
-import zowe.client.sdk.zosfiles.ZosDsn;
+import zowe.client.sdk.zosfiles.dsn.methods.DsnDelete;
 
 /**
  * Class example to showcase DeleteDataset functionality.
@@ -38,8 +38,8 @@ public class DeleteDatasetTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void deleteDataSet(String dataSetName) throws Exception {
-        ZosDsn zosDsn = new ZosDsn(connection);
-        Response response = zosDsn.deleteDsn(dataSetName);
+        DsnDelete dsnDelete = new DsnDelete(connection);
+        Response response = dsnDelete.delete(dataSetName);
         System.out.println("http response code " + response.getStatusCode());
     }
 
@@ -50,8 +50,8 @@ public class DeleteDatasetTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void deleteMember(String dataSetName, String member) throws Exception {
-        ZosDsn zosDsn = new ZosDsn(connection);
-        Response response = zosDsn.deleteDsn(dataSetName, member);
+        DsnDelete dsnDelete = new DsnDelete(connection);
+        Response response = dsnDelete.delete(dataSetName, member);
         System.out.println("http response code " + response.getStatusCode());
     }
 

@@ -2,8 +2,9 @@ package zowe.client.sdk.examples.zosjobs;
 
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.TstZosConnection;
-import zowe.client.sdk.zosjobs.SubmitJobs;
 import zowe.client.sdk.zosjobs.input.MonitorJobWaitForParams;
+import zowe.client.sdk.zosjobs.methods.JobMonitor;
+import zowe.client.sdk.zosjobs.methods.JobSubmit;
 import zowe.client.sdk.zosjobs.response.Job;
 import zowe.client.sdk.zosjobs.types.JobStatus;
 
@@ -15,7 +16,7 @@ import zowe.client.sdk.zosjobs.types.JobStatus;
  */
 public class MonitorJobsTst extends TstZosConnection {
 
-    private static SubmitJobs submitJobs;
+    private static JobSubmit submitJobs;
     private static ZOSConnection connection;
 
     /**
@@ -28,7 +29,7 @@ public class MonitorJobsTst extends TstZosConnection {
      */
     public static void main(String[] args) throws Exception {
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-        submitJobs = new SubmitJobs(connection);
+        submitJobs = new JobSubmit(connection);
         MonitorJobsTst.monitorJobsForOutputStatusByJobObject();
         MonitorJobsTst.monitorJobsForOutputStatusByJobNameAndId();
         MonitorJobsTst.monitorJobsForStatusByJobObject(JobStatus.Type.INPUT);
@@ -45,9 +46,9 @@ public class MonitorJobsTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void monitorIsJobRunning() throws Exception {
-        zowe.client.sdk.zosjobs.MonitorJobs monitorJobs = new zowe.client.sdk.zosjobs.MonitorJobs(connection);
+        JobMonitor jobMonitor = new JobMonitor(connection);
         MonitorJobWaitForParams monitorParams = new MonitorJobWaitForParams.Builder("XXX", "XXX").build();
-        System.out.println(monitorJobs.isJobRunning(monitorParams));
+        System.out.println(jobMonitor.isJobRunning(monitorParams));
     }
 
     /**
@@ -61,8 +62,8 @@ public class MonitorJobsTst extends TstZosConnection {
     public static void monitorJobsForOutputStatusByJobObject() throws Exception {
         String jclString = "//TESTJOBX JOB (),MSGCLASS=H\r // EXEC PGM=IEFBR14";
         Job job = submitJobs.submitJcl(jclString, null, null);
-        zowe.client.sdk.zosjobs.MonitorJobs monitorJobs = new zowe.client.sdk.zosjobs.MonitorJobs(connection);
-        job = monitorJobs.waitForJobOutputStatus(job);
+        JobMonitor jobMonitor = new JobMonitor(connection);
+        job = jobMonitor.waitForJobOutputStatus(job);
         System.out.println("Job status for Job " + job.getJobName().orElse("n/a") + ":" +
                 job.getJobId().orElse("n/a") + " is " + job.getStatus().orElse("n/a"));
     }
@@ -78,8 +79,8 @@ public class MonitorJobsTst extends TstZosConnection {
     public static void monitorJobsForOutputStatusByJobNameAndId() throws Exception {
         String jclString = "//TESTJOBX JOB (),MSGCLASS=H\r // EXEC PGM=IEFBR14";
         Job job = submitJobs.submitJcl(jclString, null, null);
-        zowe.client.sdk.zosjobs.MonitorJobs monitorJobs = new zowe.client.sdk.zosjobs.MonitorJobs(connection);
-        job = monitorJobs.waitForJobOutputStatus(
+        JobMonitor jobMonitor = new JobMonitor(connection);
+        job = jobMonitor.waitForJobOutputStatus(
                 job.getJobName().orElseThrow(() -> new Exception("job name not specified")),
                 job.getJobId().orElseThrow(() -> new Exception("job id not specified")));
         System.out.println("Job status for Job " + job.getJobName().orElse("n/a") + ":" +
@@ -98,8 +99,8 @@ public class MonitorJobsTst extends TstZosConnection {
     public static void monitorJobsForStatusByJobObject(JobStatus.Type statusType) throws Exception {
         // determine an existing job in your system that is in execute queue and make a Job for it
         Job job = new Job.Builder().jobName("xxx").jobId("xxx").build();
-        zowe.client.sdk.zosjobs.MonitorJobs monitorJobs = new zowe.client.sdk.zosjobs.MonitorJobs(connection);
-        job = monitorJobs.waitForJobStatus(job, statusType);
+        JobMonitor jobMonitor = new JobMonitor(connection);
+        job = jobMonitor.waitForJobStatus(job, statusType);
         System.out.println("Job status for Job " + job.getJobName().orElse("n/a") + ":" +
                 job.getJobId().orElse("n/a") + " is " + job.getStatus().orElse("n/a"));
     }
@@ -116,8 +117,8 @@ public class MonitorJobsTst extends TstZosConnection {
     public static void monitorJobsForStatusByJobNameAndId(JobStatus.Type statusType) throws Exception {
         // determine an existing job in your system that is in execute queue and make a Job for it
         Job job = new Job.Builder().jobName("xxx").jobId("xxx").build();
-        zowe.client.sdk.zosjobs.MonitorJobs monitorJobs = new zowe.client.sdk.zosjobs.MonitorJobs(connection);
-        job = monitorJobs.waitForJobStatus(
+        JobMonitor jobMonitor = new JobMonitor(connection);
+        job = jobMonitor.waitForJobStatus(
                 job.getJobName().orElseThrow(() -> new Exception("job name not specified")),
                 job.getJobId().orElseThrow(() -> new Exception("job id not specified")), statusType);
         System.out.println("Job status for Job " + job.getJobName().orElse("n/a") + ":" +
@@ -136,8 +137,8 @@ public class MonitorJobsTst extends TstZosConnection {
     public static void monitorWaitForJobMessage(String message) throws Exception {
         // determine an existing job in your system that is in execute queue and make a Job for it
         Job job = new Job.Builder().jobName("xxx").jobId("xxx").build();
-        zowe.client.sdk.zosjobs.MonitorJobs monitorJobs = new zowe.client.sdk.zosjobs.MonitorJobs(connection);
-        System.out.println("Found message = " + monitorJobs.waitForJobMessage(job, message));
+        JobMonitor jobMonitor = new JobMonitor(connection);
+        System.out.println("Found message = " + jobMonitor.waitForJobMessage(job, message));
     }
 
 }

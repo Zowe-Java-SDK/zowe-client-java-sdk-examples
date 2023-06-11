@@ -2,11 +2,11 @@ package zowe.client.sdk.examples.zosfiles;
 
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.TstZosConnection;
-import zowe.client.sdk.zosfiles.ZosDsnList;
-import zowe.client.sdk.zosfiles.input.ListParams;
-import zowe.client.sdk.zosfiles.response.Dataset;
-import zowe.client.sdk.zosfiles.response.Member;
-import zowe.client.sdk.zosfiles.types.AttributeType;
+import zowe.client.sdk.zosfiles.dsn.input.ListParams;
+import zowe.client.sdk.zosfiles.dsn.methods.DsnList;
+import zowe.client.sdk.zosfiles.dsn.response.Dataset;
+import zowe.client.sdk.zosfiles.dsn.response.Member;
+import zowe.client.sdk.zosfiles.dsn.types.AttributeType;
 
 import java.util.List;
 
@@ -47,8 +47,8 @@ public class ListDatasetsTst extends TstZosConnection {
      */
     public static void listMembersWithAllAttributes(ZOSConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
-        ZosDsnList zosDsnList = new ZosDsnList(connection);
-        List<Member> datasets = zosDsnList.listDsnMembers(dataSetName, params);
+        DsnList dsnList = new DsnList(connection);
+        List<Member> datasets = dsnList.listDsnMembers(dataSetName, params);
         datasets.forEach(m -> System.out.println(m.toString()));
     }
 
@@ -62,8 +62,8 @@ public class ListDatasetsTst extends TstZosConnection {
      */
     public static void listMembers(ZOSConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.MEMBER).build();
-        ZosDsnList zosDsnList = new ZosDsnList(connection);
-        List<Member> datasets = zosDsnList.listDsnMembers(dataSetName, params);
+        DsnList dsnList = new DsnList(connection);
+        List<Member> datasets = dsnList.listDsnMembers(dataSetName, params);
         datasets.forEach(m -> System.out.println(m.toString()));
     }
 
@@ -77,8 +77,8 @@ public class ListDatasetsTst extends TstZosConnection {
      */
     public static void listDsn(ZOSConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
-        ZosDsnList zosDsnList = new ZosDsnList(connection);
-        List<Dataset> datasets = zosDsnList.listDsn(dataSetName, params);
+        DsnList dsnList = new DsnList(connection);
+        List<Dataset> datasets = dsnList.listDsn(dataSetName, params);
         datasets.forEach(i -> System.out.println(i));
     }
 
@@ -92,8 +92,8 @@ public class ListDatasetsTst extends TstZosConnection {
      */
     public static void listDsnVol(ZOSConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.VOL).build();
-        ZosDsnList zosDsnList = new ZosDsnList(connection);
-        List<Dataset> datasets = zosDsnList.listDsn(dataSetName, params);
+        DsnList dsnList = new DsnList(connection);
+        List<Dataset> datasets = dsnList.listDsn(dataSetName, params);
         datasets.forEach(i -> System.out.println(i));
     }
 

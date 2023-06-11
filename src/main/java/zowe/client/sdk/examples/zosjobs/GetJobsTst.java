@@ -2,10 +2,10 @@ package zowe.client.sdk.examples.zosjobs;
 
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.TstZosConnection;
-import zowe.client.sdk.zosjobs.GetJobs;
 import zowe.client.sdk.zosjobs.input.CommonJobParams;
 import zowe.client.sdk.zosjobs.input.GetJobParams;
 import zowe.client.sdk.zosjobs.input.JobFile;
+import zowe.client.sdk.zosjobs.methods.JobGet;
 import zowe.client.sdk.zosjobs.response.Job;
 
 import java.util.Arrays;
@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class GetJobsTst extends TstZosConnection {
 
-    private static GetJobs getJobs;
+    private static JobGet getJobs;
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
@@ -35,7 +35,7 @@ public class GetJobsTst extends TstZosConnection {
         String jobId = "xxx";
 
         ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-        getJobs = new GetJobs(connection);
+        getJobs = new JobGet(connection);
 
         GetJobsTst.getJobsCommon(prefix);
         GetJobsTst.getSpoolFiles(prefix);

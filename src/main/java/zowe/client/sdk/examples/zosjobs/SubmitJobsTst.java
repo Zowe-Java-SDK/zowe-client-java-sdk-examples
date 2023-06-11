@@ -2,8 +2,8 @@ package zowe.client.sdk.examples.zosjobs;
 
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.TstZosConnection;
-import zowe.client.sdk.zosjobs.MonitorJobs;
-import zowe.client.sdk.zosjobs.SubmitJobs;
+import zowe.client.sdk.zosjobs.methods.JobMonitor;
+import zowe.client.sdk.zosjobs.methods.JobSubmit;
 import zowe.client.sdk.zosjobs.response.Job;
 import zowe.client.sdk.zosjobs.types.JobStatus;
 
@@ -30,8 +30,8 @@ public class SubmitJobsTst extends TstZosConnection {
         String jclString = "//TESTJOBX JOB (),MSGCLASS=H\n// EXEC PGM=IEFBR14";
         Job submitJobsTest = SubmitJobsTst.submitJclJob(connection, jclString);
         // Wait for the job to complete
-        MonitorJobs monitorJobs = new MonitorJobs(connection);
-        submitJobsTest = monitorJobs.waitForJobStatus(submitJobsTest, JobStatus.Type.OUTPUT);
+        JobMonitor jobMonitor = new JobMonitor(connection);
+        submitJobsTest = jobMonitor.waitForJobStatus(submitJobsTest, JobStatus.Type.OUTPUT);
         System.out.println(submitJobsTest);
         // Get the return code
         String retCode = submitJobsTest.getRetCode().orElse("n/a");
@@ -48,9 +48,9 @@ public class SubmitJobsTst extends TstZosConnection {
      * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static Job submitJclJob(zowe.client.sdk.core.ZOSConnection connection, String jclString) throws Exception {
-        SubmitJobs submitJobs = new SubmitJobs(connection);
-        return submitJobs.submitJcl(jclString, null, null);
+    public static Job submitJclJob(ZOSConnection connection, String jclString) throws Exception {
+        JobSubmit jobSubmit = new JobSubmit(connection);
+        return jobSubmit.submitJcl(jclString, null, null);
     }
 
     /**
@@ -63,9 +63,9 @@ public class SubmitJobsTst extends TstZosConnection {
      * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static Job submitJob(zowe.client.sdk.core.ZOSConnection connection, String dsMember) throws Exception {
-        SubmitJobs submitJobs = new SubmitJobs(connection);
-        return submitJobs.submitJob(dsMember);
+    public static Job submitJob(ZOSConnection connection, String dsMember) throws Exception {
+        JobSubmit jobSubmit = new JobSubmit(connection);
+        return jobSubmit.submitJob(dsMember);
     }
 
 }

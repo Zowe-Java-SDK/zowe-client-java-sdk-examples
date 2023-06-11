@@ -2,8 +2,8 @@ package zowe.client.sdk.examples.zostso;
 
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.TstZosConnection;
-import zowe.client.sdk.zostso.IssueResponse;
-import zowe.client.sdk.zostso.IssueTso;
+import zowe.client.sdk.zostso.method.IssueTso;
+import zowe.client.sdk.zostso.response.IssueResponse;
 
 import java.util.Arrays;
 
@@ -45,7 +45,7 @@ public class IssueTsoCommandTst extends TstZosConnection {
      */
     public static IssueResponse tsoConsoleCmdByIssue(String accountNumber, String cmd) throws Exception {
         IssueTso issueTso = new IssueTso(connection);
-        return issueTso.issueTsoCommand(accountNumber, cmd);
+        return issueTso.issueCommand(accountNumber, cmd);
     }
 
 }

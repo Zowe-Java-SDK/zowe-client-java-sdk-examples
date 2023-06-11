@@ -3,7 +3,7 @@ package zowe.client.sdk.examples.zosfiles;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
-import zowe.client.sdk.zosfiles.ZosDsn;
+import zowe.client.sdk.zosfiles.dsn.methods.DsnWrite;
 
 /**
  * Class example to showcase WriteDataset functionality.
@@ -42,8 +42,8 @@ public class WriteDatasetTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void writeToDsnMember(String dataSetName, String member, String content) throws Exception {
-        ZosDsn zosDsn = new ZosDsn(connection);
-        Response response = zosDsn.writeDsn(dataSetName, member, content);
+        DsnWrite dsnWrite = new DsnWrite(connection);
+        Response response = dsnWrite.write(dataSetName, member, content);
         System.out.println("http response code " + response.getStatusCode());
     }
 

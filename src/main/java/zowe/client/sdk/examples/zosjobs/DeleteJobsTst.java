@@ -3,8 +3,8 @@ package zowe.client.sdk.examples.zosjobs;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
-import zowe.client.sdk.zosjobs.DeleteJobs;
 import zowe.client.sdk.zosjobs.input.ModifyJobParams;
+import zowe.client.sdk.zosjobs.methods.JobDelete;
 import zowe.client.sdk.zosjobs.response.Job;
 
 /**
@@ -50,7 +50,7 @@ public class DeleteJobsTst extends TstZosConnection {
         jobId = "xxx";
         jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).version(version).build();
-        return new DeleteJobs(connection).deleteJobCommon(params);
+        return new JobDelete(connection).deleteJobCommon(params);
     }
 
     /**
@@ -65,7 +65,7 @@ public class DeleteJobsTst extends TstZosConnection {
         jobId = "xxx";
         jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).build();
-        return new DeleteJobs(connection).deleteJobCommon(params);
+        return new JobDelete(connection).deleteJobCommon(params);
     }
 
     /**
@@ -79,7 +79,7 @@ public class DeleteJobsTst extends TstZosConnection {
     public static Response deleteJobForJob() throws Exception {
         jobId = "xxx";
         jobName = "xxx";
-        return new DeleteJobs(connection).deleteJobForJob(
+        return new JobDelete(connection).deleteJobForJob(
                 new Job.Builder().jobName(jobName).jobId(jobId).build(), null);
     }
 
@@ -94,7 +94,7 @@ public class DeleteJobsTst extends TstZosConnection {
     public static Response deleteJob() throws Exception {
         jobId = "xxx";
         jobName = "xxx";
-        return new DeleteJobs(connection).deleteJob(jobName, jobId, null);
+        return new JobDelete(connection).deleteJob(jobName, jobId, null);
     }
 
 }

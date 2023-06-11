@@ -3,8 +3,8 @@ package zowe.client.sdk.examples.zosfiles;
 import org.apache.commons.io.IOUtils;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.TstZosConnection;
-import zowe.client.sdk.zosfiles.ZosDsnDownload;
-import zowe.client.sdk.zosfiles.input.DownloadParams;
+import zowe.client.sdk.zosfiles.dsn.input.DownloadParams;
+import zowe.client.sdk.zosfiles.dsn.methods.DsnGet;
 
 import java.io.InputStream;
 import java.io.StringWriter;
@@ -44,10 +44,10 @@ public class DownloadDatasetTst extends TstZosConnection {
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void downloadDsnMember(zowe.client.sdk.core.ZOSConnection connection, String dsName, String memName,
+    public static void downloadDsnMember(ZOSConnection connection, String dsName, String memName,
                                          DownloadParams params) throws Exception {
-        try (InputStream inputStream = new ZosDsnDownload(connection)
-                .downloadDsn(String.format("%s(%s)", dsName, memName), params)) {
+        try (InputStream inputStream = new DsnGet(connection)
+                .get(String.format("%s(%s)", dsName, memName), params)) {
             if (inputStream != null) {
                 StringWriter writer = new StringWriter();
                 IOUtils.copy(inputStream, writer, "UTF8");

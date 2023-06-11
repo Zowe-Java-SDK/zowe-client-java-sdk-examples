@@ -3,8 +3,8 @@ package zowe.client.sdk.examples.zosfiles;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
-import zowe.client.sdk.zosfiles.ZosDsn;
-import zowe.client.sdk.zosfiles.input.CreateParams;
+import zowe.client.sdk.zosfiles.dsn.input.CreateParams;
+import zowe.client.sdk.zosfiles.dsn.methods.DsnCreate;
 
 /**
  * Class example to showcase CreateDataset functionality.
@@ -42,8 +42,8 @@ public class CreateDatasetTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void createSequentialDataSet(String dataSetName) throws Exception {
-        ZosDsn zosDsn = new ZosDsn(connection);
-        Response response = zosDsn.createDsn(dataSetName, sequential());
+        DsnCreate dsnCreate = new DsnCreate(connection);
+        Response response = dsnCreate.create(dataSetName, sequential());
         System.out.println("http response code " + response.getStatusCode());
     }
 
@@ -55,8 +55,8 @@ public class CreateDatasetTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void createPartitionDataSet(String dataSetName) throws Exception {
-        ZosDsn zosDsn = new ZosDsn(connection);
-        Response response = zosDsn.createDsn(dataSetName, partitioned());
+        DsnCreate dsnCreate = new DsnCreate(connection);
+        Response response = dsnCreate.create(dataSetName, partitioned());
         System.out.println("http response code " + response.getStatusCode());
     }
 

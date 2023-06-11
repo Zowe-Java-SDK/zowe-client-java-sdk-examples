@@ -2,8 +2,8 @@ package zowe.client.sdk.examples.zosfiles;
 
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.TstZosConnection;
-import zowe.client.sdk.zosfiles.ZosDsn;
-import zowe.client.sdk.zosfiles.response.Dataset;
+import zowe.client.sdk.zosfiles.dsn.methods.DsnGet;
+import zowe.client.sdk.zosfiles.dsn.response.Dataset;
 
 /**
  * Class example to showcase ZosDsn getDataSetInfo functionality.
@@ -27,9 +27,9 @@ public class DataSetInfoTst extends TstZosConnection {
         System.out.println(DataSetInfoTst.getDataSetInfo(connection, dataSetName));
     }
 
-    private static Dataset getDataSetInfo(zowe.client.sdk.core.ZOSConnection connection, String dataSetName) throws Exception {
-        ZosDsn zosDsn = new ZosDsn(connection);
-        return zosDsn.getDataSetInfo(dataSetName);
+    private static Dataset getDataSetInfo(ZOSConnection connection, String dataSetName) throws Exception {
+        DsnGet dsnGet = new DsnGet(connection);
+        return dsnGet.getDsnInfo(dataSetName);
     }
 
 }

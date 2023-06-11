@@ -2,11 +2,11 @@ package zowe.client.sdk.examples.zosconsole;
 
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.TstZosConnection;
-import zowe.client.sdk.zosconsole.ConsoleResponse;
-import zowe.client.sdk.zosconsole.IssueCommand;
 import zowe.client.sdk.zosconsole.input.IssueParams;
-import zowe.client.sdk.zosconsole.zosmf.ZosmfIssueParams;
-import zowe.client.sdk.zosconsole.zosmf.ZosmfIssueResponse;
+import zowe.client.sdk.zosconsole.input.ZosmfIssueParams;
+import zowe.client.sdk.zosconsole.method.IssueConsole;
+import zowe.client.sdk.zosconsole.response.ConsoleResponse;
+import zowe.client.sdk.zosconsole.response.ZosmfIssueResponse;
 
 /**
  * Class example to showcase mvs console command functionality.
@@ -41,9 +41,9 @@ public class IssueCommandTst extends TstZosConnection {
         IssueParams params = new IssueParams();
         params.setCommand(cmd);
         ConsoleResponse response;
-        IssueCommand issueCommand = new IssueCommand(connection);
+        IssueConsole issueConsole = new IssueConsole(connection);
         try {
-            response = issueCommand.issue(params);
+            response = issueConsole.issueCommand(params);
             System.out.println(response.getCommandResponse().orElse(""));
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -59,9 +59,9 @@ public class IssueCommandTst extends TstZosConnection {
      */
     public static void consoleCmdByIssueSimple(ZOSConnection connection, String cmd) {
         ConsoleResponse response;
-        IssueCommand issueCommand = new IssueCommand(connection);
+        IssueConsole issueConsole = new IssueConsole(connection);
         try {
-            response = issueCommand.issueSimple(cmd);
+            response = issueConsole.issueSimpleCommand(cmd);
             System.out.println(response.getCommandResponse().orElse(""));
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -79,9 +79,9 @@ public class IssueCommandTst extends TstZosConnection {
         ZosmfIssueParams params = new ZosmfIssueParams();
         params.setCmd(cmd);
         ZosmfIssueResponse response;
-        IssueCommand issueCommand = new IssueCommand(connection);
+        IssueConsole issueConsole = new IssueConsole(connection);
         try {
-            response = issueCommand.issueDefConsoleCommon(params);
+            response = issueConsole.issueDefConsoleCommon(params);
             System.out.println(response.getCmdResponse().orElse(""));
         } catch (Exception e) {
             System.out.println(e.getMessage());

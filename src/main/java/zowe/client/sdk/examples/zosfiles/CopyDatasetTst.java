@@ -3,8 +3,8 @@ package zowe.client.sdk.examples.zosfiles;
 import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
-import zowe.client.sdk.zosfiles.ZosDsnCopy;
-import zowe.client.sdk.zosfiles.input.CopyParams;
+import zowe.client.sdk.zosfiles.dsn.input.CopyParams;
+import zowe.client.sdk.zosfiles.dsn.methods.DsnCopy;
 
 /**
  * Class example to showcase CopyDataset functionality.
@@ -57,8 +57,8 @@ public class CopyDatasetTst extends TstZosConnection {
      */
     public static void copyDataset(ZOSConnection connection, String fromDataSetName, String toDataSetName)
             throws Exception {
-        ZosDsnCopy zosDsnCopy = new ZosDsnCopy(connection);
-        Response response = zosDsnCopy.copy(fromDataSetName, toDataSetName, true, false);
+        DsnCopy dsnCopy = new DsnCopy(connection);
+        Response response = dsnCopy.copy(fromDataSetName, toDataSetName, true, false);
         System.out.println("http response code " + response.getStatusCode());
     }
 
@@ -80,13 +80,13 @@ public class CopyDatasetTst extends TstZosConnection {
      * @throws Exception error processing copy request
      * @author Frank Giordano
      */
-    public static void copyDatasetByCopyParams(zowe.client.sdk.core.ZOSConnection connection, String fromDataSetName,
+    public static void copyDatasetByCopyParams(ZOSConnection connection, String fromDataSetName,
                                                String toDataSetName) throws Exception {
-        ZosDsnCopy zosDsnCopy = new ZosDsnCopy(connection);
+        DsnCopy dsnCopy = new DsnCopy(connection);
         // 'replace' builder variable here will be true by default if not specified in builder.
         // 'copyAllMembers' builder variable here will be false by default
         CopyParams copyParams = new CopyParams.Builder().fromDataSet(fromDataSetName).toDataSet(toDataSetName).build();
-        Response response = zosDsnCopy.copy(copyParams);
+        Response response = dsnCopy.copy(copyParams);
         System.out.println("http response code " + response.getStatusCode());
     }
 
@@ -106,11 +106,11 @@ public class CopyDatasetTst extends TstZosConnection {
      */
     public static void copyFullPartitionDatasetByCopyParams(ZOSConnection connection, String fromDataSetName,
                                                             String toDataSetName) throws Exception {
-        ZosDsnCopy zosDsnCopy = new ZosDsnCopy(connection);
+        DsnCopy dsnCopy = new DsnCopy(connection);
         // 'replace' here will be true by default if not specified in builder.
         CopyParams copyParams = new CopyParams.Builder()
                 .fromDataSet(fromDataSetName).toDataSet(toDataSetName).copyAllMembers(true).build();
-        Response response = zosDsnCopy.copy(copyParams);
+        Response response = dsnCopy.copy(copyParams);
         System.out.println("http response code " + response.getStatusCode());
     }
 
