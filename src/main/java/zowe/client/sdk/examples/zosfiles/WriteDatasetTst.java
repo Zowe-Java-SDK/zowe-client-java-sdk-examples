@@ -26,10 +26,12 @@ public class WriteDatasetTst extends TstZosConnection {
      */
     public static void main(String[] args) throws Exception {
         String dataSetName = "xxx";
+        String datasetSeqName = "xxx";
         String member = "xxx";
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
         var content = "NEW CONTENT\nTHE SECOND LINE UPDATED";
         WriteDatasetTst.writeToDsnMember(dataSetName, member, content);
+        WriteDatasetTst.writeToDsnSequential(datasetSeqName, content);
     }
 
     /**
@@ -44,6 +46,20 @@ public class WriteDatasetTst extends TstZosConnection {
     public static void writeToDsnMember(String dataSetName, String member, String content) throws Exception {
         DsnWrite dsnWrite = new DsnWrite(connection);
         Response response = dsnWrite.write(dataSetName, member, content);
+        System.out.println("http response code " + response.getStatusCode());
+    }
+
+    /**
+     * Write to the given content to sequential dataset.
+     *
+     * @param dataSetName name of sequential dataset (e.g. 'DATASET.LIB')
+     * @param content     content for write
+     * @throws Exception error processing request
+     * @author Frank Giordano
+     */
+    public static void writeToDsnSequential(String dataSetName, String content) throws Exception {
+        DsnWrite dsnWrite = new DsnWrite(connection);
+        Response response = dsnWrite.write(dataSetName, content);
         System.out.println("http response code " + response.getStatusCode());
     }
 
