@@ -17,7 +17,7 @@ import java.util.List;
  * @author Frank Giordano
  * @version 2.0
  */
-public class GetJobsTst extends TstZosConnection {
+public class GetJobTst extends TstZosConnection {
 
     private static JobGet getJobs;
 
@@ -37,22 +37,22 @@ public class GetJobsTst extends TstZosConnection {
         ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
         getJobs = new JobGet(connection);
 
-        GetJobsTst.getJobsCommon(prefix);
-        GetJobsTst.getSpoolFiles(prefix);
-        GetJobsTst.getSpoolFilesForJob(prefix);
-        GetJobsTst.getJobsByOwner(owner);
-        GetJobsTst.getSpoolContent(prefix);
-        GetJobsTst.getJobs();
-        GetJobsTst.getJobsByPrefix(prefix);
-        GetJobsTst.getJobsByOwnerAndPrefix("*", prefix);
-        GetJobsTst.getJob(prefix);
-        GetJobsTst.nonExistentGetJob(jobId);
-        GetJobsTst.getStatusCommon(prefix);
-        GetJobsTst.getStatus(prefix);
-        GetJobsTst.getStatusForJob(prefix);
-        GetJobsTst.getJcl(prefix);
-        GetJobsTst.getJclForJob(prefix);
-        GetJobsTst.getJclCommon(prefix);
+        GetJobTst.getJobsCommon(prefix);
+        GetJobTst.getSpoolFiles(prefix);
+        GetJobTst.getSpoolFilesForJob(prefix);
+        GetJobTst.getJobsByOwner(owner);
+        GetJobTst.getSpoolContent(prefix);
+        GetJobTst.getJobs();
+        GetJobTst.getJobsByPrefix(prefix);
+        GetJobTst.getJobsByOwnerAndPrefix("*", prefix);
+        GetJobTst.getJob(prefix);
+        GetJobTst.nonExistentGetJob(jobId);
+        GetJobTst.getStatusCommon(prefix);
+        GetJobTst.getStatus(prefix);
+        GetJobTst.getStatusForJob(prefix);
+        GetJobTst.getJcl(prefix);
+        GetJobTst.getJclForJob(prefix);
+        GetJobTst.getJclCommon(prefix);
     }
 
     /**

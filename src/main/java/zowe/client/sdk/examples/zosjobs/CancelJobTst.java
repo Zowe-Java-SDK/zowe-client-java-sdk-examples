@@ -14,7 +14,7 @@ import zowe.client.sdk.zosjobs.response.Job;
  * @author Frank Giordano
  * @version 2.0
  */
-public class CancelJobsTst extends TstZosConnection {
+public class CancelJobTst extends TstZosConnection {
 
     private static ZOSConnection connection;
     private static String jobName;

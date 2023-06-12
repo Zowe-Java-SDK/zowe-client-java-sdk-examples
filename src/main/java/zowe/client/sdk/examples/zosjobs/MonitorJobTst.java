@@ -14,7 +14,7 @@ import zowe.client.sdk.zosjobs.types.JobStatus;
  * @author Frank Giordano
  * @version 2.0
  */
-public class MonitorJobsTst extends TstZosConnection {
+public class MonitorJobTst extends TstZosConnection {
 
     private static JobSubmit submitJobs;
     private static ZOSConnection connection;
@@ -30,11 +30,11 @@ public class MonitorJobsTst extends TstZosConnection {
     public static void main(String[] args) throws Exception {
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
         submitJobs = new JobSubmit(connection);
-        MonitorJobsTst.monitorJobsForOutputStatusByJobObject();
-        MonitorJobsTst.monitorJobsForOutputStatusByJobNameAndId();
-        MonitorJobsTst.monitorJobsForStatusByJobObject(JobStatus.Type.INPUT);
-        MonitorJobsTst.monitorJobsForStatusByJobNameAndId(JobStatus.Type.ACTIVE);
-        MonitorJobsTst.monitorWaitForJobMessage("xxx");
+        MonitorJobTst.monitorJobsForOutputStatusByJobObject();
+        MonitorJobTst.monitorJobsForOutputStatusByJobNameAndId();
+        MonitorJobTst.monitorJobsForStatusByJobObject(JobStatus.Type.INPUT);
+        MonitorJobTst.monitorJobsForStatusByJobNameAndId(JobStatus.Type.ACTIVE);
+        MonitorJobTst.monitorWaitForJobMessage("xxx");
         monitorIsJobRunning();
     }
 

@@ -13,7 +13,7 @@ import zowe.client.sdk.zosjobs.types.JobStatus;
  * @author Frank Giordano
  * @version 2.0
  */
-public class SubmitJobsTst extends TstZosConnection {
+public class SubmitJobTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection needed to showcase
@@ -25,10 +25,10 @@ public class SubmitJobsTst extends TstZosConnection {
      */
     public static void main(String[] args) throws Exception {
         ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-        System.out.println(SubmitJobsTst.submitJob(connection, "xxx.xxx.xxx.xxx(xxx)"));
+        System.out.println(SubmitJobTst.submitJob(connection, "xxx.xxx.xxx.xxx(xxx)"));
 
         String jclString = "//TESTJOBX JOB (),MSGCLASS=H\n// EXEC PGM=IEFBR14";
-        Job submitJobsTest = SubmitJobsTst.submitJclJob(connection, jclString);
+        Job submitJobsTest = SubmitJobTst.submitJclJob(connection, jclString);
         // Wait for the job to complete
         JobMonitor jobMonitor = new JobMonitor(connection);
         submitJobsTest = jobMonitor.waitForJobStatus(submitJobsTest, JobStatus.Type.OUTPUT);
