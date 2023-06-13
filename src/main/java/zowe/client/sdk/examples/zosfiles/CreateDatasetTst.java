@@ -7,7 +7,7 @@ import zowe.client.sdk.zosfiles.dsn.input.CreateParams;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnCreate;
 
 /**
- * Class example to showcase CreateDataset functionality.
+ * Class example to showcase CreateDataset functionality via DsnCreate class.
  *
  * @author Leonid Baranov
  * @author Frank Giordano
@@ -19,7 +19,7 @@ public class CreateDatasetTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
-     * CreateDataset functionality. Calls CreateDataset example methods.
+     * DsnCreate functionality.
      *
      * @param args for main not used
      * @throws Exception error in processing request
@@ -35,7 +35,7 @@ public class CreateDatasetTst extends TstZosConnection {
     }
 
     /**
-     * Create a new sequential data set
+     * Create a new sequential dataset.
      *
      * @param dataSetName name of a dataset to create (e.g. 'DATASET.LIB')
      * @throws Exception error processing request
@@ -48,7 +48,7 @@ public class CreateDatasetTst extends TstZosConnection {
     }
 
     /**
-     * Create a new partition data set
+     * Create a new partition dataset.
      *
      * @param dataSetName name of a dataset to create (e.g. 'DATASET.LIB')
      * @throws Exception error processing request
@@ -61,7 +61,7 @@ public class CreateDatasetTst extends TstZosConnection {
     }
 
     /**
-     * Example of a prebuilt CreateParams for creating a binary dataset
+     * Example of a prebuilt CreateParams for creating a binary dataset.
      *
      * @return prebuilt CreateParams
      */

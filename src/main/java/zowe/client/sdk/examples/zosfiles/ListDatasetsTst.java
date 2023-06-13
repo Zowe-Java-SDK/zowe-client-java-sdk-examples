@@ -11,7 +11,7 @@ import zowe.client.sdk.zosfiles.dsn.types.AttributeType;
 import java.util.List;
 
 /**
- * Class example to showcase ListDatasets functionality.
+ * Class example to showcase ListDatasets functionality via DsnList class.
  *
  * @author Leonid Baranov
  * @author Frank Giordano
@@ -21,7 +21,7 @@ public class ListDatasetsTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
-     * ListDatasets functionality. Calls ListDatasets example methods.
+     * DsnList functionality.
      *
      * @param args for main not used
      * @throws Exception error processing request
@@ -41,7 +41,7 @@ public class ListDatasetsTst extends TstZosConnection {
      * List out all members and its attribute values of the given data set
      *
      * @param connection  ZOSConnection object
-     * @param dataSetName data set name
+     * @param dataSetName name of a dataset
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
@@ -56,7 +56,7 @@ public class ListDatasetsTst extends TstZosConnection {
      * List out all members of the given data set
      *
      * @param connection  ZOSConnection object
-     * @param dataSetName data set name
+     * @param dataSetName name of a dataset
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
@@ -71,7 +71,7 @@ public class ListDatasetsTst extends TstZosConnection {
      * List out all data sets of the given data set. Each dataset returned will contain all of its properties.
      *
      * @param connection  ZOSConnection object
-     * @param dataSetName data set name
+     * @param dataSetName name of a dataset
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
@@ -86,7 +86,7 @@ public class ListDatasetsTst extends TstZosConnection {
      * List out all data sets of the given data set. Each dataset returned will contain its volume property.
      *
      * @param connection  ZOSConnection object
-     * @param dataSetName data set name
+     * @param dataSetName name of a dataset
      * @throws Exception error processing request
      * @author Frank Giordano
      */

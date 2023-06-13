@@ -8,7 +8,7 @@ import zowe.client.sdk.zosjobs.response.Job;
 import zowe.client.sdk.zosjobs.types.JobStatus;
 
 /**
- * Class example to showcase SubmitJobs functionality.
+ * Class example to showcase JobSubmit class functionality.
  *
  * @author Frank Giordano
  * @version 2.0
@@ -17,7 +17,7 @@ public class SubmitJobTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection needed to showcase
-     * SubmitJobs functionality. Calls SubmitJobs example methods.
+     * JobSubmit functionality.
      *
      * @param args for main not used
      * @throws Exception error in processing request
@@ -31,7 +31,7 @@ public class SubmitJobTst extends TstZosConnection {
         Job submitJobsTest = SubmitJobTst.submitJclJob(connection, jclString);
         // Wait for the job to complete
         JobMonitor jobMonitor = new JobMonitor(connection);
-        submitJobsTest = jobMonitor.waitForJobStatus(submitJobsTest, JobStatus.Type.OUTPUT);
+        submitJobsTest = jobMonitor.waitByStatus(submitJobsTest, JobStatus.Type.OUTPUT);
         System.out.println(submitJobsTest);
         // Get the return code
         String retCode = submitJobsTest.getRetCode().orElse("n/a");
@@ -39,8 +39,8 @@ public class SubmitJobTst extends TstZosConnection {
     }
 
     /**
-     * Example on how to call SubmitJobs submitJcl method.
-     * submitJcl is given a jcl string to use to submit it as a job.
+     * Example on how to call JobSubmit submitByJcl method.
+     * submitByJcl is given a jcl string to use to submit it as a job.
      *
      * @param connection ZOSConnection object
      * @param jclString  jcl formatted string
@@ -50,12 +50,12 @@ public class SubmitJobTst extends TstZosConnection {
      */
     public static Job submitJclJob(ZOSConnection connection, String jclString) throws Exception {
         JobSubmit jobSubmit = new JobSubmit(connection);
-        return jobSubmit.submitJcl(jclString, null, null);
+        return jobSubmit.submitByJcl(jclString, null, null);
     }
 
     /**
-     * Example on how to call SubmitJobs submitJcl method.
-     * submitJcl is given a Dataset member value to use to submit it as a job.
+     * Example on how to call JobSubmit submit method.
+     * submit is given a Dataset member value to use to submit it as a job.
      *
      * @param connection ZOSConnection object
      * @param dsMember   dataset member value
@@ -65,7 +65,7 @@ public class SubmitJobTst extends TstZosConnection {
      */
     public static Job submitJob(ZOSConnection connection, String dsMember) throws Exception {
         JobSubmit jobSubmit = new JobSubmit(connection);
-        return jobSubmit.submitJob(dsMember);
+        return jobSubmit.submit(dsMember);
     }
 
 }

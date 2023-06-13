@@ -4,7 +4,7 @@ import zowe.client.sdk.core.SSHConnection;
 import zowe.client.sdk.zosuss.method.IssueUss;
 
 /**
- * Class example to showcase USS command(s) execution.
+ * Class example to test uss command functionality via IssueUss class.
  *
  * @author Frank Giordano
  * @version 2.0
@@ -12,7 +12,7 @@ import zowe.client.sdk.zosuss.method.IssueUss;
 public class USSCommand {
 
     /**
-     * Main method defines SSH connection and showcases executing USS commands.
+     * Main method defines SSH connection and showcases executing a USS command vis IssueUss class.
      *
      * @param args for main not used
      * @throws Exception error in processing request
@@ -23,7 +23,7 @@ public class USSCommand {
         SSHConnection conn = new SSHConnection("xxx", portNum, "xxx", "xxx");
         IssueUss issueUss = new IssueUss(conn);
         // 10000 is the timeout value in milliseconds
-        System.out.println(issueUss.executeSshCmd("mkdir test;cd test;touch frank;ls", 10000));
+        System.out.println(issueUss.issueCommand("mkdir test;cd test;touch frank;ls", 10000));
         // value "frank" should display
     }
 

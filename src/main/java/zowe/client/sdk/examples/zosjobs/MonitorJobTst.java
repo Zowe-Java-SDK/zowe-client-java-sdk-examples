@@ -9,19 +9,19 @@ import zowe.client.sdk.zosjobs.response.Job;
 import zowe.client.sdk.zosjobs.types.JobStatus;
 
 /**
- * Class example to showcase MonitorJobs functionality.
+ * Class example to showcase JobMonitor class functionality.
  *
  * @author Frank Giordano
  * @version 2.0
  */
 public class MonitorJobTst extends TstZosConnection {
 
-    private static JobSubmit submitJobs;
+    private static JobSubmit submitJob;
     private static ZOSConnection connection;
 
     /**
      * Main method defines z/OSMF host and user connection needed to showcase
-     * MonitorJobs functionality. Calls MonitorJobs example methods.
+     * JobMonitor functionality.
      *
      * @param args for main not used
      * @throws Exception error in processing request
@@ -29,17 +29,17 @@ public class MonitorJobTst extends TstZosConnection {
      */
     public static void main(String[] args) throws Exception {
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-        submitJobs = new JobSubmit(connection);
-        MonitorJobTst.monitorJobsForOutputStatusByJobObject();
-        MonitorJobTst.monitorJobsForOutputStatusByJobNameAndId();
-        MonitorJobTst.monitorJobsForStatusByJobObject(JobStatus.Type.INPUT);
-        MonitorJobTst.monitorJobsForStatusByJobNameAndId(JobStatus.Type.ACTIVE);
+        submitJob = new JobSubmit(connection);
+        MonitorJobTst.monitorJobForOutputStatusByJobObject();
+        MonitorJobTst.monitorJobForOutputStatusByJobNameAndId();
+        MonitorJobTst.monitorJobForStatusByJobObject(JobStatus.Type.INPUT);
+        MonitorJobTst.monitorJobForStatusByJobNameAndId(JobStatus.Type.ACTIVE);
         MonitorJobTst.monitorWaitForJobMessage("xxx");
         monitorIsJobRunning();
     }
 
     /**
-     * Example on how to call MonitorJobs isJobRunning method.
+     * Example on how to call JobMonitor isJobRunning method.
      * isJobRunning accepts a MonitorJobWaitForParams object
      *
      * @throws Exception error in processing request
@@ -48,39 +48,39 @@ public class MonitorJobTst extends TstZosConnection {
     public static void monitorIsJobRunning() throws Exception {
         JobMonitor jobMonitor = new JobMonitor(connection);
         MonitorJobWaitForParams monitorParams = new MonitorJobWaitForParams.Builder("XXX", "XXX").build();
-        System.out.println(jobMonitor.isJobRunning(monitorParams));
+        System.out.println(jobMonitor.isRunning(monitorParams));
     }
 
     /**
-     * Example on how to call MonitorJobs waitForJobOutputStatus method.
-     * waitForJobOutputStatus accepts a job object which will monitor the job status
+     * Example on how to call JobMonitor waitByOutputStatus method.
+     * waitByOutputStatus accepts a job object which will monitor the job status
      * until it reaches OUTPUT status or times out if not reached.
      *
      * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static void monitorJobsForOutputStatusByJobObject() throws Exception {
+    public static void monitorJobForOutputStatusByJobObject() throws Exception {
         String jclString = "//TESTJOBX JOB (),MSGCLASS=H\r // EXEC PGM=IEFBR14";
-        Job job = submitJobs.submitJcl(jclString, null, null);
+        Job job = submitJob.submitByJcl(jclString, null, null);
         JobMonitor jobMonitor = new JobMonitor(connection);
-        job = jobMonitor.waitForJobOutputStatus(job);
+        job = jobMonitor.waitByOutputStatus(job);
         System.out.println("Job status for Job " + job.getJobName().orElse("n/a") + ":" +
                 job.getJobId().orElse("n/a") + " is " + job.getStatus().orElse("n/a"));
     }
 
     /**
-     * Example on how to call MonitorJobs waitForJobOutputStatus method.
-     * waitForJobOutputStatus accepts a jobName and jobId values which will
+     * Example on how to call JobMonitor waitByOutputStatus method.
+     * waitByOutputStatus accepts a jobName and jobId values which will
      * monitor the job status until it reaches OUTPUT status or times out if not reached.
      *
      * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static void monitorJobsForOutputStatusByJobNameAndId() throws Exception {
+    public static void monitorJobForOutputStatusByJobNameAndId() throws Exception {
         String jclString = "//TESTJOBX JOB (),MSGCLASS=H\r // EXEC PGM=IEFBR14";
-        Job job = submitJobs.submitJcl(jclString, null, null);
+        Job job = submitJob.submitByJcl(jclString, null, null);
         JobMonitor jobMonitor = new JobMonitor(connection);
-        job = jobMonitor.waitForJobOutputStatus(
+        job = jobMonitor.waitByOutputStatus(
                 job.getJobName().orElseThrow(() -> new Exception("job name not specified")),
                 job.getJobId().orElseThrow(() -> new Exception("job id not specified")));
         System.out.println("Job status for Job " + job.getJobName().orElse("n/a") + ":" +
@@ -88,37 +88,37 @@ public class MonitorJobTst extends TstZosConnection {
     }
 
     /**
-     * Example on how to call MonitorJobs waitForJobStatus method.
-     * waitForJobStatus accepts a job object and status value which will monitor the
+     * Example on how to call JobMonitor waitByStatus method.
+     * waitByStatus accepts a job object and status value which will monitor the
      * job status until it reaches the given status value or times out if not reached.
      *
      * @param statusType given status type to use for monitoring
      * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static void monitorJobsForStatusByJobObject(JobStatus.Type statusType) throws Exception {
+    public static void monitorJobForStatusByJobObject(JobStatus.Type statusType) throws Exception {
         // determine an existing job in your system that is in execute queue and make a Job for it
         Job job = new Job.Builder().jobName("xxx").jobId("xxx").build();
         JobMonitor jobMonitor = new JobMonitor(connection);
-        job = jobMonitor.waitForJobStatus(job, statusType);
+        job = jobMonitor.waitByStatus(job, statusType);
         System.out.println("Job status for Job " + job.getJobName().orElse("n/a") + ":" +
                 job.getJobId().orElse("n/a") + " is " + job.getStatus().orElse("n/a"));
     }
 
     /**
-     * Example on how to call MonitorJobs waitForJobStatus method.
-     * waitForJobStatus accepts a jobName and jobId values and status value which will monitor the
+     * Example on how to call JobMonitor waitByStatus method.
+     * waitByStatus accepts a jobName and jobId values and status value which will monitor the
      * job status until it reaches the given status value or times out if not reached.
      *
      * @param statusType given status type to use for monitoring
      * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static void monitorJobsForStatusByJobNameAndId(JobStatus.Type statusType) throws Exception {
+    public static void monitorJobForStatusByJobNameAndId(JobStatus.Type statusType) throws Exception {
         // determine an existing job in your system that is in execute queue and make a Job for it
         Job job = new Job.Builder().jobName("xxx").jobId("xxx").build();
         JobMonitor jobMonitor = new JobMonitor(connection);
-        job = jobMonitor.waitForJobStatus(
+        job = jobMonitor.waitByStatus(
                 job.getJobName().orElseThrow(() -> new Exception("job name not specified")),
                 job.getJobId().orElseThrow(() -> new Exception("job id not specified")), statusType);
         System.out.println("Job status for Job " + job.getJobName().orElse("n/a") + ":" +
@@ -126,9 +126,9 @@ public class MonitorJobTst extends TstZosConnection {
     }
 
     /**
-     * Example on how to call MonitorJobs tstMonitorWaitForJobMessage method.
-     * tstMonitorWaitForJobMessage accepts a message value which will monitor the
-     * job output until the message is seen or times out if not seen.
+     * Example on how to call JobMonitor waitByMessage method.
+     * waitByMessage accepts a message value which will monitor the job output until
+     * the message is seen or times out if not seen.
      *
      * @param message given message text to monitor job output
      * @throws Exception error in processing request
@@ -138,7 +138,7 @@ public class MonitorJobTst extends TstZosConnection {
         // determine an existing job in your system that is in execute queue and make a Job for it
         Job job = new Job.Builder().jobName("xxx").jobId("xxx").build();
         JobMonitor jobMonitor = new JobMonitor(connection);
-        System.out.println("Found message = " + jobMonitor.waitForJobMessage(job, message));
+        System.out.println("Found message = " + jobMonitor.waitByMessage(job, message));
     }
 
 }

@@ -6,7 +6,7 @@ import zowe.client.sdk.rest.Response;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnWrite;
 
 /**
- * Class example to showcase WriteDataset functionality.
+ * Class example to showcase WriteDataset functionality via DsnWrite class.
  *
  * @author Leonid Baranov
  * @author Frank Giordano
@@ -18,7 +18,7 @@ public class WriteDatasetTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
-     * WriteDataset functionality. Calls WriteDataset example methods.
+     * DsnWrite functionality.
      *
      * @param args for main not used
      * @throws Exception error in processing request

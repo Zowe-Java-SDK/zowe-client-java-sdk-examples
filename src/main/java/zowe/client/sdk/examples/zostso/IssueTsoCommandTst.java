@@ -8,7 +8,7 @@ import zowe.client.sdk.zostso.response.IssueResponse;
 import java.util.Arrays;
 
 /**
- * Class example to test tso command functionality.
+ * Class example to test tso command functionality via IssueTso class.
  *
  * @author Frank Giordano
  * @version 1.0
@@ -35,7 +35,7 @@ public class IssueTsoCommandTst extends TstZosConnection {
     }
 
     /**
-     * Issue issueTsoCommand method from IssueTso class which will execute the given tso command
+     * Issue issueCommand method from IssueTso class which will execute the given tso command.
      *
      * @param accountNumber user's z/OSMF permission account number
      * @param cmd           tso command to execute

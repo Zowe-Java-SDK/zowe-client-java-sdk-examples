@@ -8,7 +8,7 @@ import zowe.client.sdk.zosjobs.methods.JobCancel;
 import zowe.client.sdk.zosjobs.response.Job;
 
 /**
- * Class example to showcase CancelJobs functionality.
+ * Class example to showcase JobCancel class functionality.
  *
  * @author Leonid Baranov
  * @author Frank Giordano
@@ -22,7 +22,7 @@ public class CancelJobTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
-     * CancelJobs functionality. Calls CancelJobs example methods.
+     * JobCancel functionality.
      *
      * @param args for main not used
      * @throws Exception error in processing request
@@ -30,15 +30,15 @@ public class CancelJobTst extends TstZosConnection {
      */
     public static void main(String[] args) throws Exception {
         connection = new ZOSConnection(hostName, zosmfPort, userName, password);
-        System.out.println(cancelJobsCommonWithVersion("2.0"));
-        System.out.println(cancelJobsCommon());
-        System.out.println(cancelJobForJob());
-        System.out.println(cancelJob());
+        System.out.println(cancelCommonWithVersion("2.0"));
+        System.out.println(cancelCommon());
+        System.out.println(cancelByJob());
+        System.out.println(cancel());
     }
 
     /**
-     * Example on how to call CancelJobs cancelJobsCommon method.
-     * cancelJobsCommon accepts a CancelJobParams object with parameters filled needed to cancel a given job and
+     * Example on how to call JobCancel cancelCommon method.
+     * cancelCommon accepts a CancelJobParams object with parameters filled needed to cancel a given job and
      * the version to indicate 1.0 for async or 2.0 for sync processing of the request
      *
      * @param version version value
@@ -46,55 +46,55 @@ public class CancelJobTst extends TstZosConnection {
      * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static Response cancelJobsCommonWithVersion(String version) throws Exception {
+    public static Response cancelCommonWithVersion(String version) throws Exception {
         jobId = "xxx";
         jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).version(version).build();
-        return new JobCancel(connection).cancelJobsCommon(params);
+        return new JobCancel(connection).cancelCommon(params);
     }
 
     /**
-     * Example on how to call CancelJobs cancelJobsCommon method.
-     * cancelJobsCommon accepts a CancelJobParams object with parameters filled needed to cancel a given job.
+     * Example on how to call JobCancel cancelCommon method.
+     * cancelCommon accepts a CancelJobParams object with parameters filled needed to cancel a given job.
      *
      * @return response http Response object
      * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static Response cancelJobsCommon() throws Exception {
+    public static Response cancelCommon() throws Exception {
         jobId = "xxx";
         jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).build();
-        return new JobCancel(connection).cancelJobsCommon(params);
+        return new JobCancel(connection).cancelCommon(params);
     }
 
     /**
-     * Example on how to call CancelJobs cancelJobForJob method.
-     * cancelJobForJob accepts a jobName and jobId values which will be used to cancel its job.
+     * Example on how to call JobCancel cancelByJob method.
+     * cancelByJob accepts a jobName and jobId values which will be used to cancel its job.
      *
      * @return response http Response object
      * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static Response cancelJobForJob() throws Exception {
+    public static Response cancelByJob() throws Exception {
         jobId = "xxx";
         jobName = "xxx";
-        return new JobCancel(connection).cancelJobForJob(
+        return new JobCancel(connection).cancelByJob(
                 new Job.Builder().jobName(jobName).jobId(jobId).build(), null);
     }
 
     /**
-     * Example on how to call CancelJobs cancelJob method.
-     * cancelJob accepts a jobName and jobId values which will be used to cancel its job.
+     * Example on how to call JobCancel cancel method.
+     * cancel accepts a jobName and jobId values which will be used to cancel its job.
      *
      * @return response http Response object
      * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static Response cancelJob() throws Exception {
+    public static Response cancel() throws Exception {
         jobId = "xxx";
         jobName = "xxx";
-        return new JobCancel(connection).cancelJob(jobName, jobId, null);
+        return new JobCancel(connection).cancel(jobName, jobId, null);
     }
 
 }

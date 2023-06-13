@@ -7,7 +7,7 @@ import zowe.client.sdk.zosfiles.dsn.input.CopyParams;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnCopy;
 
 /**
- * Class example to showcase CopyDataset functionality.
+ * Class example to showcase CopyDataset functionality via DsnCopy class.
  *
  * @author Leonid Baranov
  * @author Frank Giordano
@@ -17,7 +17,7 @@ public class CopyDatasetTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
-     * CopyDataset functionality. Calls CopyDataset example methods.
+     * CopyDsnCopyDataset functionality.
      *
      * @param args for main not used
      * @throws Exception error processing examples
@@ -35,7 +35,7 @@ public class CopyDatasetTst extends TstZosConnection {
     }
 
     /**
-     * Example on how to call ZosDsnCopy copy method.
+     * Example on how to call DsnCopy copy method.
      * Copy method accepts a from and too strings for copying.
      * <p>
      * This copy method allows the following copy operations:
@@ -63,7 +63,7 @@ public class CopyDatasetTst extends TstZosConnection {
     }
 
     /**
-     * Example on how to call ZosDsnCopy copy method.
+     * Example on how to call DsnCopy copy method.
      * Copy method accepts a CopyParams object.
      * <p>
      * This copy method allows the following copy operations:
@@ -91,7 +91,7 @@ public class CopyDatasetTst extends TstZosConnection {
     }
 
     /**
-     * Example on how to call ZosDsnCopy copy method.
+     * Example on how to call DsnCopy copy method.
      * Copy method accepts a CopyParams object.
      * <p>
      * This copy method is different from the other two examples above as it

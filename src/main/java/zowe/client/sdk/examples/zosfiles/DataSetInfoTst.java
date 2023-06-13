@@ -6,7 +6,7 @@ import zowe.client.sdk.zosfiles.dsn.methods.DsnGet;
 import zowe.client.sdk.zosfiles.dsn.response.Dataset;
 
 /**
- * Class example to showcase ZosDsn getDataSetInfo functionality.
+ * Class example to showcase ZosDsn getDataSetInfo functionality via DsnGet class.
  *
  * @author Frank Giordano
  * @version 2.0
@@ -15,7 +15,7 @@ public class DataSetInfoTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
-     * ZosDsn getDataSetInfo functionality.
+     * ZosDsn functionality.
      *
      * @param args for main not used
      * @throws Exception error processing request
@@ -27,7 +27,16 @@ public class DataSetInfoTst extends TstZosConnection {
         System.out.println(DataSetInfoTst.getDataSetInfo(connection, dataSetName));
     }
 
-    private static Dataset getDataSetInfo(ZOSConnection connection, String dataSetName) throws Exception {
+    /**
+     * Retrieve dataset information.
+     *
+     * @param connection  ZOSConnection object
+     * @param dataSetName name of a dataset
+     * @return
+     * @throws Exception error processing request
+     * @author Frank Giordano
+     */
+    public static Dataset getDataSetInfo(ZOSConnection connection, String dataSetName) throws Exception {
         DsnGet dsnGet = new DsnGet(connection);
         return dsnGet.getDsnInfo(dataSetName);
     }

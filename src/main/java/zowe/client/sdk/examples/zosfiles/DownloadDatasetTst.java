@@ -20,7 +20,7 @@ public class DownloadDatasetTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
-     * DownloadDataset functionality. Calls DownloadDataset example methods.
+     * DsnGet class functionality.
      *
      * @param args for main not used
      * @throws Exception error in processing request
@@ -37,7 +37,7 @@ public class DownloadDatasetTst extends TstZosConnection {
     }
 
     /**
-     * Download a dataset member
+     * Download a dataset member.
      *
      * @param connection ZOSConnection object
      * @param dsName     name of a dataset
@@ -60,7 +60,7 @@ public class DownloadDatasetTst extends TstZosConnection {
     }
 
     /**
-     * Download a sequential dataset
+     * Download a sequential dataset.
      *
      * @param connection ZOSConnection object
      * @param dsName     name of a sequential dataset

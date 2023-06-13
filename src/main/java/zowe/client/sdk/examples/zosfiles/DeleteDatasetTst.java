@@ -6,7 +6,7 @@ import zowe.client.sdk.rest.Response;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnDelete;
 
 /**
- * Class example to showcase DeleteDataset functionality.
+ * Class example to showcase DeleteDataset functionality vai DsnDelete class.
  *
  * @author Leonid Baranov
  * @author Frank Giordano
@@ -18,7 +18,7 @@ public class DeleteDatasetTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
-     * DeleteDataset functionality. Calls DeleteDataset example methods.
+     * DsnDelete functionality.
      *
      * @param args for main not used
      * @throws Exception error in processing request
@@ -33,6 +33,8 @@ public class DeleteDatasetTst extends TstZosConnection {
     }
 
     /**
+     * Delete a dataset.
+     *
      * @param dataSetName name of a dataset to delete (e.g. 'DATASET.LIB')
      * @throws Exception error processing request
      * @author Frank Giordano
@@ -44,6 +46,8 @@ public class DeleteDatasetTst extends TstZosConnection {
     }
 
     /**
+     * Delete a member.
+     *
      * @param dataSetName name of a dataset where member should be located (e.g. 'DATASET.LIB')
      * @param member      name of member to delete
      * @throws Exception error processing request
