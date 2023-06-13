@@ -57,8 +57,8 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getJclCommon method.
-     * getJclCommon is given CommonJobParams object filled with information on the given job to
-     * use for retrieval of its JCL content
+     * The getJclCommon method is given CommonJobParams object filled with information on the given job to
+     * use for retrieval of its JCL content.
      *
      * @param prefix partial or full job name to use for searching
      * @throws Exception error in processing request
@@ -73,7 +73,7 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getJclByJob method.
-     * getJclByJob is given a job object to use for retrieval of its JCL content
+     * The getJclByJob method is given a job object to use for retrieval of its JCL content.
      *
      * @param prefix partial or full job name to use for searching
      * @throws Exception error in processing request
@@ -86,7 +86,7 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getJcl method.
-     * getJcl is given a jobName and jobId values to use for retrieval of its JCL content
+     * The getJcl method is given a jobName and jobId values to use for retrieval of its JCL content.
      *
      * @param prefix partial or full job name to use for searching
      * @throws Exception error in processing request
@@ -101,7 +101,7 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getStatusByJob method.
-     * getStatusByJob is given a job object to use for retrieval of its status
+     * The getStatusByJob method is given a job object to use for retrieval of its status.
      *
      * @param prefix partial or full job name to use for searching
      * @throws Exception error in processing request
@@ -119,7 +119,8 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getStatusCommon method with StepData flag.
-     * getStatusCommon is given a jobName and jobId value to use for retrieval of its status with StepData flag set to true
+     * The getStatusCommon method is given a jobName and jobId value to use for retrieval
+     * of its status with StepData flag set to true.
      *
      * @param prefix partial or full job name to use for searching
      * @throws Exception error in processing request
@@ -140,7 +141,7 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getStatus method.
-     * getStatus is given a jobName and jobId value to use for retrieval of its status
+     * The getStatus method is given a jobName and jobId value to use for retrieval of its status.
      *
      * @param prefix partial or full job name to use for searching
      * @throws Exception error in processing request
@@ -160,7 +161,7 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getById method.
-     * getById is given a jobId value for a non-existing job which will return an exception
+     * The getById method is given a jobId value for a non-existing job which will return an exception.
      *
      * @param jobId jobId value
      * @author Frank Giordano
@@ -175,7 +176,7 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getById method.
-     * getById is given a jobId value which will return a job document/object
+     * The getById method is given a jobId value which will return a job document/object.
      *
      * @param prefix partial or full job name to use for searching
      * @throws Exception error in processing request
@@ -194,8 +195,8 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getByOwnerAndPrefix method.
-     * getByOwnerAndPrefix is given an owner and prefix values which will return a
-     * list of common job document/object
+     * The getByOwnerAndPrefix method is given an owner and prefix values which will return a
+     * list of common job document/object.
      *
      * @param owner  owner value
      * @param prefix partial or full job name to use for searching
@@ -209,8 +210,7 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getByPrefix method.
-     * getByPrefix is given a prefix value which will return a
-     * list of common job document/object
+     * The getByPrefix method is given a prefix value which will return a list of common job document/object.
      *
      * @param prefix partial or full job name to use for searching
      * @throws Exception error in processing request
@@ -222,8 +222,8 @@ public class GetJobTst extends TstZosConnection {
     }
 
     /**
-     * Example on how to call JobGet getAll method. It returns a list of all
-     * jobs available for the logged-in user.
+     * Example on how to call JobGet getAll method.
+     * The getAll method returns a list of all jobs available for the logged-in user.
      *
      * @throws Exception error in processing request
      * @author Frank Giordano
@@ -236,7 +236,7 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getSpoolContent method.
-     * getSpoolContent is given a job spool file name to retrieve its content.
+     * The getSpoolContent method is given a job spool file name to retrieve its content.
      *
      * @param prefix partial or full job name to use for searching
      * @throws Exception error in processing request
@@ -254,7 +254,7 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getByOwner method.
-     * getByOwner is given an owner value to use retrieve a list of its available jobs.
+     * The getByOwner method is given an owner value to use retrieve a list of its available jobs.
      *
      * @param owner owner value
      * @throws Exception error in processing request
@@ -267,7 +267,7 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getSpoolFilesByJob method.
-     * getSpoolFilesByJob is given a job document/object retrieve a list of all its spool names.
+     * The getSpoolFilesByJob method is given a job document/object retrieve a list of all its spool names.
      *
      * @param prefix partial or full job name to use for searching
      * @throws Exception error in processing request
@@ -282,7 +282,7 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getSpoolFiles method.
-     * getSpoolFiles is given a jobName and jobId values to retrieve a list of all its spool file names.
+     * The getSpoolFiles method is given a jobName and jobId values to retrieve a list of all its spool file names.
      *
      * @param prefix partial or full job name to use for searching
      * @throws Exception error in processing request
@@ -300,7 +300,8 @@ public class GetJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobGet getCommon method.
-     * getCommon is given a GetJobParams object filled with search parameters which will retrieve a list of all jobs.
+     * The getCommon method is given a GetJobParams object filled with search parameters which will
+     * retrieve a list of all jobs.
      *
      * @param prefix partial or full job name to use for searching
      * @throws Exception error in processing request

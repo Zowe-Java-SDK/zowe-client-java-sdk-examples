@@ -40,7 +40,7 @@ public class SubmitJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobSubmit submitByJcl method.
-     * submitByJcl is given a jcl string to use to submit it as a job.
+     * The submitByJcl method is given a jcl string to use to submit it as a job.
      *
      * @param connection ZOSConnection object
      * @param jclString  jcl formatted string
@@ -55,7 +55,7 @@ public class SubmitJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobSubmit submit method.
-     * submit is given a Dataset member value to use to submit it as a job.
+     * The submit method is given a Dataset member value to use to submit it as a job.
      *
      * @param connection ZOSConnection object
      * @param dsMember   dataset member value

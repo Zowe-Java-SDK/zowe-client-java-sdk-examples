@@ -38,8 +38,9 @@ public class CancelJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobCancel cancelCommon method.
-     * cancelCommon accepts a CancelJobParams object with parameters filled needed to cancel a given job and
-     * the version to indicate 1.0 for async or 2.0 for sync processing of the request
+     * The cancelCommon method accepts a CancelJobParams object with parameters filled needed
+     * to cancel a given job and the version to indicate 1.0 for async or 2.0 for sync processing
+     * of the request.
      *
      * @param version version value
      * @return response http Response object
@@ -55,7 +56,8 @@ public class CancelJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobCancel cancelCommon method.
-     * cancelCommon accepts a CancelJobParams object with parameters filled needed to cancel a given job.
+     * The cancelCommon method accepts a CancelJobParams object with parameters filled needed
+     * to cancel a given job.
      *
      * @return response http Response object
      * @throws Exception error in processing request
@@ -70,7 +72,7 @@ public class CancelJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobCancel cancelByJob method.
-     * cancelByJob accepts a jobName and jobId values which will be used to cancel its job.
+     * The cancelByJob method accepts a jobName and jobId values which will be used to cancel its job.
      *
      * @return response http Response object
      * @throws Exception error in processing request
@@ -85,7 +87,7 @@ public class CancelJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobCancel cancel method.
-     * cancel accepts a jobName and jobId values which will be used to cancel its job.
+     * The cancel method accepts a jobName and jobId values which will be used to cancel its job.
      *
      * @return response http Response object
      * @throws Exception error in processing request

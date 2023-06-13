@@ -6,7 +6,7 @@ import zowe.client.sdk.zosfiles.dsn.methods.DsnGet;
 import zowe.client.sdk.zosfiles.dsn.response.Dataset;
 
 /**
- * Class example to showcase ZosDsn getDataSetInfo functionality via DsnGet class.
+ * Class example to showcase retrieval of dataset information functionality via DsnGet class.
  *
  * @author Frank Giordano
  * @version 2.0
@@ -15,7 +15,7 @@ public class DataSetInfoTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
-     * ZosDsn functionality.
+     * DsnGet functionality.
      *
      * @param args for main not used
      * @throws Exception error processing request

@@ -17,7 +17,7 @@ public class CopyDatasetTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
-     * CopyDsnCopyDataset functionality.
+     * DsnCopy functionality.
      *
      * @param args for main not used
      * @throws Exception error processing examples

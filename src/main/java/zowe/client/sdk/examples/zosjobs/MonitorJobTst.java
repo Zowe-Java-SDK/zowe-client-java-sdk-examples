@@ -40,7 +40,7 @@ public class MonitorJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobMonitor isJobRunning method.
-     * isJobRunning accepts a MonitorJobWaitForParams object
+     * The isJobRunning method accepts a MonitorJobWaitForParams object.
      *
      * @throws Exception error in processing request
      * @author Frank Giordano
@@ -53,7 +53,7 @@ public class MonitorJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobMonitor waitByOutputStatus method.
-     * waitByOutputStatus accepts a job object which will monitor the job status
+     * The waitByOutputStatus method accepts a job object which will monitor the job status
      * until it reaches OUTPUT status or times out if not reached.
      *
      * @throws Exception error in processing request
@@ -70,7 +70,7 @@ public class MonitorJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobMonitor waitByOutputStatus method.
-     * waitByOutputStatus accepts a jobName and jobId values which will
+     * The waitByOutputStatus method accepts a jobName and jobId values which will
      * monitor the job status until it reaches OUTPUT status or times out if not reached.
      *
      * @throws Exception error in processing request
@@ -89,7 +89,7 @@ public class MonitorJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobMonitor waitByStatus method.
-     * waitByStatus accepts a job object and status value which will monitor the
+     * The waitByStatus method accepts a job object and status value which will monitor the
      * job status until it reaches the given status value or times out if not reached.
      *
      * @param statusType given status type to use for monitoring
@@ -107,7 +107,7 @@ public class MonitorJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobMonitor waitByStatus method.
-     * waitByStatus accepts a jobName and jobId values and status value which will monitor the
+     * The waitByStatus method accepts a jobName and jobId values and status value which will monitor the
      * job status until it reaches the given status value or times out if not reached.
      *
      * @param statusType given status type to use for monitoring
@@ -127,7 +127,7 @@ public class MonitorJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobMonitor waitByMessage method.
-     * waitByMessage accepts a message value which will monitor the job output until
+     * The waitByMessage method accepts a message value which will monitor the job output until
      * the message is seen or times out if not seen.
      *
      * @param message given message text to monitor job output

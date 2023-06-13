@@ -38,8 +38,9 @@ public class DeleteJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobDelete deleteCommon method.
-     * deleteCommon accepts a DeleteJobParams object with parameters filled needed to delete a given job and
-     * the version to indicate 1.0 for async or 2.0 for sync processing of the request
+     * The deleteCommon method accepts a DeleteJobParams object with parameters filled needed
+     * to delete a given job and the version to indicate 1.0 for async or 2.0 for sync
+     * processing of the request.
      *
      * @param version value to indicate sync or async request processing
      * @return response http response object
@@ -55,7 +56,8 @@ public class DeleteJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobDelete deleteCommon method.
-     * deleteCommon accepts a DeleteJobParams object with parameters filled needed to delete a given job.
+     * The deleteCommon method accepts a DeleteJobParams object with parameters
+     * filled needed to delete a given job.
      *
      * @return response http response object
      * @throws Exception error in processing request
@@ -70,7 +72,7 @@ public class DeleteJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobDelete deleteByJob method.
-     * deleteByJob accepts a jobName and jobId values which will be used to delete its job.
+     * The deleteByJob method accepts a jobName and jobId values which will be used to delete its job.
      *
      * @return response http response object
      * @throws Exception error in processing request
@@ -85,7 +87,7 @@ public class DeleteJobTst extends TstZosConnection {
 
     /**
      * Example on how to call JobDelete delete method.
-     * delete accepts a jobName and jobId values which will be used to delete its job.
+     * The delete method accepts a jobName and jobId values which will be used to delete its job.
      *
      * @return response http response object
      * @throws Exception error in processing request
