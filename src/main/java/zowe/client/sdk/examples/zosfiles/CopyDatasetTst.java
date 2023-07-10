@@ -1,6 +1,6 @@
 package zowe.client.sdk.examples.zosfiles;
 
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
 import zowe.client.sdk.zosfiles.dsn.input.CopyParams;
@@ -26,7 +26,7 @@ public class CopyDatasetTst extends TstZosConnection {
     public static void main(String[] args) throws Exception {
         String fromDataSetName = "xxx";
         String toDataSetName = "xxx";
-        ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
         copyDataset(connection, fromDataSetName, toDataSetName);
         copyDatasetByCopyParams(connection, fromDataSetName, toDataSetName);
         fromDataSetName = "xxx";  // specify a partition dataset only no member
@@ -49,13 +49,13 @@ public class CopyDatasetTst extends TstZosConnection {
      * This example sends false value for copyAllMembers parameter in copy method to indicate we
      * are not copying all members in a partition dataset to another.
      *
-     * @param connection      ZOSConnection
+     * @param connection      ZosConnection object
      * @param fromDataSetName source dataset (e.g. 'SOURCE.DATASET' or 'SOURCE.DATASET(MEMBER)')
      * @param toDataSetName   destination dataset (e.g. 'TARGET.DATASET' or 'TARGET.DATASET(MEMBER)')
      * @throws Exception error processing copy request
      * @author Frank Giordano
      */
-    public static void copyDataset(ZOSConnection connection, String fromDataSetName, String toDataSetName)
+    public static void copyDataset(ZosConnection connection, String fromDataSetName, String toDataSetName)
             throws Exception {
         DsnCopy dsnCopy = new DsnCopy(connection);
         Response response = dsnCopy.copy(fromDataSetName, toDataSetName, true, false);
@@ -74,13 +74,13 @@ public class CopyDatasetTst extends TstZosConnection {
      * - partition dataset member to partition dataset non-existing member
      * - partition dataset member to sequential dataset
      *
-     * @param connection      ZOSConnection
+     * @param connection      ZosConnection object
      * @param fromDataSetName source dataset (e.g. 'SOURCE.DATASET' or 'SOURCE.DATASET(MEMBER)')
      * @param toDataSetName   destination dataset (e.g. 'TARGET.DATASET' or 'TARGET.DATASET(MEMBER)')
      * @throws Exception error processing copy request
      * @author Frank Giordano
      */
-    public static void copyDatasetByCopyParams(ZOSConnection connection, String fromDataSetName,
+    public static void copyDatasetByCopyParams(ZosConnection connection, String fromDataSetName,
                                                String toDataSetName) throws Exception {
         DsnCopy dsnCopy = new DsnCopy(connection);
         // 'replace' builder variable here will be true by default if not specified in builder.
@@ -98,13 +98,13 @@ public class CopyDatasetTst extends TstZosConnection {
      * sets the copyAllMember variable true to indicate that the copy operation will be performed
      * on a partition dataset to another partition dataset copying all its members to the target.
      *
-     * @param connection      ZOSConnection
+     * @param connection      ZosConnection object
      * @param fromDataSetName source dataset (e.g. 'SOURCE.PARTITION.DATASET')
      * @param toDataSetName   destination dataset (e.g. 'TARGET.PARTITION.DATASET')
      * @throws Exception error processing copy request
      * @author Frank Giordano
      */
-    public static void copyFullPartitionDatasetByCopyParams(ZOSConnection connection, String fromDataSetName,
+    public static void copyFullPartitionDatasetByCopyParams(ZosConnection connection, String fromDataSetName,
                                                             String toDataSetName) throws Exception {
         DsnCopy dsnCopy = new DsnCopy(connection);
         // 'replace' here will be true by default if not specified in builder.
