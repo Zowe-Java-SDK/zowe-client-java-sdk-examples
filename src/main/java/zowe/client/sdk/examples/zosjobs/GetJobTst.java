@@ -1,6 +1,6 @@
 package zowe.client.sdk.examples.zosjobs;
 
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.zosjobs.input.CommonJobParams;
 import zowe.client.sdk.zosjobs.input.GetJobParams;
@@ -34,7 +34,7 @@ public class GetJobTst extends TstZosConnection {
         String owner = "xxx";
         String jobId = "xxx";
 
-        ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
         getJob = new JobGet(connection);
 
         GetJobTst.getCommon(prefix);
