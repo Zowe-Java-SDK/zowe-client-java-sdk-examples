@@ -1,6 +1,6 @@
 package zowe.client.sdk.examples.zosfiles;
 
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.zosfiles.dsn.input.ListParams;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnList;
@@ -30,7 +30,7 @@ public class ListDatasetsTst extends TstZosConnection {
     public static void main(String[] args) throws Exception {
         String dataSetMask = "xxx";
         String dataSetName = "xxx";
-        ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
         ListDatasetsTst.listDsn(connection, dataSetMask);
         ListDatasetsTst.listDsnVol(connection, dataSetMask);
         ListDatasetsTst.listMembersWithAllAttributes(connection, dataSetName);
@@ -40,12 +40,12 @@ public class ListDatasetsTst extends TstZosConnection {
     /**
      * List out all members and its attribute values of the given data set
      *
-     * @param connection  ZOSConnection object
+     * @param connection  ZosConnection object
      * @param dataSetName name of a dataset
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void listMembersWithAllAttributes(ZOSConnection connection, String dataSetName) throws Exception {
+    public static void listMembersWithAllAttributes(ZosConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
         DsnList dsnList = new DsnList(connection);
         List<Member> datasets = dsnList.listDsnMembers(dataSetName, params);
@@ -55,12 +55,12 @@ public class ListDatasetsTst extends TstZosConnection {
     /**
      * List out all members of the given data set
      *
-     * @param connection  ZOSConnection object
+     * @param connection  ZosConnection object
      * @param dataSetName name of a dataset
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void listMembers(ZOSConnection connection, String dataSetName) throws Exception {
+    public static void listMembers(ZosConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.MEMBER).build();
         DsnList dsnList = new DsnList(connection);
         List<Member> datasets = dsnList.listDsnMembers(dataSetName, params);
@@ -70,12 +70,12 @@ public class ListDatasetsTst extends TstZosConnection {
     /**
      * List out all data sets of the given data set. Each dataset returned will contain all of its properties.
      *
-     * @param connection  ZOSConnection object
+     * @param connection  ZosConnection object
      * @param dataSetName name of a dataset
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void listDsn(ZOSConnection connection, String dataSetName) throws Exception {
+    public static void listDsn(ZosConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
         DsnList dsnList = new DsnList(connection);
         List<Dataset> datasets = dsnList.listDsn(dataSetName, params);
@@ -85,12 +85,12 @@ public class ListDatasetsTst extends TstZosConnection {
     /**
      * List out all data sets of the given data set. Each dataset returned will contain its volume property.
      *
-     * @param connection  ZOSConnection object
+     * @param connection  ZosConnection object
      * @param dataSetName name of a dataset
      * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void listDsnVol(ZOSConnection connection, String dataSetName) throws Exception {
+    public static void listDsnVol(ZosConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.VOL).build();
         DsnList dsnList = new DsnList(connection);
         List<Dataset> datasets = dsnList.listDsn(dataSetName, params);
