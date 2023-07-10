@@ -17,7 +17,7 @@ import zowe.client.sdk.zosjobs.types.JobStatus;
 public class MonitorJobTst extends TstZosConnection {
 
     private static JobSubmit submitJob;
-    private static ZOSConnection connection;
+    private static ZosConnection connection;
 
     /**
      * Main method defines z/OSMF host and user connection needed to showcase
