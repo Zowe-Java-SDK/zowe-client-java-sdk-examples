@@ -1,6 +1,6 @@
 package zowe.client.sdk.examples.zosfiles;
 
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
 import zowe.client.sdk.zosfiles.ZosDsn;
@@ -14,7 +14,7 @@ import zowe.client.sdk.zosfiles.ZosDsn;
  */
 public class DeleteDatasetTst extends TstZosConnection {
 
-    private static ZOSConnection connection;
+    private static ZosConnection connection;
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
@@ -27,7 +27,7 @@ public class DeleteDatasetTst extends TstZosConnection {
     public static void main(String[] args) throws Exception {
         String dataSetName = "xxx";
         String member = "xxx";
-        connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        connection = new ZosConnection(hostName, zosmfPort, userName, password);
         deleteDataSet(dataSetName);
         deleteMember(dataSetName, member);
     }
