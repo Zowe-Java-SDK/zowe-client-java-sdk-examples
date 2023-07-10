@@ -1,6 +1,6 @@
 package zowe.client.sdk.examples.zosfiles;
 
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnWrite;
@@ -14,7 +14,7 @@ import zowe.client.sdk.zosfiles.dsn.methods.DsnWrite;
  */
 public class WriteDatasetTst extends TstZosConnection {
 
-    private static ZOSConnection connection;
+    private static ZosConnection connection;
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
@@ -28,7 +28,7 @@ public class WriteDatasetTst extends TstZosConnection {
         String dataSetName = "xxx";
         String datasetSeqName = "xxx";
         String member = "xxx";
-        connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        connection = new ZosConnection(hostName, zosmfPort, userName, password);
         var content = "NEW CONTENT\nTHE SECOND LINE UPDATED";
         WriteDatasetTst.writeToDsnMember(dataSetName, member, content);
         WriteDatasetTst.writeToDsnSequential(datasetSeqName, content);
