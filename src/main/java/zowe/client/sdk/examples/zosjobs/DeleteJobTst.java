@@ -1,6 +1,6 @@
 package zowe.client.sdk.examples.zosjobs;
 
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
 import zowe.client.sdk.zosjobs.input.ModifyJobParams;
@@ -16,7 +16,7 @@ import zowe.client.sdk.zosjobs.response.Job;
  */
 public class DeleteJobTst extends TstZosConnection {
 
-    private static ZOSConnection connection;
+    private static ZosConnection connection;
     private static String jobName;
     private static String jobId;
 
@@ -29,7 +29,7 @@ public class DeleteJobTst extends TstZosConnection {
      * @author Leonid Baranov
      */
     public static void main(String[] args) throws Exception {
-        connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        connection = new ZosConnection(hostName, zosmfPort, userName, password);
         System.out.println(deleteCommonWithVersion("2.0"));
         System.out.println(deleteCommon());
         System.out.println(deleteByJob());
