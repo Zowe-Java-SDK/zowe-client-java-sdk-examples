@@ -1,62 +1,58 @@
 package zowe.client.sdk.examples.zosfiles;
 
-import zowe.client.sdk.core.ZosConnection;
+import zowe.client.sdk.core.ZOSConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
-import zowe.client.sdk.zosfiles.uss.methods.UssDelete;
+import zowe.client.sdk.zosfiles.ZosDsn;
 
 /**
- * Class example to test unix system services delete command functionality via UssDelete class.
+ * Class example to showcase DeleteDataset functionality.
  *
+ * @author Leonid Baranov
  * @author Frank Giordano
- * @version 1.0
+ * @version 2.0
  */
-public class DeleteUssTst extends TstZosConnection {
+public class DeleteDatasetTst extends TstZosConnection {
 
-    private static ZosConnection connection;
-    private static UssDelete ussDelete;
+    private static ZOSConnection connection;
 
     /**
-     * Main method performs setup and method calls to test UssDelete
+     * Main method defines z/OSMF host and user connection and other parameters needed to showcase
+     * DeleteDataset functionality. Calls DeleteDataset example methods.
      *
      * @param args for main not used
+     * @throws Exception error in processing request
+     * @author Leonid Baranov
+     */
+    public static void main(String[] args) throws Exception {
+        String dataSetName = "xxx";
+        String member = "xxx";
+        connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        deleteDataSet(dataSetName);
+        deleteMember(dataSetName, member);
+    }
+
+    /**
+     * @param dataSetName name of a dataset to delete (e.g. 'DATASET.LIB')
      * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void main(String[] args) throws Exception {
-        String fileNamePath = "/xxx/xx/xx";
-        String dirNamePath = "/xxx/xx/xx";
-
-        connection = new ZosConnection(hostName, zosmfPort, userName, password);
-        ussDelete = new UssDelete(connection);
-        Response response = DeleteFile(fileNamePath);
-        System.out.println(response.getStatusCode().get());
-        response = DeleteDirectory(dirNamePath);
-        System.out.println(response.getStatusCode().get());
+    public static void deleteDataSet(String dataSetName) throws Exception {
+        ZosDsn zosDsn = new ZosDsn(connection);
+        Response response = zosDsn.deleteDsn(dataSetName);
+        System.out.println("http response code " + response.getStatusCode());
     }
 
     /**
-     * Delete a Unix System Service file
-     *
-     * @param value file name with path to delete
-     * @return Response object
-     * @throws Exception processing error
+     * @param dataSetName name of a dataset where member should be located (e.g. 'DATASET.LIB')
+     * @param member      name of member to delete
+     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    private static Response DeleteFile(String value) throws Exception {
-        return ussDelete.delete(value);
-    }
-
-    /**
-     * Delete a Unix System Service path along with all file and directories within recursively
-     *
-     * @param value directory name with path to delete
-     * @return Response object
-     * @throws Exception processing error
-     * @author Frank Giordano
-     */
-    private static Response DeleteDirectory(String value) throws Exception {
-        return ussDelete.delete(value, true);
+    public static void deleteMember(String dataSetName, String member) throws Exception {
+        ZosDsn zosDsn = new ZosDsn(connection);
+        Response response = zosDsn.deleteDsn(dataSetName, member);
+        System.out.println("http response code " + response.getStatusCode());
     }
 
 }
