@@ -11,7 +11,7 @@ import java.util.Arrays;
  * Class example to test tso command functionality via IssueTso class.
  *
  * @author Frank Giordano
- * @version 1.0
+ * @version 2.0
  */
 public class IssueTsoCommandTst extends TstZosConnection {
 
