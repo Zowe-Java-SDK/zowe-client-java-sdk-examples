@@ -1,6 +1,6 @@
 package zowe.client.sdk.examples.zosjobs;
 
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.zosjobs.input.MonitorJobWaitForParams;
 import zowe.client.sdk.zosjobs.methods.JobMonitor;
@@ -28,7 +28,7 @@ public class MonitorJobTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void main(String[] args) throws Exception {
-        connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        connection = new ZosConnection(hostName, zosmfPort, userName, password);
         submitJob = new JobSubmit(connection);
         MonitorJobTst.monitorJobForOutputStatusByJobObject();
         MonitorJobTst.monitorJobForOutputStatusByJobNameAndId();
