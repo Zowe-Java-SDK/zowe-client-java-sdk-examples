@@ -35,12 +35,28 @@ public class CreateUssTst extends TstZosConnection {
         System.out.println(response.getStatusCode().get());
     }
 
+    /**
+     * Create a Unix System Service directory
+     *
+     * @param value directory name with path to create
+     * @return Response object
+     * @throws Exception processing error
+     * @author Frank Giordano
+     */
     private static Response CreateDirectory(String value) throws Exception {
         UssCreate ussCreate = new UssCreate(connection);
         CreateParams params = new CreateParams(CreateType.DIR, "rwxr--r--");
         return ussCreate.create(value, params);
     }
 
+    /**
+     * Create a Unix System Service file
+     *
+     * @param value file name with path to create
+     * @return Response object
+     * @throws Exception processing error
+     * @author Frank Giordano
+     */
     private static Response CreateFile(String value) throws Exception {
         UssCreate ussCreate = new UssCreate(connection);
         CreateParams params = new CreateParams(CreateType.FILE, "rwxrwxrwx");
