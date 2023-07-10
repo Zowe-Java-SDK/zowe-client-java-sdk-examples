@@ -1,7 +1,7 @@
 package zowe.client.sdk.examples.zosfiles;
 
 import org.apache.commons.io.IOUtils;
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.zosfiles.dsn.input.DownloadParams;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnGet;
@@ -31,7 +31,7 @@ public class DownloadDatasetTst extends TstZosConnection {
         String datasetSeqName = "xxx";
         String memberName = "xxx";
         DownloadParams params = new DownloadParams.Builder().build();
-        ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
         DownloadDatasetTst.downloadDsnMember(connection, datasetName, memberName, params);
         DownloadDatasetTst.downloadDsnSequential(connection, datasetSeqName, params);
     }
@@ -39,14 +39,14 @@ public class DownloadDatasetTst extends TstZosConnection {
     /**
      * Download a dataset member.
      *
-     * @param connection ZOSConnection object
+     * @param connection ZosConnection object
      * @param dsName     name of a dataset
      * @param memName    member name that exists within the specified dataset name
      * @param params     download parameters object
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void downloadDsnMember(ZOSConnection connection, String dsName, String memName,
+    public static void downloadDsnMember(ZosConnection connection, String dsName, String memName,
                                          DownloadParams params) throws Exception {
         try (InputStream inputStream = new DsnGet(connection)
                 .get(String.format("%s(%s)", dsName, memName), params)) {
@@ -62,13 +62,13 @@ public class DownloadDatasetTst extends TstZosConnection {
     /**
      * Download a sequential dataset.
      *
-     * @param connection ZOSConnection object
+     * @param connection ZosConnection object
      * @param dsName     name of a sequential dataset
      * @param params     download parameters object
      * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void downloadDsnSequential(ZOSConnection connection, String dsName, DownloadParams params)
+    public static void downloadDsnSequential(ZosConnection connection, String dsName, DownloadParams params)
             throws Exception {
         try (InputStream inputStream = new DsnGet(connection).get(dsName, params)) {
             if (inputStream != null) {
