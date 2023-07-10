@@ -1,6 +1,6 @@
 package zowe.client.sdk.examples.zoslogs;
 
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.zoslogs.input.DirectionType;
 import zowe.client.sdk.zoslogs.input.HardCopyType;
@@ -25,7 +25,7 @@ public class ZosGetLogTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void main(String[] args) throws Exception {
-        ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
         ZosLog zosLog = new ZosLog(connection);
         ZosLogParams zosLogParams = new ZosLogParams.Builder()
                 .startTime("2022-11-27T05:06:20Z")
