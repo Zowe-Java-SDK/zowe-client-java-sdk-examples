@@ -27,7 +27,7 @@ public class TstZosConnection {
     public static ZosConnection getSecureZosConnection() throws Exception {
         TeamConfig teamConfig = new TeamConfig(new KeyTarService(new KeyTarImpl()), new TeamConfigService());
         ProfileDao profile = teamConfig.getDefaultProfileByName("zosmf");
-        return (new ZOSConnection(profile.getHost(), profile.getPort(), profile.getUser(), profile.getPassword()));
+        return (new ZosConnection(profile.getHost(), profile.getPort(), profile.getUser(), profile.getPassword()));
     }
 
 }
