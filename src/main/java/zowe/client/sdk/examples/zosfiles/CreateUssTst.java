@@ -11,7 +11,7 @@ import zowe.client.sdk.zosfiles.uss.types.CreateType;
  * Class example to test unix system services create command functionality via UssCreate class.
  *
  * @author Frank Giordano
- * @version 1.0
+ * @version 2.0
  */
 public class CreateUssTst extends TstZosConnection {
 
