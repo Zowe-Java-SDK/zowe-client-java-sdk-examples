@@ -1,6 +1,6 @@
 package zowe.client.sdk.examples.zosfiles;
 
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
 import zowe.client.sdk.zosfiles.dsn.input.CreateParams;
@@ -15,7 +15,7 @@ import zowe.client.sdk.zosfiles.dsn.methods.DsnCreate;
  */
 public class CreateDatasetTst extends TstZosConnection {
 
-    private static ZOSConnection connection;
+    private static ZosConnection connection;
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
@@ -27,7 +27,7 @@ public class CreateDatasetTst extends TstZosConnection {
      */
     public static void main(String[] args) throws Exception {
         String dataSetName = "xxx";
-        connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        connection = new ZosConnection(hostName, zosmfPort, userName, password);
         createPartitionDataSet(dataSetName);
         dataSetName = "xxx";
         createSequentialDataSet(dataSetName);
