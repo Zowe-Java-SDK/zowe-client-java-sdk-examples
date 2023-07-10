@@ -35,16 +35,16 @@ public class CreateUssTst extends TstZosConnection {
         System.out.println(response.getStatusCode().get());
     }
 
-    private static Response CreateDirectory(String fileNamePath) throws Exception {
+    private static Response CreateDirectory(String value) throws Exception {
         UssCreate ussCreate = new UssCreate(connection);
         CreateParams params = new CreateParams(CreateType.DIR, "rwxr--r--");
-        return ussCreate.create(fileNamePath, params);
+        return ussCreate.create(value, params);
     }
 
-    private static Response CreateFile(String fileNamePath) throws Exception {
+    private static Response CreateFile(String value) throws Exception {
         UssCreate ussCreate = new UssCreate(connection);
         CreateParams params = new CreateParams(CreateType.FILE, "rwxrwxrwx");
-        return ussCreate.create(fileNamePath, params);
+        return ussCreate.create(value, params);
     }
 
 }
