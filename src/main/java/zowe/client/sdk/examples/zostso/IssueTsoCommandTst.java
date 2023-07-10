@@ -1,6 +1,6 @@
 package zowe.client.sdk.examples.zostso;
 
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.zostso.method.IssueTso;
 import zowe.client.sdk.zostso.response.IssueResponse;
@@ -15,7 +15,7 @@ import java.util.Arrays;
  */
 public class IssueTsoCommandTst extends TstZosConnection {
 
-    private static ZOSConnection connection;
+    private static ZosConnection connection;
 
     /**
      * Main method defines z/OSMF host and user connection, and tso command parameters used for the example test.
@@ -28,7 +28,7 @@ public class IssueTsoCommandTst extends TstZosConnection {
         String command = "xxx";
         String accountNumber = "xxx";
 
-        connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        connection = new ZosConnection(hostName, zosmfPort, userName, password);
         IssueResponse response = IssueTsoCommandTst.tsoConsoleCmdByIssue(accountNumber, command);
         String[] results = response.getCommandResponses().orElse("").split("\n");
         Arrays.stream(results).sequential().forEach(System.out::println);
