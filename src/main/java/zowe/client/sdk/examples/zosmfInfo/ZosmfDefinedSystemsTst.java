@@ -1,6 +1,6 @@
 package zowe.client.sdk.examples.zosmfInfo;
 
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.zosmfinfo.methods.ZosmfSystems;
 import zowe.client.sdk.zosmfinfo.response.ZosmfListDefinedSystemsResponse;
@@ -27,7 +27,7 @@ public class ZosmfDefinedSystemsTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void main(String[] args) throws Exception {
-        ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
 
         zosmfSystems = new ZosmfSystems(connection);
         ZosmfListDefinedSystemsResponse zosmfInfoResponse = zosmfSystems.get();
