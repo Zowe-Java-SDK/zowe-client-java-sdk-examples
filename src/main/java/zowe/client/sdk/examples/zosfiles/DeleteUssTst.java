@@ -37,7 +37,7 @@ public class DeleteUssTst extends TstZosConnection {
 
     /**
      * Delete a Unix System Service file
-     * 
+     *
      * @param value file name with path to delete
      * @return Response object
      * @throws Exception processing error
@@ -47,8 +47,8 @@ public class DeleteUssTst extends TstZosConnection {
     }
 
     /**
-     * Delete a Unix System Service path along with all file and directories within recursively 
-     * 
+     * Delete a Unix System Service path along with all file and directories within recursively
+     *
      * @param value directory name with path to delete
      * @return Response object
      * @throws Exception processing error
