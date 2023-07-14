@@ -57,7 +57,7 @@ public class ListUssTst extends TstZosConnection {
      */
     private static void fileList(String value) throws Exception {
         UssList ussList = new UssList(connection);
-        ListParams params = new ListParams.Builder().name(value).build();
+        ListParams params = new ListParams.Builder().path(value).build();
         List<UssItem> items = ussList.fileList(params);
         items.forEach(System.out::println);
     }
