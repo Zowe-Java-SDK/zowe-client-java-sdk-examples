@@ -28,12 +28,13 @@ public class UssGetTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void main(String[] args) throws Exception {
-        String fileNamePath = "/u/fgiorda/test1";
+        String fileNamePath = "/xx/xx/xxx";  // where xxx is a file name the rest a directory path...
 
         connection = new ZosConnection(hostName, zosmfPort, userName, password);
         getFileTextContentWithSearchFilterNoResults(fileNamePath);
         getFileTextContentWithSearchFilter(fileNamePath);
         getFileTextContent(fileNamePath);
+        getFileTextContentWithRange(fileNamePath);
     }
 
     /**
@@ -93,6 +94,20 @@ public class UssGetTst extends TstZosConnection {
     private static void getFileTextContent(String fileNamePath) throws Exception {
         UssGet ussGet = new UssGet(connection);
         System.out.println(ussGet.getText(fileNamePath));
+    }
+
+    /**
+     * This method returns the last two records (lines) from the file name path value.
+     *
+     * @param fileNamePath file name with path
+     * @throws Exception processing error
+     * @author Frank Giordano
+     */
+    private static void getFileTextContentWithRange(String fileNamePath) throws Exception {
+        UssGet ussGet = new UssGet(connection);
+        GetParams params = new GetParams.Builder().recordsRange("-2").build();
+        Response response = ussGet.getCommon(fileNamePath, params);
+        System.out.println(response.getResponsePhrase().get());
     }
 
 }
