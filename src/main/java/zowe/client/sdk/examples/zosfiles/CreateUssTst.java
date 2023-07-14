@@ -45,7 +45,7 @@ public class CreateUssTst extends TstZosConnection {
      */
     private static Response CreateDirectory(String value) throws Exception {
         UssCreate ussCreate = new UssCreate(connection);
-        CreateParams params = new CreateParams(CreateType.DIR, "rwxr--r--");
+        CreateParams params = new CreateParams(CreateType.DIR, "-wx-wx-wx");
         return ussCreate.create(value, params);
     }
 
@@ -59,7 +59,7 @@ public class CreateUssTst extends TstZosConnection {
      */
     private static Response CreateFile(String value) throws Exception {
         UssCreate ussCreate = new UssCreate(connection);
-        CreateParams params = new CreateParams(CreateType.FILE, "rwxrwxrwx");
+        CreateParams params = new CreateParams(CreateType.FILE, "-wx-wx-wx");
         return ussCreate.create(value, params);
     }
 
