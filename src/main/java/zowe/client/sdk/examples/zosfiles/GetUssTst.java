@@ -16,7 +16,7 @@ import zowe.client.sdk.zosfiles.uss.types.CreateType;
  * @author Frank Giordano
  * @version 2.0
  */
-public class UssGetTst extends TstZosConnection {
+public class GetUssTst extends TstZosConnection {
 
     private static ZosConnection connection;
 
