@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.io.StringWriter;
 
 /**
- * Class example to showcase DownloadDataset via DsnGet class.
+ * Class example to showcase retrieve dataset and member content functionality DsnGet class.
  *
  * @author Leonid Baranov
  * @author Frank Giordano

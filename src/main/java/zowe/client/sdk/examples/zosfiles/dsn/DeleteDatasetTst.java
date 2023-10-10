@@ -6,7 +6,7 @@ import zowe.client.sdk.rest.Response;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnDelete;
 
 /**
- * Class example to showcase DeleteDataset functionality.
+ * Class example to showcase DeleteDataset functionality via DsnDelete class.
  *
  * @author Leonid Baranov
  * @author Frank Giordano
