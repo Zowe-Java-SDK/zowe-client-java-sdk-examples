@@ -1,4 +1,4 @@
-package zowe.client.sdk.examples.zosfiles.uss;
+package zowe.client.sdk.examples.zosfiles.dsn;
 
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
