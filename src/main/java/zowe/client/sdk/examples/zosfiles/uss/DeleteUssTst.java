@@ -13,7 +13,6 @@ import zowe.client.sdk.zosfiles.uss.methods.UssDelete;
  */
 public class DeleteUssTst extends TstZosConnection {
 
-    private static ZosConnection connection;
     private static UssDelete ussDelete;
 
     /**
@@ -27,7 +26,7 @@ public class DeleteUssTst extends TstZosConnection {
         String fileNamePath = "/xxx/xx/xx";
         String dirNamePath = "/xxx/xx/xx";
 
-        connection = new ZosConnection(hostName, zosmfPort, userName, password);
+        ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
         ussDelete = new UssDelete(connection);
         Response response = DeleteFile(fileNamePath);
         System.out.println(response.getStatusCode().getAsInt());
@@ -41,6 +40,7 @@ public class DeleteUssTst extends TstZosConnection {
      * @param value file name with path to delete
      * @return Response object
      * @throws Exception processing error
+     * @author Frank Giordano
      */
     private static Response DeleteFile(String value) throws Exception {
         return ussDelete.delete(value);
@@ -51,6 +51,7 @@ public class DeleteUssTst extends TstZosConnection {
      *
      * @param value directory name with path to delete
      * @return Response object
+     * @author Frank Giordano
      */
     private static Response DeleteDirectory(String value) {
         return ussDelete.delete(value, true);

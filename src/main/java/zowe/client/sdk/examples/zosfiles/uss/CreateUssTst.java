@@ -21,10 +21,9 @@ public class CreateUssTst extends TstZosConnection {
      * Main method performs setup and method calls to test UssCreate
      *
      * @param args for main not used
-     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         String fileNamePath = "/xxx/xx/xx";
         String dirNamePath = "/xxx/xx/xx";
 

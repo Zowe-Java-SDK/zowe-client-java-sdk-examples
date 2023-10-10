@@ -33,6 +33,8 @@ public class DeleteDatasetTst extends TstZosConnection {
     }
 
     /**
+     * Delete a dataset
+     *
      * @param dataSetName name of a dataset to delete (e.g. 'DATASET.LIB')
      * @author Frank Giordano
      */
@@ -43,6 +45,8 @@ public class DeleteDatasetTst extends TstZosConnection {
     }
 
     /**
+     * Delete a partition dataset member
+     *
      * @param dataSetName name of a dataset where member should be located (e.g. 'DATASET.LIB')
      * @param member      name of member to delete
      * @throws Exception error processing request

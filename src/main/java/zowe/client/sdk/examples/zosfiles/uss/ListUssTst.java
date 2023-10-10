@@ -41,6 +41,7 @@ public class ListUssTst extends TstZosConnection {
      *
      * @param value file name with path
      * @throws Exception processing error
+     * @author Frank Giordano
      */
     private static void zfsList(String value) throws Exception {
         UssList ussList = new UssList(connection);
@@ -54,6 +55,7 @@ public class ListUssTst extends TstZosConnection {
      *
      * @param value file name with path
      * @throws Exception processing error
+     * @author Frank Giordano
      */
     private static void fileList(String value) throws Exception {
         UssList ussList = new UssList(connection);

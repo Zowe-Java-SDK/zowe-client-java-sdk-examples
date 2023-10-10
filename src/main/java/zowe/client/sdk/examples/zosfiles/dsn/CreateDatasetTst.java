@@ -22,10 +22,9 @@ public class CreateDatasetTst extends TstZosConnection {
      * DsnCreate functionality.
      *
      * @param args for main not used
-     * @throws Exception error in processing request
      * @author Leonid Baranov
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         String dataSetName = "xxx";
         connection = new ZosConnection(hostName, zosmfPort, userName, password);
         createPartitionDataSet(dataSetName);
