@@ -29,7 +29,7 @@ public class IssueTsoCommandTst extends TstZosConnection {
         String accountNumber = "xxx";
 
         connection = new ZosConnection(hostName, zosmfPort, userName, password);
-        IssueResponse response = IssueTsoCommandTst.tsoConsoleCmdByIssue(accountNumber, command);
+        IssueResponse response = IssueTsoCommandTst.issueCommand(accountNumber, command);
         String[] results = response.getCommandResponses().orElse("").split("\n");
         Arrays.stream(results).sequential().forEach(System.out::println);
     }
@@ -43,7 +43,7 @@ public class IssueTsoCommandTst extends TstZosConnection {
      * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static IssueResponse tsoConsoleCmdByIssue(String accountNumber, String cmd) throws Exception {
+    public static IssueResponse issueCommand(String accountNumber, String cmd) throws Exception {
         IssueTso issueTso = new IssueTso(connection);
         return issueTso.issueCommand(accountNumber, cmd);
     }
