@@ -37,7 +37,7 @@ public class ListUssTst extends TstZosConnection {
     }
 
     /**
-     * Perform a Unix System Service zFS list
+     * Perform a UNIX zFS list
      *
      * @param value file name with path
      * @throws Exception processing error
@@ -51,7 +51,7 @@ public class ListUssTst extends TstZosConnection {
     }
 
     /**
-     * Perform a Unix System Service file list
+     * Perform a UNIX file list
      *
      * @param value file name with path
      * @throws Exception processing error

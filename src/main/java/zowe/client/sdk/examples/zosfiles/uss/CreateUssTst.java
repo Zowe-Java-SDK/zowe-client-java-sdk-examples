@@ -35,7 +35,7 @@ public class CreateUssTst extends TstZosConnection {
     }
 
     /**
-     * Create a Unix System Service directory
+     * Create a Unix directory
      *
      * @param value directory name with path to create
      * @return Response object
@@ -48,7 +48,7 @@ public class CreateUssTst extends TstZosConnection {
     }
 
     /**
-     * Create a Unix System Service file
+     * Create a Unix file
      *
      * @param value file name with path to create
      * @return Response object
