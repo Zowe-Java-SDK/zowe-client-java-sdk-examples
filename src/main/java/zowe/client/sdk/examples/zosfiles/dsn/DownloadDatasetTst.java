@@ -1,4 +1,4 @@
-package zowe.client.sdk.examples.zosfiles;
+package zowe.client.sdk.examples.zosfiles.dsn;
 
 import org.apache.commons.io.IOUtils;
 import zowe.client.sdk.core.ZosConnection;
