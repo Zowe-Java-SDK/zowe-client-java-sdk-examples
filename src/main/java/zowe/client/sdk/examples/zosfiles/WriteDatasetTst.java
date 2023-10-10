@@ -54,10 +54,9 @@ public class WriteDatasetTst extends TstZosConnection {
      *
      * @param dataSetName name of sequential dataset (e.g. 'DATASET.LIB')
      * @param content     content for write
-     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void writeToDsnSequential(String dataSetName, String content) throws Exception {
+    public static void writeToDsnSequential(String dataSetName, String content) {
         DsnWrite dsnWrite = new DsnWrite(connection);
         Response response = dsnWrite.write(dataSetName, content);
         System.out.println("http response code " + response.getStatusCode());

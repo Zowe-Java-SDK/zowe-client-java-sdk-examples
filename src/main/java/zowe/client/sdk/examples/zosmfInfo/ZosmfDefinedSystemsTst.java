@@ -3,7 +3,7 @@ package zowe.client.sdk.examples.zosmfInfo;
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.zosmfinfo.methods.ZosmfSystems;
-import zowe.client.sdk.zosmfinfo.response.ZosmfListDefinedSystemsResponse;
+import zowe.client.sdk.zosmfinfo.response.ZosmfSystemsResponse;
 
 import java.util.Arrays;
 
@@ -14,8 +14,6 @@ import java.util.Arrays;
  * @version 2.0
  */
 public class ZosmfDefinedSystemsTst extends TstZosConnection {
-
-    private static ZosmfSystems zosmfSystems;
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
@@ -28,9 +26,8 @@ public class ZosmfDefinedSystemsTst extends TstZosConnection {
      */
     public static void main(String[] args) throws Exception {
         ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
-
-        zosmfSystems = new ZosmfSystems(connection);
-        ZosmfListDefinedSystemsResponse zosmfInfoResponse = zosmfSystems.get();
+        ZosmfSystems zosmfSystems = new ZosmfSystems(connection);
+        ZosmfSystemsResponse zosmfInfoResponse = zosmfSystems.get();
         System.out.println(zosmfInfoResponse.toString());
         Arrays.stream(zosmfInfoResponse.getDefinedSystems().get()).forEach(i -> System.out.println(i.toString()));
     }

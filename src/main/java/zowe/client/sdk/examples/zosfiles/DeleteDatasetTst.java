@@ -34,10 +34,9 @@ public class DeleteDatasetTst extends TstZosConnection {
 
     /**
      * @param dataSetName name of a dataset to delete (e.g. 'DATASET.LIB')
-     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void deleteDataSet(String dataSetName) throws Exception {
+    public static void deleteDataSet(String dataSetName) {
         DsnDelete zosDsn = new DsnDelete(connection);
         Response response = zosDsn.delete(dataSetName);
         System.out.println("http response code " + response.getStatusCode());

@@ -44,10 +44,9 @@ public class DeleteJobTst extends TstZosConnection {
      *
      * @param version value to indicate sync or async request processing
      * @return response http response object
-     * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static Response deleteCommonWithVersion(String version) throws Exception {
+    public static Response deleteCommonWithVersion(String version) {
         jobId = "xxx";
         jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).version(version).build();
@@ -60,10 +59,9 @@ public class DeleteJobTst extends TstZosConnection {
      * filled needed to delete a given job.
      *
      * @return response http response object
-     * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static Response deleteCommon() throws Exception {
+    public static Response deleteCommon() {
         jobId = "xxx";
         jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).build();
@@ -75,10 +73,9 @@ public class DeleteJobTst extends TstZosConnection {
      * The deleteByJob method accepts a jobName and jobId values which will be used to delete its job.
      *
      * @return response http response object
-     * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static Response deleteByJob() throws Exception {
+    public static Response deleteByJob() {
         jobId = "xxx";
         jobName = "xxx";
         return new JobDelete(connection).deleteByJob(

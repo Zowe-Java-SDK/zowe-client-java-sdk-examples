@@ -63,7 +63,7 @@ public class CopyDatasetTst extends TstZosConnection {
     }
 
     /**
-     * Example on how to call DsnCopy copy method.
+     * Example on how to call DsnCopy copyCommon method.
      * Copy method accepts a CopyParams object.
      * <p>
      * This copy method allows the following copy operations:
@@ -77,21 +77,19 @@ public class CopyDatasetTst extends TstZosConnection {
      * @param connection      ZosConnection object
      * @param fromDataSetName source dataset (e.g. 'SOURCE.DATASET' or 'SOURCE.DATASET(MEMBER)')
      * @param toDataSetName   destination dataset (e.g. 'TARGET.DATASET' or 'TARGET.DATASET(MEMBER)')
-     * @throws Exception error processing copy request
      * @author Frank Giordano
      */
-    public static void copyDatasetByCopyParams(ZosConnection connection, String fromDataSetName,
-                                               String toDataSetName) throws Exception {
+    public static void copyDatasetByCopyParams(ZosConnection connection, String fromDataSetName, String toDataSetName) {
         DsnCopy dsnCopy = new DsnCopy(connection);
         // 'replace' builder variable here will be true by default if not specified in builder.
         // 'copyAllMembers' builder variable here will be false by default
         CopyParams copyParams = new CopyParams.Builder().fromDataSet(fromDataSetName).toDataSet(toDataSetName).build();
-        Response response = dsnCopy.copy(copyParams);
+        Response response = dsnCopy.copyCommon(copyParams);
         System.out.println("http response code " + response.getStatusCode());
     }
 
     /**
-     * Example on how to call DsnCopy copy method.
+     * Example on how to call DsnCopy copyCommon method.
      * Copy method accepts a CopyParams object.
      * <p>
      * This copy method is different from the other two examples above as it
@@ -101,16 +99,15 @@ public class CopyDatasetTst extends TstZosConnection {
      * @param connection      ZosConnection object
      * @param fromDataSetName source dataset (e.g. 'SOURCE.PARTITION.DATASET')
      * @param toDataSetName   destination dataset (e.g. 'TARGET.PARTITION.DATASET')
-     * @throws Exception error processing copy request
      * @author Frank Giordano
      */
     public static void copyFullPartitionDatasetByCopyParams(ZosConnection connection, String fromDataSetName,
-                                                            String toDataSetName) throws Exception {
+                                                            String toDataSetName) {
         DsnCopy dsnCopy = new DsnCopy(connection);
         // 'replace' here will be true by default if not specified in builder.
         CopyParams copyParams = new CopyParams.Builder()
                 .fromDataSet(fromDataSetName).toDataSet(toDataSetName).copyAllMembers(true).build();
-        Response response = dsnCopy.copy(copyParams);
+        Response response = dsnCopy.copyCommon(copyParams);
         System.out.println("http response code " + response.getStatusCode());
     }
 

@@ -5,8 +5,8 @@ import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.zosfiles.uss.input.ListParams;
 import zowe.client.sdk.zosfiles.uss.input.ListZfsParams;
 import zowe.client.sdk.zosfiles.uss.methods.UssList;
-import zowe.client.sdk.zosfiles.uss.response.UssItem;
-import zowe.client.sdk.zosfiles.uss.response.UssZfsItem;
+import zowe.client.sdk.zosfiles.uss.response.UnixFile;
+import zowe.client.sdk.zosfiles.uss.response.UnixZfs;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class ListUssTst extends TstZosConnection {
     private static void zfsList(String value) throws Exception {
         UssList ussList = new UssList(connection);
         ListZfsParams params = new ListZfsParams.Builder().path(value).build();
-        List<UssZfsItem> items = ussList.zfsList(params);
+        List<UnixZfs> items = ussList.zfsList(params);
         items.forEach(System.out::println);
     }
 
@@ -58,7 +58,7 @@ public class ListUssTst extends TstZosConnection {
     private static void fileList(String value) throws Exception {
         UssList ussList = new UssList(connection);
         ListParams params = new ListParams.Builder().path(value).build();
-        List<UssItem> items = ussList.fileList(params);
+        List<UnixFile> items = ussList.fileList(params);
         items.forEach(System.out::println);
     }
 

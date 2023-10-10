@@ -38,10 +38,9 @@ public class CreateDatasetTst extends TstZosConnection {
      * Create a new sequential dataset.
      *
      * @param dataSetName name of a dataset to create (e.g. 'DATASET.LIB')
-     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void createSequentialDataSet(String dataSetName) throws Exception {
+    public static void createSequentialDataSet(String dataSetName) {
         DsnCreate dsnCreate = new DsnCreate(connection);
         Response response = dsnCreate.create(dataSetName, sequential());
         System.out.println("http response code " + response.getStatusCode());
@@ -51,10 +50,9 @@ public class CreateDatasetTst extends TstZosConnection {
      * Create a new partition dataset.
      *
      * @param dataSetName name of a dataset to create (e.g. 'DATASET.LIB')
-     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void createPartitionDataSet(String dataSetName) throws Exception {
+    public static void createPartitionDataSet(String dataSetName) {
         DsnCreate dsnCreate = new DsnCreate(connection);
         Response response = dsnCreate.create(dataSetName, partitioned());
         System.out.println("http response code " + response.getStatusCode());

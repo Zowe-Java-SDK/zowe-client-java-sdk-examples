@@ -15,8 +15,6 @@ import java.util.Arrays;
  */
 public class CheckStatusTst extends TstZosConnection {
 
-    private static ZosmfStatus zosmfStatus;
-
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
      * ZosmfStatus class functionality. This method perform API call to retrieve the status of the
@@ -28,8 +26,7 @@ public class CheckStatusTst extends TstZosConnection {
      */
     public static void main(String[] args) throws Exception {
         ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
-
-        zosmfStatus = new ZosmfStatus(connection);
+        ZosmfStatus zosmfStatus = new ZosmfStatus(connection);
         ZosmfInfoResponse zosmfInfoResponse = zosmfStatus.get();
         System.out.println(zosmfInfoResponse.toString());
         Arrays.stream(zosmfInfoResponse.getZosmfPluginsInfo().get()).forEach(i -> System.out.println(i.toString()));

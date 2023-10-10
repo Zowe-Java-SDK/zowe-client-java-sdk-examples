@@ -30,9 +30,9 @@ public class CreateUssTst extends TstZosConnection {
 
         connection = new ZosConnection(hostName, zosmfPort, userName, password);
         Response response = CreateFile(fileNamePath);
-        System.out.println(response.getStatusCode().get());
+        System.out.println(response.getStatusCode().getAsInt());
         response = CreateDirectory(dirNamePath);
-        System.out.println(response.getStatusCode().get());
+        System.out.println(response.getStatusCode().getAsInt());
     }
 
     /**
@@ -40,10 +40,9 @@ public class CreateUssTst extends TstZosConnection {
      *
      * @param value directory name with path to create
      * @return Response object
-     * @throws Exception processing error
      * @author Frank Giordano
      */
-    private static Response CreateDirectory(String value) throws Exception {
+    private static Response CreateDirectory(String value) {
         UssCreate ussCreate = new UssCreate(connection);
         CreateParams params = new CreateParams(CreateType.DIR, "-wx-wx-wx");
         return ussCreate.create(value, params);
@@ -54,10 +53,9 @@ public class CreateUssTst extends TstZosConnection {
      *
      * @param value file name with path to create
      * @return Response object
-     * @throws Exception processing error
      * @author Frank Giordano
      */
-    private static Response CreateFile(String value) throws Exception {
+    private static Response CreateFile(String value) {
         UssCreate ussCreate = new UssCreate(connection);
         CreateParams params = new CreateParams(CreateType.FILE, "-wx-wx-wx");
         return ussCreate.create(value, params);

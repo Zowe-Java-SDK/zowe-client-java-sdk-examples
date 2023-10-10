@@ -46,10 +46,9 @@ public class GetUssTst extends TstZosConnection {
      * For this case, no search result is returned due to case-sensitive search.
      *
      * @param fileNamePath file name with path
-     * @throws Exception processing error
      * @author Frank Giordano
      */
-    private static void getFileTextContentWithSearchFilterNoResults(String fileNamePath) throws Exception {
+    private static void getFileTextContentWithSearchFilterNoResults(String fileNamePath) {
         UssCreate ussCreate = new UssCreate(connection);
         try {
             ussCreate.create(fileNamePath, new CreateParams(CreateType.FILE, "rwxr--r--"));
@@ -74,10 +73,9 @@ public class GetUssTst extends TstZosConnection {
      * It returns data from the file from the starting point of the search value.
      *
      * @param fileNamePath file name with path
-     * @throws Exception processing error
      * @author Frank Giordano
      */
-    private static void getFileTextContentWithSearchFilter(String fileNamePath) throws Exception {
+    private static void getFileTextContentWithSearchFilter(String fileNamePath) {
         UssGet ussGet = new UssGet(connection);
         GetParams params = new GetParams.Builder().insensitive(false).search("Apple").build();
         Response response = ussGet.getCommon(fileNamePath, params);
@@ -100,10 +98,9 @@ public class GetUssTst extends TstZosConnection {
      * This method returns the last two records (lines) from the file name path value.
      *
      * @param fileNamePath file name with path
-     * @throws Exception processing error
      * @author Frank Giordano
      */
-    private static void getFileTextContentWithRange(String fileNamePath) throws Exception {
+    private static void getFileTextContentWithRange(String fileNamePath) {
         UssGet ussGet = new UssGet(connection);
         GetParams params = new GetParams.Builder().recordsRange("-2").build();
         Response response = ussGet.getCommon(fileNamePath, params);

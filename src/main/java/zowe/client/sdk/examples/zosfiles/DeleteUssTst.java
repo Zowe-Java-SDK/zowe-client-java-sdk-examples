@@ -30,9 +30,9 @@ public class DeleteUssTst extends TstZosConnection {
         connection = new ZosConnection(hostName, zosmfPort, userName, password);
         ussDelete = new UssDelete(connection);
         Response response = DeleteFile(fileNamePath);
-        System.out.println(response.getStatusCode().get());
+        System.out.println(response.getStatusCode().getAsInt());
         response = DeleteDirectory(dirNamePath);
-        System.out.println(response.getStatusCode().get());
+        System.out.println(response.getStatusCode().getAsInt());
     }
 
     /**
@@ -51,9 +51,8 @@ public class DeleteUssTst extends TstZosConnection {
      *
      * @param value directory name with path to delete
      * @return Response object
-     * @throws Exception processing error
      */
-    private static Response DeleteDirectory(String value) throws Exception {
+    private static Response DeleteDirectory(String value) {
         return ussDelete.delete(value, true);
     }
 

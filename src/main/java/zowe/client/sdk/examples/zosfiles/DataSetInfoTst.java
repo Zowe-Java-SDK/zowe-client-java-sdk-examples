@@ -32,7 +32,7 @@ public class DataSetInfoTst extends TstZosConnection {
      *
      * @param connection  ZosConnection object
      * @param dataSetName name of a dataset
-     * @return
+     * @return Dataset object
      * @throws Exception error processing request
      * @author Frank Giordano
      */

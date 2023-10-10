@@ -44,10 +44,9 @@ public class CancelJobTst extends TstZosConnection {
      *
      * @param version version value
      * @return response http Response object
-     * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static Response cancelCommonWithVersion(String version) throws Exception {
+    public static Response cancelCommonWithVersion(String version) {
         jobId = "xxx";
         jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).version(version).build();
@@ -60,10 +59,9 @@ public class CancelJobTst extends TstZosConnection {
      * to cancel a given job.
      *
      * @return response http Response object
-     * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static Response cancelCommon() throws Exception {
+    public static Response cancelCommon() {
         jobId = "xxx";
         jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).build();
@@ -75,10 +73,9 @@ public class CancelJobTst extends TstZosConnection {
      * The cancelByJob method accepts a jobName and jobId values which will be used to cancel its job.
      *
      * @return response http Response object
-     * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static Response cancelByJob() throws Exception {
+    public static Response cancelByJob() {
         jobId = "xxx";
         jobName = "xxx";
         return new JobCancel(connection).cancelByJob(
