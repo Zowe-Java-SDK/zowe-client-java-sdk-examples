@@ -42,7 +42,7 @@ public class DeleteUssTst extends TstZosConnection {
      * @throws Exception processing error
      * @author Frank Giordano
      */
-    private static Response DeleteFile(String value) throws Exception {
+    private static Response DeleteFile(String value) {
         return ussDelete.delete(value);
     }
 
