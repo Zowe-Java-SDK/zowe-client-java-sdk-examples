@@ -1,12 +1,12 @@
-package zowe.client.sdk.examples.zosfiles;
+package zowe.client.sdk.examples.zosfiles.dsn;
 
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
-import zowe.client.sdk.zosfiles.ZosDsn;
+import zowe.client.sdk.zosfiles.dsn.methods.DsnWrite;
 
 /**
- * Class example to showcase WriteDataset functionality.
+ * Class example to showcase WriteDataset functionality via DsnWrite class.
  *
  * @author Leonid Baranov
  * @author Frank Giordano
@@ -14,11 +14,11 @@ import zowe.client.sdk.zosfiles.ZosDsn;
  */
 public class WriteDatasetTst extends TstZosConnection {
 
-    private static ZOSConnection connection;
+    private static ZosConnection connection;
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
-     * WriteDataset functionality. Calls WriteDataset example methods.
+     * DsnWrite functionality.
      *
      * @param args for main not used
      * @throws Exception error in processing request
@@ -26,10 +26,12 @@ public class WriteDatasetTst extends TstZosConnection {
      */
     public static void main(String[] args) throws Exception {
         String dataSetName = "xxx";
+        String datasetSeqName = "xxx";
         String member = "xxx";
-        connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        connection = new ZosConnection(hostName, zosmfPort, userName, password);
         var content = "NEW CONTENT\nTHE SECOND LINE UPDATED";
         WriteDatasetTst.writeToDsnMember(dataSetName, member, content);
+        WriteDatasetTst.writeToDsnSequential(datasetSeqName, content);
     }
 
     /**
@@ -42,8 +44,21 @@ public class WriteDatasetTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void writeToDsnMember(String dataSetName, String member, String content) throws Exception {
-        ZosDsn zosDsn = new ZosDsn(connection);
-        Response response = zosDsn.writeDsn(dataSetName, member, content);
+        DsnWrite dsnWrite = new DsnWrite(connection);
+        Response response = dsnWrite.write(dataSetName, member, content);
+        System.out.println("http response code " + response.getStatusCode());
+    }
+
+    /**
+     * Write to the given content to sequential dataset.
+     *
+     * @param dataSetName name of sequential dataset (e.g. 'DATASET.LIB')
+     * @param content     content for write
+     * @author Frank Giordano
+     */
+    public static void writeToDsnSequential(String dataSetName, String content) {
+        DsnWrite dsnWrite = new DsnWrite(connection);
+        Response response = dsnWrite.write(dataSetName, content);
         System.out.println("http response code " + response.getStatusCode());
     }
 

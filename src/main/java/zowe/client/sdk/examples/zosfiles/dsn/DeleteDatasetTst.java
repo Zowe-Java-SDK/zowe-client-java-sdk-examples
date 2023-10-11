@@ -1,12 +1,12 @@
-package zowe.client.sdk.examples.zosfiles;
+package zowe.client.sdk.examples.zosfiles.dsn;
 
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
 import zowe.client.sdk.rest.Response;
-import zowe.client.sdk.zosfiles.ZosDsn;
+import zowe.client.sdk.zosfiles.dsn.methods.DsnDelete;
 
 /**
- * Class example to showcase DeleteDataset functionality.
+ * Class example to showcase DeleteDataset functionality via DsnDelete class.
  *
  * @author Leonid Baranov
  * @author Frank Giordano
@@ -14,7 +14,7 @@ import zowe.client.sdk.zosfiles.ZosDsn;
  */
 public class DeleteDatasetTst extends TstZosConnection {
 
-    private static ZOSConnection connection;
+    private static ZosConnection connection;
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
@@ -27,31 +27,34 @@ public class DeleteDatasetTst extends TstZosConnection {
     public static void main(String[] args) throws Exception {
         String dataSetName = "xxx";
         String member = "xxx";
-        connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        connection = new ZosConnection(hostName, zosmfPort, userName, password);
         deleteDataSet(dataSetName);
         deleteMember(dataSetName, member);
     }
 
     /**
+     * Delete a dataset
+     *
      * @param dataSetName name of a dataset to delete (e.g. 'DATASET.LIB')
-     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void deleteDataSet(String dataSetName) throws Exception {
-        ZosDsn zosDsn = new ZosDsn(connection);
-        Response response = zosDsn.deleteDsn(dataSetName);
+    public static void deleteDataSet(String dataSetName) {
+        DsnDelete zosDsn = new DsnDelete(connection);
+        Response response = zosDsn.delete(dataSetName);
         System.out.println("http response code " + response.getStatusCode());
     }
 
     /**
+     * Delete a partition dataset member
+     *
      * @param dataSetName name of a dataset where member should be located (e.g. 'DATASET.LIB')
      * @param member      name of member to delete
      * @throws Exception error processing request
      * @author Frank Giordano
      */
     public static void deleteMember(String dataSetName, String member) throws Exception {
-        ZosDsn zosDsn = new ZosDsn(connection);
-        Response response = zosDsn.deleteDsn(dataSetName, member);
+        DsnDelete zosDsn = new DsnDelete(connection);
+        Response response = zosDsn.delete(dataSetName, member);
         System.out.println("http response code " + response.getStatusCode());
     }
 

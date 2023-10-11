@@ -1,17 +1,17 @@
-package zowe.client.sdk.examples.zosfiles;
+package zowe.client.sdk.examples.zosfiles.dsn;
 
-import zowe.client.sdk.core.ZOSConnection;
+import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
-import zowe.client.sdk.zosfiles.ZosDsnList;
-import zowe.client.sdk.zosfiles.input.ListParams;
-import zowe.client.sdk.zosfiles.response.Dataset;
-import zowe.client.sdk.zosfiles.response.Member;
-import zowe.client.sdk.zosfiles.types.AttributeType;
+import zowe.client.sdk.zosfiles.dsn.input.ListParams;
+import zowe.client.sdk.zosfiles.dsn.methods.DsnList;
+import zowe.client.sdk.zosfiles.dsn.response.Dataset;
+import zowe.client.sdk.zosfiles.dsn.response.Member;
+import zowe.client.sdk.zosfiles.dsn.types.AttributeType;
 
 import java.util.List;
 
 /**
- * Class example to showcase ListDatasets functionality.
+ * Class example to showcase ListDatasets functionality via DsnList class.
  *
  * @author Leonid Baranov
  * @author Frank Giordano
@@ -21,7 +21,7 @@ public class ListDatasetsTst extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
-     * ListDatasets functionality. Calls ListDatasets example methods.
+     * DsnList functionality.
      *
      * @param args for main not used
      * @throws Exception error processing request
@@ -30,7 +30,7 @@ public class ListDatasetsTst extends TstZosConnection {
     public static void main(String[] args) throws Exception {
         String dataSetMask = "xxx";
         String dataSetName = "xxx";
-        ZOSConnection connection = new ZOSConnection(hostName, zosmfPort, userName, password);
+        ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
         ListDatasetsTst.listDsn(connection, dataSetMask);
         ListDatasetsTst.listDsnVol(connection, dataSetMask);
         ListDatasetsTst.listMembersWithAllAttributes(connection, dataSetName);
@@ -40,61 +40,61 @@ public class ListDatasetsTst extends TstZosConnection {
     /**
      * List out all members and its attribute values of the given data set
      *
-     * @param connection  ZOSConnection object
-     * @param dataSetName data set name
+     * @param connection  ZosConnection object
+     * @param dataSetName name of a dataset
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void listMembersWithAllAttributes(ZOSConnection connection, String dataSetName) throws Exception {
+    public static void listMembersWithAllAttributes(ZosConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
-        ZosDsnList zosDsnList = new ZosDsnList(connection);
-        List<Member> datasets = zosDsnList.listDsnMembers(dataSetName, params);
+        DsnList dsnList = new DsnList(connection);
+        List<Member> datasets = dsnList.listDsnMembers(dataSetName, params);
         datasets.forEach(m -> System.out.println(m.toString()));
     }
 
     /**
      * List out all members of the given data set
      *
-     * @param connection  ZOSConnection object
-     * @param dataSetName data set name
+     * @param connection  ZosConnection object
+     * @param dataSetName name of a dataset
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void listMembers(ZOSConnection connection, String dataSetName) throws Exception {
+    public static void listMembers(ZosConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.MEMBER).build();
-        ZosDsnList zosDsnList = new ZosDsnList(connection);
-        List<Member> datasets = zosDsnList.listDsnMembers(dataSetName, params);
+        DsnList dsnList = new DsnList(connection);
+        List<Member> datasets = dsnList.listDsnMembers(dataSetName, params);
         datasets.forEach(m -> System.out.println(m.toString()));
     }
 
     /**
      * List out all data sets of the given data set. Each dataset returned will contain all of its properties.
      *
-     * @param connection  ZOSConnection object
-     * @param dataSetName data set name
+     * @param connection  ZosConnection object
+     * @param dataSetName name of a dataset
      * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void listDsn(ZOSConnection connection, String dataSetName) throws Exception {
+    public static void listDsn(ZosConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
-        ZosDsnList zosDsnList = new ZosDsnList(connection);
-        List<Dataset> datasets = zosDsnList.listDsn(dataSetName, params);
-        datasets.forEach(i -> System.out.println(i));
+        DsnList dsnList = new DsnList(connection);
+        List<Dataset> datasets = dsnList.listDsn(dataSetName, params);
+        datasets.forEach(System.out::println);
     }
 
     /**
      * List out all data sets of the given data set. Each dataset returned will contain its volume property.
      *
-     * @param connection  ZOSConnection object
-     * @param dataSetName data set name
+     * @param connection  ZosConnection object
+     * @param dataSetName name of a dataset
      * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void listDsnVol(ZOSConnection connection, String dataSetName) throws Exception {
+    public static void listDsnVol(ZosConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.VOL).build();
-        ZosDsnList zosDsnList = new ZosDsnList(connection);
-        List<Dataset> datasets = zosDsnList.listDsn(dataSetName, params);
-        datasets.forEach(i -> System.out.println(i));
+        DsnList dsnList = new DsnList(connection);
+        List<Dataset> datasets = dsnList.listDsn(dataSetName, params);
+        datasets.forEach(System.out::println);
     }
 
 }
