@@ -4,33 +4,12 @@ This project provides code examples to show the usage of Zowe Client Java SDK li
 
 Zowe Java SDK lets you leverage the underlying z/OSMF REST APIs on a z/OS system to build client (Windows, Linux, macOS, etc) applications that interface with your z/OS instance.
 
-Zowe Java SDK provides the following class names with prebuilt API services:
-
-    CancelJobs
-    CheckStatus (zosmf info)
-    CreateDataset  
-    CopyDataset
-    DeleteDataset 
-    DeleteJobs
-    DownloadDataset  
-    GetJobs
-    GetZosLog (operlog or syslog)
-    IssueCommand (mvs commands)  
-    IssuesTsoCommand  
-    ListDataset  
-    ListDefinedSystems (zosmf info)
-    MonitorJobs  
-    Shell (uss commands)
-    SubmitJobs  
-    TeamConfig (OS Credential store and Zowe Global Team Configuration info)  
-    WriteDataset
-
 See the following example programs:
 
     src/main/java/zowe/client/sdk/examples/zosconsole   
         IssueCommandTst.java  
   
-    src/main/java/zowe/client/sdk/examples/zosfiles    
+    src/main/java/zowe/client/sdk/examples/zosfiles/dsn    
         CopyDatasetTst.java
         CreateDatasetTst.java  
         DataSetInfoTst.java  
@@ -38,6 +17,12 @@ See the following example programs:
         DownloadDatasetTst.java
         ListDatasetsTst.java
         WriteDatasetTst.java  
+
+    src/main/java/zowe/client/sdk/examples/zosfiles/uss    
+        CreateUssTst.java
+        DeleteUssTst.java  
+        GetUssTst.java
+        ListUssTst.java 
   
     src/main/java/zowe/client/sdk/examples/zosjobs    
         CancelJobsTst.java
