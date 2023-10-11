@@ -89,7 +89,7 @@ public class GetUssTst extends TstZosConnection {
      * @throws Exception processing error
      * @author Frank Giordano
      */
-    private static void getFileTextContent(String fileNamePath) throws Exception {
+    private static void getFileTextContent(String fileNamePath) {
         UssGet ussGet = new UssGet(connection);
         System.out.println(ussGet.getText(fileNamePath));
     }
