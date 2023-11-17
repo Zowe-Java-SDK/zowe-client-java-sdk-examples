@@ -48,7 +48,7 @@ public class ListDatasetsTst extends TstZosConnection {
     public static void listMembersWithAllAttributes(ZosConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
         DsnList dsnList = new DsnList(connection);
-        List<Member> datasets = dsnList.listDsnMembers(dataSetName, params);
+        List<Member> datasets = dsnList.getMembers(dataSetName, params);
         datasets.forEach(m -> System.out.println(m.toString()));
     }
 
@@ -63,7 +63,7 @@ public class ListDatasetsTst extends TstZosConnection {
     public static void listMembers(ZosConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.MEMBER).build();
         DsnList dsnList = new DsnList(connection);
-        List<Member> datasets = dsnList.listDsnMembers(dataSetName, params);
+        List<Member> datasets = dsnList.getMembers(dataSetName, params);
         datasets.forEach(m -> System.out.println(m.toString()));
     }
 
@@ -78,7 +78,7 @@ public class ListDatasetsTst extends TstZosConnection {
     public static void listDsn(ZosConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
         DsnList dsnList = new DsnList(connection);
-        List<Dataset> datasets = dsnList.listDsn(dataSetName, params);
+        List<Dataset> datasets = dsnList.getDatasets(dataSetName, params);
         datasets.forEach(System.out::println);
     }
 
@@ -93,7 +93,7 @@ public class ListDatasetsTst extends TstZosConnection {
     public static void listDsnVol(ZosConnection connection, String dataSetName) throws Exception {
         ListParams params = new ListParams.Builder().attribute(AttributeType.VOL).build();
         DsnList dsnList = new DsnList(connection);
-        List<Dataset> datasets = dsnList.listDsn(dataSetName, params);
+        List<Dataset> datasets = dsnList.getDatasets(dataSetName, params);
         datasets.forEach(System.out::println);
     }
 

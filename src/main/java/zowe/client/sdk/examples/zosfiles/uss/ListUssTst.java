@@ -46,7 +46,7 @@ public class ListUssTst extends TstZosConnection {
     private static void zfsList(String value) throws Exception {
         UssList ussList = new UssList(connection);
         ListZfsParams params = new ListZfsParams.Builder().path(value).build();
-        List<UnixZfs> items = ussList.zfsList(params);
+        List<UnixZfs> items = ussList.getZfsSystems(params);
         items.forEach(System.out::println);
     }
 
@@ -60,7 +60,7 @@ public class ListUssTst extends TstZosConnection {
     private static void fileList(String value) throws Exception {
         UssList ussList = new UssList(connection);
         ListParams params = new ListParams.Builder().path(value).build();
-        List<UnixFile> items = ussList.fileList(params);
+        List<UnixFile> items = ussList.getFiles(params);
         items.forEach(System.out::println);
     }
 
