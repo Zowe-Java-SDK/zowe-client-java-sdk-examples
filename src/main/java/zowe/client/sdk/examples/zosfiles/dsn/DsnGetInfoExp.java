@@ -2,6 +2,8 @@ package zowe.client.sdk.examples.zosfiles.dsn;
 
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.examples.utility.Util;
+import zowe.client.sdk.rest.exception.ZosmfRequestException;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnGet;
 import zowe.client.sdk.zosfiles.dsn.response.Dataset;
 
@@ -11,20 +13,19 @@ import zowe.client.sdk.zosfiles.dsn.response.Dataset;
  * @author Frank Giordano
  * @version 2.0
  */
-public class DataSetInfoTst extends TstZosConnection {
+public class DsnGetInfoExp extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
      * DsnGet functionality.
      *
      * @param args for main not used
-     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         String dataSetName = "xxx";
         ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
-        System.out.println(DataSetInfoTst.getDataSetInfo(connection, dataSetName));
+        System.out.println(DsnGetInfoExp.getDataSetInfo(connection, dataSetName));
     }
 
     /**
@@ -33,12 +34,16 @@ public class DataSetInfoTst extends TstZosConnection {
      * @param connection  ZosConnection object
      * @param dataSetName name of a dataset
      * @return Dataset object
-     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static Dataset getDataSetInfo(ZosConnection connection, String dataSetName) throws Exception {
-        DsnGet dsnGet = new DsnGet(connection);
-        return dsnGet.getDsnInfo(dataSetName);
+    public static Dataset getDataSetInfo(ZosConnection connection, String dataSetName) {
+        try {
+            DsnGet dsnGet = new DsnGet(connection);
+            return dsnGet.getDsnInfo(dataSetName);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
     }
 
 }

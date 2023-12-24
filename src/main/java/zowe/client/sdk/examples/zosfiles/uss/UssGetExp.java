@@ -2,7 +2,9 @@ package zowe.client.sdk.examples.zosfiles.uss;
 
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.examples.utility.Util;
 import zowe.client.sdk.rest.Response;
+import zowe.client.sdk.rest.exception.ZosmfRequestException;
 import zowe.client.sdk.zosfiles.uss.input.CreateParams;
 import zowe.client.sdk.zosfiles.uss.input.GetParams;
 import zowe.client.sdk.zosfiles.uss.methods.UssCreate;
@@ -16,7 +18,7 @@ import zowe.client.sdk.zosfiles.uss.types.CreateType;
  * @author Frank Giordano
  * @version 2.0
  */
-public class GetUssTst extends TstZosConnection {
+public class UssGetExp extends TstZosConnection {
 
     private static ZosConnection connection;
 
@@ -24,10 +26,9 @@ public class GetUssTst extends TstZosConnection {
      * Main method performs setup and method calls to test UssGet
      *
      * @param args for main not used
-     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         String fileNamePath = "/xx/xx/xxx";  // where xxx is a file name the rest a directory path...
 
         connection = new ZosConnection(hostName, zosmfPort, userName, password);
@@ -49,23 +50,23 @@ public class GetUssTst extends TstZosConnection {
      * @author Frank Giordano
      */
     private static void getFileTextContentWithSearchFilterNoResults(String fileNamePath) {
-        UssCreate ussCreate = new UssCreate(connection);
+        Response response;
         try {
+            UssCreate ussCreate = new UssCreate(connection);
             ussCreate.create(fileNamePath, new CreateParams(CreateType.FILE, "rwxr--r--"));
-        } catch (Exception e) {
-            final String msg = "The specified file already exists";
-            if (!e.getMessage().contains(msg)) {
-                throw new RuntimeException(e);
-            }
+
+            UssWrite ussWrite = new UssWrite(connection);
+            ussWrite.writeText(fileNamePath, "Frank\nFrank2\nApple\nhelp\n");
+
+            UssGet ussGet = new UssGet(connection);
+            GetParams params = new GetParams.Builder().insensitive(false).search("apple").build();
+            response = ussGet.getCommon(fileNamePath, params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
         }
 
-        UssWrite ussWrite = new UssWrite(connection);
-        ussWrite.writeText(fileNamePath, "Frank\nFrank2\nApple\nhelp\n");
-
-        UssGet ussGet = new UssGet(connection);
-        GetParams params = new GetParams.Builder().insensitive(false).search("apple").build();
-        Response response = ussGet.getCommon(fileNamePath, params);
-        System.out.println(response.getResponsePhrase().get());
+        System.out.println(response.getResponsePhrase().orElse("no response phrase"));
     }
 
     /**
@@ -76,22 +77,36 @@ public class GetUssTst extends TstZosConnection {
      * @author Frank Giordano
      */
     private static void getFileTextContentWithSearchFilter(String fileNamePath) {
-        UssGet ussGet = new UssGet(connection);
-        GetParams params = new GetParams.Builder().insensitive(false).search("Apple").build();
-        Response response = ussGet.getCommon(fileNamePath, params);
-        System.out.println(response.getResponsePhrase().get());
+        Response response;
+        try {
+            UssGet ussGet = new UssGet(connection);
+            GetParams params = new GetParams.Builder().insensitive(false).search("Apple").build();
+            response = ussGet.getCommon(fileNamePath, params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
+
+        System.out.println(response.getResponsePhrase().orElse("no response phrase"));
     }
 
     /**
      * This method returns the entire text content of the fileNamePath value.
      *
      * @param fileNamePath file name with path
-     * @throws Exception processing error
      * @author Frank Giordano
      */
     private static void getFileTextContent(String fileNamePath) {
-        UssGet ussGet = new UssGet(connection);
-        System.out.println(ussGet.getText(fileNamePath));
+        String content;
+        try {
+            UssGet ussGet = new UssGet(connection);
+            content = ussGet.getText(fileNamePath);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
+
+        System.out.println(content);
     }
 
     /**
@@ -101,10 +116,17 @@ public class GetUssTst extends TstZosConnection {
      * @author Frank Giordano
      */
     private static void getFileTextContentWithRange(String fileNamePath) {
-        UssGet ussGet = new UssGet(connection);
-        GetParams params = new GetParams.Builder().recordsRange("-2").build();
-        Response response = ussGet.getCommon(fileNamePath, params);
-        System.out.println(response.getResponsePhrase().get());
+        Response response;
+        try {
+            UssGet ussGet = new UssGet(connection);
+            GetParams params = new GetParams.Builder().recordsRange("-2").build();
+            response = ussGet.getCommon(fileNamePath, params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
+
+        System.out.println(response.getResponsePhrase().orElse("no response phrase"));
     }
 
 }

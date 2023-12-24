@@ -2,7 +2,9 @@ package zowe.client.sdk.examples.zosjobs;
 
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.examples.utility.Util;
 import zowe.client.sdk.rest.Response;
+import zowe.client.sdk.rest.exception.ZosmfRequestException;
 import zowe.client.sdk.zosjobs.input.ModifyJobParams;
 import zowe.client.sdk.zosjobs.methods.JobDelete;
 import zowe.client.sdk.zosjobs.response.Job;
@@ -14,7 +16,7 @@ import zowe.client.sdk.zosjobs.response.Job;
  * @author Frank Giordano
  * @version 2.0
  */
-public class DeleteJobTst extends TstZosConnection {
+public class JobDeleteExp extends TstZosConnection {
 
     private static ZosConnection connection;
     private static String jobName;
@@ -25,10 +27,9 @@ public class DeleteJobTst extends TstZosConnection {
      * JobDelete functionality.
      *
      * @param args for main not used
-     * @throws Exception error in processing request
      * @author Leonid Baranov
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         connection = new ZosConnection(hostName, zosmfPort, userName, password);
         System.out.println(deleteCommonWithVersion("2.0"));
         System.out.println(deleteCommon());
@@ -43,14 +44,19 @@ public class DeleteJobTst extends TstZosConnection {
      * processing of the request.
      *
      * @param version value to indicate sync or async request processing
-     * @return response http response object
+     * @return response object
      * @author Frank Giordano
      */
     public static Response deleteCommonWithVersion(String version) {
         jobId = "xxx";
         jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).version(version).build();
-        return new JobDelete(connection).deleteCommon(params);
+        try {
+            return new JobDelete(connection).deleteCommon(params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
     }
 
     /**
@@ -58,42 +64,56 @@ public class DeleteJobTst extends TstZosConnection {
      * The deleteCommon method accepts a DeleteJobParams object with parameters
      * filled needed to delete a given job.
      *
-     * @return response http response object
+     * @return response object
      * @author Frank Giordano
      */
     public static Response deleteCommon() {
         jobId = "xxx";
         jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).build();
-        return new JobDelete(connection).deleteCommon(params);
+        try {
+            return new JobDelete(connection).deleteCommon(params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
     }
 
     /**
      * Example on how to call JobDelete deleteByJob method.
      * The deleteByJob method accepts a jobName and jobId values which will be used to delete its job.
      *
-     * @return response http response object
+     * @return response object
      * @author Frank Giordano
      */
     public static Response deleteByJob() {
         jobId = "xxx";
         jobName = "xxx";
-        return new JobDelete(connection).deleteByJob(
-                new Job.Builder().jobName(jobName).jobId(jobId).build(), null);
+        try {
+            return new JobDelete(connection).deleteByJob(
+                    new Job.Builder().jobName(jobName).jobId(jobId).build(), null);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
     }
 
     /**
      * Example on how to call JobDelete delete method.
      * The delete method accepts a jobName and jobId values which will be used to delete its job.
      *
-     * @return response http response object
-     * @throws Exception error in processing request
+     * @return response object
      * @author Frank Giordano
      */
-    public static Response deleteJob() throws Exception {
+    public static Response deleteJob() {
         jobId = "xxx";
         jobName = "xxx";
-        return new JobDelete(connection).delete(jobName, jobId, null);
+        try {
+            return new JobDelete(connection).delete(jobName, jobId, null);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
     }
 
 }

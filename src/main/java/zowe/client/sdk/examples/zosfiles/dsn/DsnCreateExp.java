@@ -2,7 +2,9 @@ package zowe.client.sdk.examples.zosfiles.dsn;
 
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.examples.utility.Util;
 import zowe.client.sdk.rest.Response;
+import zowe.client.sdk.rest.exception.ZosmfRequestException;
 import zowe.client.sdk.zosfiles.dsn.input.CreateParams;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnCreate;
 
@@ -13,7 +15,7 @@ import zowe.client.sdk.zosfiles.dsn.methods.DsnCreate;
  * @author Frank Giordano
  * @version 2.0
  */
-public class CreateDatasetTst extends TstZosConnection {
+public class DsnCreateExp extends TstZosConnection {
 
     private static ZosConnection connection;
 
@@ -30,7 +32,6 @@ public class CreateDatasetTst extends TstZosConnection {
         createPartitionDataSet(dataSetName);
         dataSetName = "xxx";
         createSequentialDataSet(dataSetName);
-
     }
 
     /**
@@ -40,9 +41,17 @@ public class CreateDatasetTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void createSequentialDataSet(String dataSetName) {
-        DsnCreate dsnCreate = new DsnCreate(connection);
-        Response response = dsnCreate.create(dataSetName, sequential());
-        System.out.println("http response code " + response.getStatusCode());
+        Response response;
+        try {
+            DsnCreate dsnCreate = new DsnCreate(connection);
+            response = dsnCreate.create(dataSetName, sequential());
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
+
+        System.out.println("status code = " +
+                (response.getStatusCode().isEmpty() ? "no status code available" : response.getStatusCode().getAsInt()));
     }
 
     /**
@@ -52,9 +61,17 @@ public class CreateDatasetTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void createPartitionDataSet(String dataSetName) {
-        DsnCreate dsnCreate = new DsnCreate(connection);
-        Response response = dsnCreate.create(dataSetName, partitioned());
-        System.out.println("http response code " + response.getStatusCode());
+        Response response;
+        try {
+            DsnCreate dsnCreate = new DsnCreate(connection);
+            response = dsnCreate.create(dataSetName, partitioned());
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
+
+        System.out.println("status code = " +
+                (response.getStatusCode().isEmpty() ? "no status code available" : response.getStatusCode().getAsInt()));
     }
 
     /**

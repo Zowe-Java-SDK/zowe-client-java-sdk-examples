@@ -3,9 +3,12 @@ package zowe.client.sdk.examples.zosfiles.dsn;
 import org.apache.commons.io.IOUtils;
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.examples.utility.Util;
+import zowe.client.sdk.rest.exception.ZosmfRequestException;
 import zowe.client.sdk.zosfiles.dsn.input.DownloadParams;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnGet;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 
@@ -16,7 +19,7 @@ import java.io.StringWriter;
  * @author Frank Giordano
  * @version 2.0
  */
-public class DownloadDatasetTst extends TstZosConnection {
+public class DsnGetExp extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
@@ -32,8 +35,8 @@ public class DownloadDatasetTst extends TstZosConnection {
         String memberName = "xxx";
         DownloadParams params = new DownloadParams.Builder().build();
         ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
-        DownloadDatasetTst.downloadDsnMember(connection, datasetName, memberName, params);
-        DownloadDatasetTst.downloadDsnSequential(connection, datasetSeqName, params);
+        DsnGetExp.downloadDsnMember(connection, datasetName, memberName, params);
+        DsnGetExp.downloadDsnSequential(connection, datasetSeqName, params);
     }
 
     /**
@@ -43,11 +46,9 @@ public class DownloadDatasetTst extends TstZosConnection {
      * @param dsName     name of a dataset
      * @param memName    member name that exists within the specified dataset name
      * @param params     download parameters object
-     * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void downloadDsnMember(ZosConnection connection, String dsName, String memName,
-                                         DownloadParams params) throws Exception {
+    public static void downloadDsnMember(ZosConnection connection, String dsName, String memName, DownloadParams params) {
         try (InputStream inputStream = new DsnGet(connection)
                 .get(String.format("%s(%s)", dsName, memName), params)) {
             if (inputStream != null) {
@@ -56,6 +57,11 @@ public class DownloadDatasetTst extends TstZosConnection {
                 String content = writer.toString();
                 System.out.println(content);
             }
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -65,11 +71,9 @@ public class DownloadDatasetTst extends TstZosConnection {
      * @param connection ZosConnection object
      * @param dsName     name of a sequential dataset
      * @param params     download parameters object
-     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void downloadDsnSequential(ZosConnection connection, String dsName, DownloadParams params)
-            throws Exception {
+    public static void downloadDsnSequential(ZosConnection connection, String dsName, DownloadParams params) {
         try (InputStream inputStream = new DsnGet(connection).get(dsName, params)) {
             if (inputStream != null) {
                 StringWriter writer = new StringWriter();
@@ -77,6 +81,11 @@ public class DownloadDatasetTst extends TstZosConnection {
                 String content = writer.toString();
                 System.out.println(content);
             }
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -2,7 +2,9 @@ package zowe.client.sdk.examples.zosfiles.dsn;
 
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.examples.utility.Util;
 import zowe.client.sdk.rest.Response;
+import zowe.client.sdk.rest.exception.ZosmfRequestException;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnWrite;
 
 /**
@@ -12,7 +14,7 @@ import zowe.client.sdk.zosfiles.dsn.methods.DsnWrite;
  * @author Frank Giordano
  * @version 2.0
  */
-public class WriteDatasetTst extends TstZosConnection {
+public class DsnWriteExp extends TstZosConnection {
 
     private static ZosConnection connection;
 
@@ -21,17 +23,16 @@ public class WriteDatasetTst extends TstZosConnection {
      * DsnWrite functionality.
      *
      * @param args for main not used
-     * @throws Exception error in processing request
      * @author Leonid Baranov
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         String dataSetName = "xxx";
         String datasetSeqName = "xxx";
         String member = "xxx";
         connection = new ZosConnection(hostName, zosmfPort, userName, password);
         var content = "NEW CONTENT\nTHE SECOND LINE UPDATED";
-        WriteDatasetTst.writeToDsnMember(dataSetName, member, content);
-        WriteDatasetTst.writeToDsnSequential(datasetSeqName, content);
+        DsnWriteExp.writeToDsnMember(dataSetName, member, content);
+        DsnWriteExp.writeToDsnSequential(datasetSeqName, content);
     }
 
     /**
@@ -40,13 +41,20 @@ public class WriteDatasetTst extends TstZosConnection {
      * @param dataSetName name of a dataset where member should be located (e.g. 'DATASET.LIB')
      * @param member      name of member to write
      * @param content     content for write
-     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void writeToDsnMember(String dataSetName, String member, String content) throws Exception {
-        DsnWrite dsnWrite = new DsnWrite(connection);
-        Response response = dsnWrite.write(dataSetName, member, content);
-        System.out.println("http response code " + response.getStatusCode());
+    public static void writeToDsnMember(String dataSetName, String member, String content) {
+        Response response;
+        try {
+            DsnWrite dsnWrite = new DsnWrite(connection);
+            response = dsnWrite.write(dataSetName, member, content);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
+
+        System.out.println("status code = " +
+                (response.getStatusCode().isEmpty() ? "no status code available" : response.getStatusCode().getAsInt()));
     }
 
     /**
@@ -57,9 +65,17 @@ public class WriteDatasetTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void writeToDsnSequential(String dataSetName, String content) {
-        DsnWrite dsnWrite = new DsnWrite(connection);
-        Response response = dsnWrite.write(dataSetName, content);
-        System.out.println("http response code " + response.getStatusCode());
+        Response response;
+        try {
+            DsnWrite dsnWrite = new DsnWrite(connection);
+            response = dsnWrite.write(dataSetName, content);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
+
+        System.out.println("status code = " +
+                (response.getStatusCode().isEmpty() ? "no status code available" : response.getStatusCode().getAsInt()));
     }
 
 }
