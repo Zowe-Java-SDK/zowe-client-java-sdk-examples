@@ -2,7 +2,9 @@ package zowe.client.sdk.examples.zosjobs;
 
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.examples.utility.Util;
 import zowe.client.sdk.rest.Response;
+import zowe.client.sdk.rest.exception.ZosmfRequestException;
 import zowe.client.sdk.zosjobs.input.ModifyJobParams;
 import zowe.client.sdk.zosjobs.methods.JobCancel;
 import zowe.client.sdk.zosjobs.response.Job;
@@ -14,7 +16,7 @@ import zowe.client.sdk.zosjobs.response.Job;
  * @author Frank Giordano
  * @version 2.0
  */
-public class CancelJobTst extends TstZosConnection {
+public class JobCancelExp extends TstZosConnection {
 
     private static ZosConnection connection;
     private static String jobName;
@@ -25,10 +27,9 @@ public class CancelJobTst extends TstZosConnection {
      * JobCancel functionality.
      *
      * @param args for main not used
-     * @throws Exception error in processing request
      * @author Leonid Baranov
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         connection = new ZosConnection(hostName, zosmfPort, userName, password);
         System.out.println(cancelCommonWithVersion("2.0"));
         System.out.println(cancelCommon());
@@ -43,14 +44,19 @@ public class CancelJobTst extends TstZosConnection {
      * of the request.
      *
      * @param version version value
-     * @return response http Response object
+     * @return response object
      * @author Frank Giordano
      */
     public static Response cancelCommonWithVersion(String version) {
         jobId = "xxx";
         jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).version(version).build();
-        return new JobCancel(connection).cancelCommon(params);
+        try {
+            return new JobCancel(connection).cancelCommon(params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
     }
 
     /**
@@ -58,42 +64,56 @@ public class CancelJobTst extends TstZosConnection {
      * The cancelCommon method accepts a CancelJobParams object with parameters filled needed
      * to cancel a given job.
      *
-     * @return response http Response object
+     * @return response object
      * @author Frank Giordano
      */
     public static Response cancelCommon() {
         jobId = "xxx";
         jobName = "xxx";
         ModifyJobParams params = new ModifyJobParams.Builder(jobName, jobId).build();
-        return new JobCancel(connection).cancelCommon(params);
+        try {
+            return new JobCancel(connection).cancelCommon(params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
     }
 
     /**
      * Example on how to call JobCancel cancelByJob method.
      * The cancelByJob method accepts a jobName and jobId values which will be used to cancel its job.
      *
-     * @return response http Response object
+     * @return response object
      * @author Frank Giordano
      */
     public static Response cancelByJob() {
         jobId = "xxx";
         jobName = "xxx";
-        return new JobCancel(connection).cancelByJob(
-                new Job.Builder().jobName(jobName).jobId(jobId).build(), null);
+        try {
+            return new JobCancel(connection)
+                    .cancelByJob(new Job.Builder().jobName(jobName).jobId(jobId).build(), null);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
     }
 
     /**
      * Example on how to call JobCancel cancel method.
      * The cancel method accepts a jobName and jobId values which will be used to cancel its job.
      *
-     * @return response http Response object
-     * @throws Exception error in processing request
+     * @return response object
      * @author Frank Giordano
      */
-    public static Response cancel() throws Exception {
+    public static Response cancel() {
         jobId = "xxx";
         jobName = "xxx";
-        return new JobCancel(connection).cancel(jobName, jobId, null);
+        try {
+            return new JobCancel(connection).cancel(jobName, jobId, null);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
     }
 
 }

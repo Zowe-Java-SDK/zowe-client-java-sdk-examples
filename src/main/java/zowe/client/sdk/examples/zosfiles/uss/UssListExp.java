@@ -2,6 +2,8 @@ package zowe.client.sdk.examples.zosfiles.uss;
 
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.examples.utility.Util;
+import zowe.client.sdk.rest.exception.ZosmfRequestException;
 import zowe.client.sdk.zosfiles.uss.input.ListParams;
 import zowe.client.sdk.zosfiles.uss.input.ListZfsParams;
 import zowe.client.sdk.zosfiles.uss.methods.UssList;
@@ -16,7 +18,7 @@ import java.util.List;
  * @author Frank Giordano
  * @version 2.0
  */
-public class ListUssTst extends TstZosConnection {
+public class UssListExp extends TstZosConnection {
 
     private static ZosConnection connection;
 
@@ -24,10 +26,9 @@ public class ListUssTst extends TstZosConnection {
      * Main method performs setup and method calls to test UssList
      *
      * @param args for main not used
-     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         String fileNamePath = "/xxx/xx/xx";
         String dirNamePath = "/xxx/xx/xx";
 
@@ -40,13 +41,19 @@ public class ListUssTst extends TstZosConnection {
      * Perform a UNIX zFS list
      *
      * @param value file name with path
-     * @throws Exception processing error
      * @author Frank Giordano
      */
-    private static void zfsList(String value) throws Exception {
-        UssList ussList = new UssList(connection);
-        ListZfsParams params = new ListZfsParams.Builder().path(value).build();
-        List<UnixZfs> items = ussList.getZfsSystems(params);
+    private static void zfsList(String value) {
+        List<UnixZfs> items;
+        try {
+            UssList ussList = new UssList(connection);
+            ListZfsParams params = new ListZfsParams.Builder().path(value).build();
+            items = ussList.getZfsSystems(params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
+
         items.forEach(System.out::println);
     }
 
@@ -54,13 +61,19 @@ public class ListUssTst extends TstZosConnection {
      * Perform a UNIX file list
      *
      * @param value file name with path
-     * @throws Exception processing error
      * @author Frank Giordano
      */
-    private static void fileList(String value) throws Exception {
-        UssList ussList = new UssList(connection);
-        ListParams params = new ListParams.Builder().path(value).build();
-        List<UnixFile> items = ussList.getFiles(params);
+    private static void fileList(String value) {
+        List<UnixFile> items;
+        try {
+            UssList ussList = new UssList(connection);
+            ListParams params = new ListParams.Builder().path(value).build();
+            items = ussList.getFiles(params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
+
         items.forEach(System.out::println);
     }
 

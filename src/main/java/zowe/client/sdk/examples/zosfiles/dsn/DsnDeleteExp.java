@@ -2,7 +2,9 @@ package zowe.client.sdk.examples.zosfiles.dsn;
 
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.examples.utility.Util;
 import zowe.client.sdk.rest.Response;
+import zowe.client.sdk.rest.exception.ZosmfRequestException;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnDelete;
 
 /**
@@ -12,7 +14,7 @@ import zowe.client.sdk.zosfiles.dsn.methods.DsnDelete;
  * @author Frank Giordano
  * @version 2.0
  */
-public class DeleteDatasetTst extends TstZosConnection {
+public class DsnDeleteExp extends TstZosConnection {
 
     private static ZosConnection connection;
 
@@ -21,10 +23,9 @@ public class DeleteDatasetTst extends TstZosConnection {
      * DeleteDataset functionality. Calls DeleteDataset example methods.
      *
      * @param args for main not used
-     * @throws Exception error in processing request
      * @author Leonid Baranov
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         String dataSetName = "xxx";
         String member = "xxx";
         connection = new ZosConnection(hostName, zosmfPort, userName, password);
@@ -39,9 +40,17 @@ public class DeleteDatasetTst extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void deleteDataSet(String dataSetName) {
-        DsnDelete zosDsn = new DsnDelete(connection);
-        Response response = zosDsn.delete(dataSetName);
-        System.out.println("http response code " + response.getStatusCode());
+        Response response;
+        try {
+            DsnDelete zosDsn = new DsnDelete(connection);
+            response = zosDsn.delete(dataSetName);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
+
+        System.out.println("status code = " +
+                (response.getStatusCode().isEmpty() ? "no status code available" : response.getStatusCode().getAsInt()));
     }
 
     /**
@@ -49,13 +58,20 @@ public class DeleteDatasetTst extends TstZosConnection {
      *
      * @param dataSetName name of a dataset where member should be located (e.g. 'DATASET.LIB')
      * @param member      name of member to delete
-     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void deleteMember(String dataSetName, String member) throws Exception {
-        DsnDelete zosDsn = new DsnDelete(connection);
-        Response response = zosDsn.delete(dataSetName, member);
-        System.out.println("http response code " + response.getStatusCode());
+    public static void deleteMember(String dataSetName, String member) {
+        Response response;
+        try {
+            DsnDelete zosDsn = new DsnDelete(connection);
+            response = zosDsn.delete(dataSetName, member);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
+
+        System.out.println("status code = " +
+                (response.getStatusCode().isEmpty() ? "no status code available" : response.getStatusCode().getAsInt()));
     }
 
 }

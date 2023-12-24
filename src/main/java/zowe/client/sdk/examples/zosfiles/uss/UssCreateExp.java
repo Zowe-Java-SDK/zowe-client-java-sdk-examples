@@ -2,7 +2,9 @@ package zowe.client.sdk.examples.zosfiles.uss;
 
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.examples.utility.Util;
 import zowe.client.sdk.rest.Response;
+import zowe.client.sdk.rest.exception.ZosmfRequestException;
 import zowe.client.sdk.zosfiles.uss.input.CreateParams;
 import zowe.client.sdk.zosfiles.uss.methods.UssCreate;
 import zowe.client.sdk.zosfiles.uss.types.CreateType;
@@ -13,7 +15,7 @@ import zowe.client.sdk.zosfiles.uss.types.CreateType;
  * @author Frank Giordano
  * @version 2.0
  */
-public class CreateUssTst extends TstZosConnection {
+public class UssCreateExp extends TstZosConnection {
 
     private static ZosConnection connection;
 
@@ -29,9 +31,11 @@ public class CreateUssTst extends TstZosConnection {
 
         connection = new ZosConnection(hostName, zosmfPort, userName, password);
         Response response = CreateFile(fileNamePath);
-        System.out.println(response.getStatusCode().getAsInt());
+        System.out.println("status code = " +
+                (response.getStatusCode().isEmpty() ? "no status code available" : response.getStatusCode().getAsInt()));
         response = CreateDirectory(dirNamePath);
-        System.out.println(response.getStatusCode().getAsInt());
+        System.out.println("status code = " +
+                (response.getStatusCode().isEmpty() ? "no status code available" : response.getStatusCode().getAsInt()));
     }
 
     /**
@@ -42,9 +46,14 @@ public class CreateUssTst extends TstZosConnection {
      * @author Frank Giordano
      */
     private static Response CreateDirectory(String value) {
-        UssCreate ussCreate = new UssCreate(connection);
-        CreateParams params = new CreateParams(CreateType.DIR, "-wx-wx-wx");
-        return ussCreate.create(value, params);
+        try {
+            UssCreate ussCreate = new UssCreate(connection);
+            CreateParams params = new CreateParams(CreateType.DIR, "-wx-wx-wx");
+            return ussCreate.create(value, params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
     }
 
     /**
@@ -55,9 +64,14 @@ public class CreateUssTst extends TstZosConnection {
      * @author Frank Giordano
      */
     private static Response CreateFile(String value) {
-        UssCreate ussCreate = new UssCreate(connection);
-        CreateParams params = new CreateParams(CreateType.FILE, "-wx-wx-wx");
-        return ussCreate.create(value, params);
+        try {
+            UssCreate ussCreate = new UssCreate(connection);
+            CreateParams params = new CreateParams(CreateType.FILE, "-wx-wx-wx");
+            return ussCreate.create(value, params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
     }
 
 }

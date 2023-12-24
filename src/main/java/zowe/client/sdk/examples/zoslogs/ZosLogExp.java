@@ -2,6 +2,8 @@ package zowe.client.sdk.examples.zoslogs;
 
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.examples.utility.Util;
+import zowe.client.sdk.rest.exception.ZosmfRequestException;
 import zowe.client.sdk.zoslogs.input.ZosLogParams;
 import zowe.client.sdk.zoslogs.method.ZosLog;
 import zowe.client.sdk.zoslogs.response.ZosLogReply;
@@ -14,17 +16,16 @@ import zowe.client.sdk.zoslogs.types.HardCopyType;
  * @author Frank Giordano
  * @version 2.0
  */
-public class ZosGetLogTst extends TstZosConnection {
+public class ZosLogExp extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
      * z/OS SYSLOG retrieval functionality via ZosLog class.
      *
      * @param args for main not used
-     * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
         ZosLog zosLog = new ZosLog(connection);
         ZosLogParams zosLogParams = new ZosLogParams.Builder()
@@ -34,7 +35,13 @@ public class ZosGetLogTst extends TstZosConnection {
                 .direction(DirectionType.BACKWARD)
                 .processResponses(true)
                 .build();
-        ZosLogReply zosLogReply = zosLog.issueCommand(zosLogParams);
+        ZosLogReply zosLogReply;
+        try {
+            zosLogReply = zosLog.issueCommand(zosLogParams);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
         zosLogReply.getItemLst().forEach(i -> System.out.println(i.getTime().get() + " " + i.getMessage().get()));
 
         // get the last one minute of syslog from the date/time of now backwards...
@@ -44,7 +51,12 @@ public class ZosGetLogTst extends TstZosConnection {
                 .direction(DirectionType.BACKWARD)
                 .processResponses(true)
                 .build();
-        zosLogReply = zosLog.issueCommand(zosLogParams);
+        try {
+            zosLogReply = zosLog.issueCommand(zosLogParams);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
         zosLogReply.getItemLst().forEach(i -> System.out.println(i.getTime().get() + " " + i.getMessage().get()));
     }
 
