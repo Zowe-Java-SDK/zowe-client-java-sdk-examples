@@ -17,7 +17,7 @@ import java.util.List;
  * @author Frank Giordano
  * @version 2.0
  */
-public class ListDatasetsTst extends TstZosConnection {
+public class DsnListExp extends TstZosConnection {
 
     /**
      * Main method defines z/OSMF host and user connection and other parameters needed to showcase
@@ -31,10 +31,10 @@ public class ListDatasetsTst extends TstZosConnection {
         String dataSetMask = "xxx";
         String dataSetName = "xxx";
         ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
-        ListDatasetsTst.listDsn(connection, dataSetMask);
-        ListDatasetsTst.listDsnVol(connection, dataSetMask);
-        ListDatasetsTst.listMembersWithAllAttributes(connection, dataSetName);
-        ListDatasetsTst.listMembers(connection, dataSetName);
+        DsnListExp.listDsn(connection, dataSetMask);
+        DsnListExp.listDsnVol(connection, dataSetMask);
+        DsnListExp.listMembersWithAllAttributes(connection, dataSetName);
+        DsnListExp.listMembers(connection, dataSetName);
     }
 
     /**

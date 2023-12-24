@@ -7,42 +7,42 @@ Zowe Java SDK lets you leverage the underlying z/OSMF REST APIs on a z/OS system
 See the following example programs:
 
     src/main/java/zowe/client/sdk/examples/zosconsole   
-        IssueCommandTst.java  
+        IssueConsoleExp.java  
   
     src/main/java/zowe/client/sdk/examples/zosfiles/dsn    
-        CopyDatasetTst.java
-        CreateDatasetTst.java  
-        DataSetInfoTst.java  
-        DeleteDatasetTst.java  
-        DownloadDatasetTst.java
-        ListDatasetsTst.java
-        WriteDatasetTst.java  
+        DsnCopyExp.java
+        DsnCreateExp.java  
+        DsnDeleteExp.java  
+        DsnGetExp.java  
+        DsnGetInfoExp.java
+        DsnListExp.java
+        DsnWriteExp.java
 
     src/main/java/zowe/client/sdk/examples/zosfiles/uss    
-        CreateUssTst.java
-        DeleteUssTst.java  
-        GetUssTst.java
-        ListUssTst.java 
+        UssCreateExp.java
+        UssDeleteExp.java  
+        UssGetExp.java
+        UssListExo.java 
   
     src/main/java/zowe/client/sdk/examples/zosjobs    
-        CancelJobsTst.java
-        DeleteJobsTst.java
-        GetJobsTst.java
-        MonitorJobsTst.java
-        SubmitJobsTst.java  
+        JobCancelExp.java
+        JobDeleteExp.java
+        JobGetExp.java
+        JobMonitorExp.java
+        JobSubmitExp.java  
 
     src/main/java/zowe/client/sdk/examples/zoslogs     
-        ZosGetLogTst.java
+        ZosLogExp.java
   
     src/main/java/zowe/client/sdk/examples/zosmfinfo 
-        CheckStatusTst.java
-        ZosmfDefinedSystemsTst.java
+        ZosmfStatusExp.java
+        ZosmfSystemsExp.java
   
     src/main/java/zowe/client/sdk/examples/zostos  
-        IssueTsoCommandTst.java
+        IssueTsoExp.java
 
     src/main/java/zowe/client/sdk/examples/zosuss  
-        USSCommandTst.java
+        IssuUssExp.java
   
     src/main/java/zowe/client/sdk/examples/TstZosConnection.java
 
