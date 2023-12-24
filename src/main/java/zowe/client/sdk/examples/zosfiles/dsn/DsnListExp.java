@@ -2,6 +2,8 @@ package zowe.client.sdk.examples.zosfiles.dsn;
 
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.examples.utility.Util;
+import zowe.client.sdk.rest.exception.ZosmfRequestException;
 import zowe.client.sdk.zosfiles.dsn.input.ListParams;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnList;
 import zowe.client.sdk.zosfiles.dsn.response.Dataset;
@@ -24,10 +26,9 @@ public class DsnListExp extends TstZosConnection {
      * DsnList functionality.
      *
      * @param args for main not used
-     * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         String dataSetMask = "xxx";
         String dataSetName = "xxx";
         ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
@@ -42,13 +43,18 @@ public class DsnListExp extends TstZosConnection {
      *
      * @param connection  ZosConnection object
      * @param dataSetName name of a dataset
-     * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void listMembersWithAllAttributes(ZosConnection connection, String dataSetName) throws Exception {
-        ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
-        DsnList dsnList = new DsnList(connection);
-        List<Member> datasets = dsnList.getMembers(dataSetName, params);
+    public static void listMembersWithAllAttributes(ZosConnection connection, String dataSetName) {
+        List<Member> datasets;
+        try {
+            ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
+            DsnList dsnList = new DsnList(connection);
+            datasets = dsnList.getMembers(dataSetName, params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
         datasets.forEach(m -> System.out.println(m.toString()));
     }
 
@@ -57,13 +63,18 @@ public class DsnListExp extends TstZosConnection {
      *
      * @param connection  ZosConnection object
      * @param dataSetName name of a dataset
-     * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void listMembers(ZosConnection connection, String dataSetName) throws Exception {
-        ListParams params = new ListParams.Builder().attribute(AttributeType.MEMBER).build();
-        DsnList dsnList = new DsnList(connection);
-        List<Member> datasets = dsnList.getMembers(dataSetName, params);
+    public static void listMembers(ZosConnection connection, String dataSetName) {
+        List<Member> datasets;
+        try {
+            ListParams params = new ListParams.Builder().attribute(AttributeType.MEMBER).build();
+            DsnList dsnList = new DsnList(connection);
+            datasets = dsnList.getMembers(dataSetName, params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
         datasets.forEach(m -> System.out.println(m.toString()));
     }
 
@@ -72,13 +83,18 @@ public class DsnListExp extends TstZosConnection {
      *
      * @param connection  ZosConnection object
      * @param dataSetName name of a dataset
-     * @throws Exception error processing request
      * @author Leonid Baranov
      */
-    public static void listDsn(ZosConnection connection, String dataSetName) throws Exception {
-        ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
-        DsnList dsnList = new DsnList(connection);
-        List<Dataset> datasets = dsnList.getDatasets(dataSetName, params);
+    public static void listDsn(ZosConnection connection, String dataSetName) {
+        List<Dataset> datasets;
+        try {
+            ListParams params = new ListParams.Builder().attribute(AttributeType.BASE).build();
+            DsnList dsnList = new DsnList(connection);
+            datasets = dsnList.getDatasets(dataSetName, params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
         datasets.forEach(System.out::println);
     }
 
@@ -87,13 +103,18 @@ public class DsnListExp extends TstZosConnection {
      *
      * @param connection  ZosConnection object
      * @param dataSetName name of a dataset
-     * @throws Exception error processing request
      * @author Frank Giordano
      */
-    public static void listDsnVol(ZosConnection connection, String dataSetName) throws Exception {
-        ListParams params = new ListParams.Builder().attribute(AttributeType.VOL).build();
-        DsnList dsnList = new DsnList(connection);
-        List<Dataset> datasets = dsnList.getDatasets(dataSetName, params);
+    public static void listDsnVol(ZosConnection connection, String dataSetName) {
+        List<Dataset> datasets;
+        try {
+            ListParams params = new ListParams.Builder().attribute(AttributeType.VOL).build();
+            DsnList dsnList = new DsnList(connection);
+            datasets = dsnList.getDatasets(dataSetName, params);
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
         datasets.forEach(System.out::println);
     }
 
