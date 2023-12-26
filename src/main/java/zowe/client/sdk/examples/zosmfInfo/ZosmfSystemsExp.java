@@ -2,6 +2,8 @@ package zowe.client.sdk.examples.zosmfInfo;
 
 import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.examples.TstZosConnection;
+import zowe.client.sdk.examples.utility.Util;
+import zowe.client.sdk.rest.exception.ZosmfRequestException;
 import zowe.client.sdk.zosmfinfo.methods.ZosmfSystems;
 import zowe.client.sdk.zosmfinfo.response.ZosmfSystemsResponse;
 
@@ -21,13 +23,18 @@ public class ZosmfSystemsExp extends TstZosConnection {
      * defined z/OSMF systems running on the z/OS backend.
      *
      * @param args for main not used
-     * @throws Exception error in processing request
      * @author Frank Giordano
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
         ZosmfSystems zosmfSystems = new ZosmfSystems(connection);
-        ZosmfSystemsResponse zosmfInfoResponse = zosmfSystems.get();
+        ZosmfSystemsResponse zosmfInfoResponse = null;
+        try {
+            zosmfInfoResponse = zosmfSystems.get();
+        } catch (ZosmfRequestException e) {
+            final String errMsg = Util.getResponsePhrase(e.getResponse());
+            throw new RuntimeException((errMsg != null ? errMsg : e.getMessage()));
+        }
         System.out.println(zosmfInfoResponse.toString());
         Arrays.stream(zosmfInfoResponse.getDefinedSystems().get()).forEach(i -> System.out.println(i.toString()));
     }
