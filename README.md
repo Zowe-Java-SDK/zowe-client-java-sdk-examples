@@ -6,7 +6,10 @@ The [Zowe Client Java SDK](https://github.com/zowe/zowe-client-java-sdk) is a su
 
 Zowe Java SDK lets you leverage the underlying z/OSMF REST APIs on a z/OS system to build client (Windows, Linux, macOS, etc) applications that interface with your z/OS instance.
 
-See the following example programs:
+See the following example programs:  
+  
+    src/main/java/zowe/client/sdk/examples/teamconfid  
+        TeamConfig.java  
 
     src/main/java/zowe/client/sdk/examples/zosconsole   
         IssueConsoleExp.java  
