@@ -26,10 +26,9 @@ public class DsnGetExp extends TstZosConnection {
      * DsnGet class functionality.
      *
      * @param args for main not used
-     * @throws ZosmfRequestException request error state
      * @author Leonid Baranov
      */
-    public static void main(String[] args) throws ZosmfRequestException {
+    public static void main(String[] args) {
         String datasetName = "xxx";
         String datasetSeqName = "xxx";
         String memberName = "xxx";
