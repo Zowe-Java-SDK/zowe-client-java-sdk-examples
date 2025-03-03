@@ -16,7 +16,7 @@ import zowe.client.sdk.zosfiles.uss.types.CreateType;
  * Class example to showcase UssGet class functionality.
  *
  * @author Frank Giordano
- * @version 2.0
+ * @version 3.0
  */
 public class UssGetExp extends TstZosConnection {
 

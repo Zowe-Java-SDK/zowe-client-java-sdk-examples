@@ -13,7 +13,7 @@ import zowe.client.sdk.zosjobs.types.JobStatus;
  * Class example to showcase JobSubmit class functionality.
  *
  * @author Frank Giordano
- * @version 2.0
+ * @version 3.0
  */
 public class JobSubmitExp extends TstZosConnection {
 

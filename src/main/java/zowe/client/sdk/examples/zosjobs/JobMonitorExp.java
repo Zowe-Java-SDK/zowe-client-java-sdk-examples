@@ -14,7 +14,7 @@ import zowe.client.sdk.zosjobs.types.JobStatus;
  * Class example to showcase JobMonitor class functionality.
  *
  * @author Frank Giordano
- * @version 2.0
+ * @version 3.0
  */
 public class JobMonitorExp extends TstZosConnection {
 

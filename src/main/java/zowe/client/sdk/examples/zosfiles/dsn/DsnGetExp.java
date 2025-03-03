@@ -17,7 +17,7 @@ import java.io.StringWriter;
  *
  * @author Leonid Baranov
  * @author Frank Giordano
- * @version 2.0
+ * @version 3.0
  */
 public class DsnGetExp extends TstZosConnection {
 

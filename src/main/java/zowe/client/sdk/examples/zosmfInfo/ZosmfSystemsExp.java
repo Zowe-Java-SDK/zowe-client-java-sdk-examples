@@ -13,7 +13,7 @@ import java.util.Arrays;
  * Class example to showcase ZosmfSystems class functionality.
  *
  * @author Frank Giordano
- * @version 2.0
+ * @version 3.0
  */
 public class ZosmfSystemsExp extends TstZosConnection {
 

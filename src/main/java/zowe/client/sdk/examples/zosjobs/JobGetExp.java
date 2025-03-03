@@ -17,7 +17,7 @@ import java.util.List;
  * Class example to showcase JobGet class functionality.
  *
  * @author Frank Giordano
- * @version 2.0
+ * @version 3.0
  */
 public class JobGetExp extends TstZosConnection {
 

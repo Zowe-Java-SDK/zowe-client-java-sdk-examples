@@ -13,7 +13,7 @@ import java.util.Arrays;
  * Class example to showcase ZosmfStatus class functionality.
  *
  * @author Frank Giordano
- * @version 2.0
+ * @version 3.0
  */
 public class ZosmfStatusExp extends TstZosConnection {
 
