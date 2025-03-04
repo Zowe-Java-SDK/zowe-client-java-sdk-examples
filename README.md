@@ -37,9 +37,12 @@ See the following example programs:
         JobSubmitExp.java  
 
     src/main/java/zowe/client/sdk/examples/zoslogs     
-        ZosLogExp.java
+        ZosLogExp.java  
+
+    src/main/java/zowe/client/sdk/examples/zosmfauth  
+        ZosmfAuthExp.java  
   
-    src/main/java/zowe/client/sdk/examples/zosmfinfo 
+    src/main/java/zowe/client/sdk/examples/zosmfinfo   
         ZosmfStatusExp.java
         ZosmfSystemsExp.java
   
