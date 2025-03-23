@@ -65,7 +65,7 @@ public class JobMonitorExp extends TstZosConnection {
      */
     public static void monitorJobForOutputStatusByJobObject() {
         String jclString = "//TESTJOBX JOB (),MSGCLASS=H\r // EXEC PGM=IEFBR14";
-        Job job = null;
+        Job job;
         try {
             job = submitJob.submitByJcl(jclString, null, null);
             JobMonitor jobMonitor = new JobMonitor(connection);

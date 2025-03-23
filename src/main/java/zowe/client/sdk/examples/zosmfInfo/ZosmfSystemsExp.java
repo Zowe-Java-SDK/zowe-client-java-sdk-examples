@@ -28,7 +28,7 @@ public class ZosmfSystemsExp extends TstZosConnection {
     public static void main(String[] args) {
         ZosConnection connection = new ZosConnection(hostName, zosmfPort, userName, password);
         ZosmfSystems zosmfSystems = new ZosmfSystems(connection);
-        ZosmfSystemsResponse zosmfInfoResponse = null;
+        ZosmfSystemsResponse zosmfInfoResponse;
         try {
             zosmfInfoResponse = zosmfSystems.get();
         } catch (ZosmfRequestException e) {

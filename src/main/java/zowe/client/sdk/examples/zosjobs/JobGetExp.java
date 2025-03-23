@@ -295,7 +295,7 @@ public class JobGetExp extends TstZosConnection {
      * @author Frank Giordano
      */
     public static void getByOwner(String owner) {
-        List<Job> jobs = null;
+        List<Job> jobs;
         try {
             jobs = getJob.getByOwner(owner);
         } catch (ZosmfRequestException e) {
@@ -314,7 +314,7 @@ public class JobGetExp extends TstZosConnection {
      */
     public static void getSpoolFilesForJob(String prefix) {
         GetJobParams params = new GetJobParams.Builder("*").prefix(prefix).build();
-        List<JobFile> files = null;
+        List<JobFile> files;
         try {
             List<Job> jobs = getJob.getCommon(params);
             files = getJob.getSpoolFilesByJob(jobs.get(0));
