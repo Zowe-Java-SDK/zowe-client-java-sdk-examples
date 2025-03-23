@@ -12,7 +12,7 @@
         <dependency>
             <groupId>org.zowe.client.java.sdk</groupId>
             <artifactId>zowe-client-java-sdk</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
