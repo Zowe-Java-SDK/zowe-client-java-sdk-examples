@@ -42,7 +42,10 @@ public class TeamConfigExp {
 
         TeamConfig teamConfig;
         try {
-            teamConfig = new TeamConfig(new KeyTarService(new KeyTarImpl()), new TeamConfigService());
+            // legacy way still available but should be used for mocking unit tests
+            // teamConfig = new TeamConfig(new KeyTarService(new KeyTarImpl()), new TeamConfigService());
+            // since 3.1.0 release you can now initialize TeamConfig object with default no args constructor.
+            teamConfig = new TeamConfig();
         } catch (TeamConfigException e) {
             throw new RuntimeException(e.getMessage());
         }
