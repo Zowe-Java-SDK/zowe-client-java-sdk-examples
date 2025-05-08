@@ -49,7 +49,7 @@ public class TeamConfigExp {
         } catch (TeamConfigException e) {
             throw new RuntimeException(e.getMessage());
         }
-        ProfileDao profile = teamConfig.getDefaultProfileByName("zosmf");
+        ProfileDao profile = teamConfig.getDefaultProfile("zosmf");
         ZosConnection connection = new ZosConnection(profile.getHost(), profile.getPort(),
                 profile.getUser(), profile.getPassword());
 
