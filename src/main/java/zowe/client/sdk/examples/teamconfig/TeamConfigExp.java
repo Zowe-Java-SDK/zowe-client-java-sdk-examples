@@ -23,10 +23,11 @@ import java.util.List;
 public class TeamConfigExp {
 
     /**
-     * Main method defines TeamConfig object and operation to retrieve the default
+     * The main method defines TeamConfig object and operation to retrieve the default
      * zosmf profile from Zowe Team Configuration.
      * <p>
      * Zowe Team Configuration contains the connection information for z/OSMF REST API.
+     * It also contains properties to be used accordingly. 
      * <p>
      * Moreover, the retrieval of the zosmf profile will retrieve secure Zowe V2 credentials
      * (username/password) entered via the Zowe Global Team Configuration command.
