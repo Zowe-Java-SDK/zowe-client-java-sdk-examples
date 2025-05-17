@@ -26,7 +26,10 @@ public class TstZosConnection {
     // or use the following method to retrieve Zowe OS credential store for your
     // secure Zowe V2 credentials you entered when you initially set up Zowe Global Team Configuration.
     public static ZosConnection getSecureZosConnection() throws TeamConfigException {
-        TeamConfig teamConfig = new TeamConfig(new KeyTarService(new KeyTarImpl()), new TeamConfigService());
+        // legacy way still available but should be used for mocking unit tests
+        // teamConfig = new TeamConfig(new KeyTarService(new KeyTarImpl()), new TeamConfigService());
+        // since 3.1.0 release you can now initialize TeamConfig object with default no args constructor.
+        TeamConfig teamConfig = new TeamConfig();
         ProfileDao profile = teamConfig.getDefaultProfile("zosmf");
         return (new ZosConnection(profile.getHost(), profile.getPort(), profile.getUser(), profile.getPassword()));
     }
