@@ -4,10 +4,7 @@ import zowe.client.sdk.core.ZosConnection;
 import zowe.client.sdk.rest.exception.ZosmfRequestException;
 import zowe.client.sdk.teamconfig.TeamConfig;
 import zowe.client.sdk.teamconfig.exception.TeamConfigException;
-import zowe.client.sdk.teamconfig.keytar.KeyTarImpl;
 import zowe.client.sdk.teamconfig.model.ProfileDao;
-import zowe.client.sdk.teamconfig.service.KeyTarService;
-import zowe.client.sdk.teamconfig.service.TeamConfigService;
 import zowe.client.sdk.zosfiles.dsn.input.ListParams;
 import zowe.client.sdk.zosfiles.dsn.methods.DsnList;
 import zowe.client.sdk.zosfiles.dsn.response.Member;
@@ -27,7 +24,7 @@ public class TeamConfigExp {
      * zosmf profile from Zowe Team Configuration.
      * <p>
      * Zowe Team Configuration contains the connection information for z/OSMF REST API.
-     * It also contains properties to be used accordingly. 
+     * It also contains properties to be used accordingly.
      * <p>
      * Moreover, the retrieval of the zosmf profile will retrieve secure Zowe V2 credentials
      * (username/password) entered via the Zowe Global Team Configuration command.
